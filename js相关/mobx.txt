@@ -26,7 +26,7 @@
 \cf2 Observable state(\'bf\'c9\'b9\'db\'b2\'ec\'b5\'c4\'d7\'b4\'cc\'ac)\
 Computed values(\'bc\'c6\'cb\'e3\'d6\'b5)\
 Reactions(\'b7\'b4\'d3\'a6)\
-Actions(\'b6\'af\'d7\'f7)\
+Actions(\'b6\'af\'d7\'f7)  \
 \pard\pardeftab720\sl360\partightenfactor0
 \cf2 \
 \
@@ -790,7 +790,7 @@ setInterval(ticker.increment, \cf9 1000\cf2 )\
 \fs32 \cf10 \cb3 \
 \pard\pardeftab720\sl360\sa272\partightenfactor0
 
-\f0 \cf2 \cb3 \'d7\'a2\'d2\'e2
+\f0 \cf2 \'d7\'a2\'d2\'e2
 \f1\i :\'a0action.bound\'a0
 \f0\i0 \'b2\'bb\'d2\'aa\'ba\'cd\'bc\'fd\'cd\'b7\'ba\'af\'ca\'fd\'d2\'bb\'c6\'f0\'ca\'b9\'d3\'c3\'a3\'bb\'bc\'fd\'cd\'b7\'ba\'af\'ca\'fd\'d2\'d1\'be\'ad\'ca\'c7\'b0\'f3\'b6\'a8\'b9\'fd\'b5\'c4\'b2\'a2\'c7\'d2\'b2\'bb\'c4\'dc\'d6\'d8\'d0\'c2\'b0\'f3\'b6\'a8\'a1\'a3
 \f1 \
@@ -1190,9 +1190,8 @@ componentWillReact
 \f1\fs32 \cb3 \'a0
 \f0 \'b2\'bb\'bd\'d3\'ca\'d5\'b2\'ce\'ca\'fd
 \f1 \cb1 \
-\pard\tx220\tx720\pardeftab720\li720\fi-720\sl320\partightenfactor0
 \ls5\ilvl0
-\f2\fs27\fsmilli13600 \cf2 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\f2\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
 componentWillReact
 \f1\fs32 \cb3 \'a0
 \f0 \'b3\'f5\'ca\'bc\'bb\'af\'e4\'d6\'c8\'be\'c7\'b0\'b2\'bb\'bb\'e1\'b4\'a5\'b7\'a2
