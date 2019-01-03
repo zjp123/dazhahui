@@ -1,1606 +1,307 @@
-{\rtf1\ansi\ansicpg936\cocoartf1561\cocoasubrtf400
-{\fonttbl\f0\fnil\fcharset134 PingFangSC-Regular;\f1\fnil\fcharset0 HelveticaNeue;\f2\fnil\fcharset0 Menlo-Regular;
-\f3\fnil\fcharset0 Menlo-Bold;\f4\fnil\fcharset134 STSongti-SC-Regular;\f5\froman\fcharset0 Times-Roman;
-}
-{\colortbl;\red255\green255\blue255;\red38\green38\blue38;\red255\green255\blue255;\red52\green110\blue183;
-\red245\green245\blue245;\red117\green66\blue151;\red123\green126\blue121;\red95\green124\blue3;\red240\green115\blue25;
-\red0\green0\blue0;\red52\green92\blue158;\red37\green47\blue61;\red185\green20\blue31;}
-{\*\expandedcolortbl;;\cssrgb\c20000\c20000\c20000;\cssrgb\c100000\c100000\c100000;\cssrgb\c25490\c51373\c76863;
-\cssrgb\c96863\c96863\c96863;\cssrgb\c53725\c34902\c65882;\cssrgb\c55686\c56471\c54902;\cssrgb\c44314\c54902\c0;\cssrgb\c96078\c52941\c12157;
-\cssrgb\c0\c0\c0;\cssrgb\c25882\c44314\c68235;\cssrgb\c19216\c24314\c30588;\cssrgb\c78431\c15686\c16078;}
-{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
-{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
-{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid201\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid3}
-{\list\listtemplateid4\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid301\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid4}
-{\list\listtemplateid5\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid401\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid5}
-{\list\listtemplateid6\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid501\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid6}
-{\list\listtemplateid7\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid601\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid7}}
-{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}{\listoverride\listid5\listoverridecount0\ls5}{\listoverride\listid6\listoverridecount0\ls6}{\listoverride\listid7\listoverridecount0\ls7}}
-\paperw11900\paperh16840\margl1440\margr1440\vieww20300\viewh11420\viewkind0
-\deftab720
-\pard\pardeftab720\sl360\partightenfactor0
+核心概念：
+Observable state(可观察的状态)
+Computed values(计算值)
+Reactions(反应)
+Actions(动作)  
 
-\f0\fs32 \cf2 \cb3 \expnd0\expndtw0\kerning0
-\'ba\'cb\'d0\'c4\'b8\'c5\'c4\'ee\'a3\'ba\
-\pard\pardeftab720\sl460\sa306\partightenfactor0
-\cf2 Observable state(\'bf\'c9\'b9\'db\'b2\'ec\'b5\'c4\'d7\'b4\'cc\'ac)\
-Computed values(\'bc\'c6\'cb\'e3\'d6\'b5)\
-Reactions(\'b7\'b4\'d3\'a6)\
-Actions(\'b6\'af\'d7\'f7)  \
-\pard\pardeftab720\sl360\partightenfactor0
-\cf2 \
-\
-\'ca\'b9\'d3\'c3
-\f1  MobX
-\f0 \'a3\'ac
-\f1  
-\f0 \'c4\'e3\'bf\'c9\'d2\'d4\'b6\'a8\'d2\'e5\'d4\'da\'cf\'e0\'b9\'d8\'ca\'fd\'be\'dd\'b7\'a2\'c9\'fa\'b1\'e4\'bb\'af\'ca\'b1\'d7\'d4\'b6\'af\'b8\'fc\'d0\'c2\'b5\'c4\'d6\'b5\'a1\'a3
-\f1  
-\f0 \'cd\'a8\'b9\'fd{\field{\*\fldinst{HYPERLINK "http://cn.mobx.js.org/refguide/computed-decorator.html"}}{\fldrslt 
-\f2\fs27\fsmilli13600 \cf4 \cb5 @computed}}
-\f1 \'a0
-\f0 \'d7\'b0\'ca\'ce\'c6\'f7\'bb\'f2\'d5\'df\'c0\'fb\'d3\'c3
-\f1 \'a0
-\f2\fs20\fsmilli10200 \cb5 (extend)Observable
-\f1\fs32 \cb3 \'a0
-\f0 \'ca\'b1\'b5\'f7\'d3\'c3
-\f1  
-\f0 \'b5\'c4
-\f1 getter / setter 
-\f0 \'ba\'af\'ca\'fd\'c0\'b4\'bd\'f8\'d0\'d0\'ca\'b9\'d3\'c3\'a1\'a3
-\f1 (
-\f0 \'b5\'b1\'c8\'bb\'a3\'ac\'d5\'e2\'c0\'ef\'d2\'b2\'bf\'c9\'d2\'d4\'d4\'d9\'b4\'ce\'ca\'b9\'d3\'c3
-\f1 \'a0
-\f2\fs20\fsmilli10200 \cb5 decorate
-\f0\fs32 \cb3 \'c0\'b4\'cc\'e6\'b4\'fa
-\f1 \'a0
-\f2\fs20\fsmilli10200 \cb5 @
-\f1\fs32 \cb3 \'a0
-\f0 \'d3\'ef\'b7\'a8
-\f1 )
-\f0 \'a1\'a3  \'a1\'aa\'cb\'fc\'c3\'c7\'ca\'c7\'d2\'bb\'b8\'f6\'d2\'e2\'cb\'bc\
-\
-\pard\pardeftab720\sl460\sa306\partightenfactor0
-\cf2 Reactions(\'b7\'b4\'d3\'a6)\'cb\'fc\'b2\'a2\'b2\'bb\'ca\'c7\'be\'df\'cc\'e5\'b5\'c4\'ba\'af\'ca\'fd\'bb\'f2\'d5\'df\'d3\'ef\'b7\'a8\'a3\'ac\'cb\'fc\'d6\'bb\'ca\'c7\'d2\'bb\'b8\'f6\'ce\'c4\'d7\'d6\'c3\'e8\'ca\'f6\'a3\'ac\'d2\'bb\'b8\'f6\'ce\'c4\'b0\'b8\'b3\'c6\'ba\'f4\'a1\'a3\'cb\'fc\'b0\'d1\'c4\'b3\'d2\'bb\'c0\'e0\'b5\'c4\'d0\'d0\'ce\'aa\'b6\'bc\'bd\'d0\'d7\'f6\'b7\'b4\'d3\'a6\'a3\'ac\'b1\'c8\'c8\'e7\'a3\'baReactions \'ba\'cd\'bc\'c6\'cb\'e3\'d6\'b5\'ba\'dc\'cf\'f1\'a3\'ac\'b5\'ab\'cb\'fc\'b2\'bb\'ca\'c7\'b2\'fa\'c9\'fa\'d2\'bb\'b8\'f6\'d0\'c2\'b5\'c4\'d6\'b5\'a3\'ac\'b6\'f8\'ca\'c7\'bb\'e1\'b2\'fa\'c9\'fa\'d2\'bb\'d0\'a9\'b8\'b1\'d7\'f7\'d3\'c3\'a3\'ac\'b1\'c8\'c8\'e7\'b4\'f2\'d3\'a1\'b5\'bd\'bf\'d8\'d6\'c6\'cc\'a8\'a1\'a2\'cd\'f8\'c2\'e7\'c7\'eb\'c7\'f3\'a1\'a2\'b5\'dd\'d4\'f6\'b5\'d8\'b8\'fc\'d0\'c2 React \'d7\'e9\'bc\'fe\'ca\'f7\'d2\'d4\'d0\'de\'b2\'b9DOM\'a1\'a2\'b5\'c8\'b5\'c8\
-\pard\pardeftab720\sl360\sa255\partightenfactor0
 
-\b\fs30 \cf2 \'d7\'d4\'b6\'a8\'d2\'e5
-\f1  reactions\
-\pard\pardeftab720\sl360\partightenfactor0
+使用 MobX， 你可以定义在相关数据发生变化时自动更新的值。 通过@computed 装饰器或者利用 (extend)Observable 时调用 的getter / setter 函数来进行使用。(当然，这里也可以再次使用 decorate来替代 @ 语法)。  —它们是一个意思
 
-\f0\b0\fs32 \cf2 \'ca\'b9\'d3\'c3{\field{\*\fldinst{HYPERLINK "http://cn.mobx.js.org/refguide/autorun.html"}}{\fldrslt 
-\f2\fs27\fsmilli13600 \cf4 \cb5 autorun}}\'a1\'a2{\field{\*\fldinst{HYPERLINK "http://cn.mobx.js.org/refguide/reaction.html"}}{\fldrslt 
-\f2\fs27\fsmilli13600 \cf4 \cb5 reaction}}
-\f1 \'a0
-\f0 \'ba\'cd
-\f1 \'a0{\field{\*\fldinst{HYPERLINK "http://cn.mobx.js.org/refguide/when.html"}}{\fldrslt 
-\f2\fs27\fsmilli13600 \cf4 \cb5 when}}\'a0
-\f0 \'ba\'af\'ca\'fd\'bc\'b4\'bf\'c9\'bc\'f2\'b5\'a5\'b5\'c4\'b4\'b4\'bd\'a8\'d7\'d4\'b6\'a8\'d2\'e5
-\f1  reactions
-\f0 \'a3\'ac\'d2\'d4\'c2\'fa\'d7\'e3\'c4\'e3\'b5\'c4\'be\'df\'cc\'e5\'b3\'a1\'be\'b0\'a1\'a3\
-\
-    \
-\
-\pard\pardeftab720\sl520\sa357\partightenfactor0
+Reactions(反应)它并不是具体的函数或者语法，它只是一个文字描述，一个文案称呼。它把某一类的行为都叫做反应，比如：Reactions 和计算值很像，但它不是产生一个新的值，而是会产生一些副作用，比如打印到控制台、网络请求、递增地更新 React 组件树以修补DOM、等等
+自定义 reactions
+使用autorun、reaction 和 when 函数即可简单的创建自定义 reactions，以满足你的具体场景。
 
-\b\fs42 \cf2 \'d4\'ad\'d4\'f2
-\f1 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
+    
 
-\b0\fs32 \cf2 MobX 
-\f0 \'d6\'a7\'b3\'d6\'b5\'a5\'cf\'f2\'ca\'fd\'be\'dd\'c1\'f7\'a3\'ac\'d2\'b2\'be\'cd\'ca\'c7
-\b \'b6\'af\'d7\'f7
-\b0 \'b8\'c4\'b1\'e4
-\b \'d7\'b4\'cc\'ac
-\b0 \'a3\'ac\'b6\'f8\'d7\'b4\'cc\'ac\'b5\'c4\'b8\'c4\'b1\'e4\'bb\'e1\'b8\'fc\'d0\'c2\'cb\'f9\'d3\'d0\'ca\'dc\'d3\'b0\'cf\'ec\'b5\'c4
-\b \'ca\'d3\'cd\'bc
-\b0 \'a1\'a3\
+原则
+MobX 支持单向数据流，也就是动作改变状态，而状态的改变会更新所有受影响的视图。
 
-\f1 \
-\pard\pardeftab720\sl280\partightenfactor0
+当状态改变时，所有衍生都会进行原子级的自动更新。因此永远不可能观察到中间值。
+所有衍生默认都是同步更新。这意味着例如动作可以在改变状态之后直接可以安全地检查计算值。
+计算值 是延迟更新的。任何不在使用状态的计算值将不会更新，直到需要它进行副作用（I / O）操作时。 如果视图不再使用，那么它会自动被垃圾回收。
+所有的计算值都应该是纯净的。它们不应该用来改变状态。
 
-\f0 \cf2 \'b5\'b1
-\b \'d7\'b4\'cc\'ac
-\b0 \'b8\'c4\'b1\'e4\'ca\'b1\'a3\'ac\'cb\'f9\'d3\'d0
-\b \'d1\'dc\'c9\'fa
-\b0 \'b6\'bc\'bb\'e1\'bd\'f8\'d0\'d0
-\b \'d4\'ad\'d7\'d3\'bc\'b6\'b5\'c4\'d7\'d4\'b6\'af
-\b0 \'b8\'fc\'d0\'c2\'a1\'a3\'d2\'f2\'b4\'cb\'d3\'c0\'d4\'b6\'b2\'bb\'bf\'c9\'c4\'dc\'b9\'db\'b2\'ec\'b5\'bd\'d6\'d0\'bc\'e4\'d6\'b5\'a1\'a3
-\f1 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
+observable(value)与@observable property = value是等价的，只不过装饰器的写法更强大些，因为它会把原始类型的值也会转为可观察，就像observable.box(value)如：var a  = observable.box(0) a的返回值是通过proxy包装后的。跟observable直接转的不一样。
 
-\f0 \cf2 \'cb\'f9\'d3\'d0
-\b \'d1\'dc\'c9\'fa
-\b0 \'c4\'ac\'c8\'cf\'b6\'bc\'ca\'c7
-\b \'cd\'ac\'b2\'bd
-\b0 \'b8\'fc\'d0\'c2\'a1\'a3\'d5\'e2\'d2\'e2\'ce\'b6\'d7\'c5\'c0\'fd\'c8\'e7
-\b \'b6\'af\'d7\'f7
-\b0 \'bf\'c9\'d2\'d4\'d4\'da\'b8\'c4\'b1\'e4
-\b \'d7\'b4\'cc\'ac
-\b0 \'d6\'ae\'ba\'f3\'d6\'b1\'bd\'d3\'bf\'c9\'d2\'d4\'b0\'b2\'c8\'ab\'b5\'d8\'bc\'ec\'b2\'e9\'bc\'c6\'cb\'e3\'d6\'b5\'a1\'a3
-\f1 \
-\pard\pardeftab720\sl380\sa272\partightenfactor0
-
-\f0\b \cf2 \'bc\'c6\'cb\'e3\'d6\'b5
-\f1\b0 \'a0
-\f0 \'ca\'c7
-\b \'d1\'d3\'b3\'d9
-\b0 \'b8\'fc\'d0\'c2\'b5\'c4\'a1\'a3\'c8\'ce\'ba\'ce\'b2\'bb\'d4\'da\'ca\'b9\'d3\'c3\'d7\'b4\'cc\'ac\'b5\'c4\'bc\'c6\'cb\'e3\'d6\'b5\'bd\'ab\'b2\'bb\'bb\'e1\'b8\'fc\'d0\'c2\'a3\'ac\'d6\'b1\'b5\'bd\'d0\'e8\'d2\'aa\'cb\'fc\'bd\'f8\'d0\'d0\'b8\'b1\'d7\'f7\'d3\'c3\'a3\'a8
-\f1 I / O
-\f0 \'a3\'a9\'b2\'d9\'d7\'f7\'ca\'b1\'a1\'a3
-\f1  
-\f0 \'c8\'e7\'b9\'fb\'ca\'d3\'cd\'bc\'b2\'bb\'d4\'d9\'ca\'b9\'d3\'c3\'a3\'ac\'c4\'c7\'c3\'b4\'cb\'fc\'bb\'e1\'d7\'d4\'b6\'af\'b1\'bb\'c0\'ac\'bb\'f8\'bb\'d8\'ca\'d5\'a1\'a3
-\f1 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\f0 \cf2 \'cb\'f9\'d3\'d0\'b5\'c4
-\b \'bc\'c6\'cb\'e3\'d6\'b5
-\b0 \'b6\'bc\'d3\'a6\'b8\'c3\'ca\'c7
-\b \'b4\'bf\'be\'bb
-\b0 \'b5\'c4\'a1\'a3\'cb\'fc\'c3\'c7\'b2\'bb\'d3\'a6\'b8\'c3\'d3\'c3\'c0\'b4\'b8\'c4\'b1\'e4
-\b \'d7\'b4\'cc\'ac
-\b0 \'a1\'a3
-\f1 \
-\pard\pardeftab720\sl360\partightenfactor0
-
-\f0 \cf2 \
-\pard\pardeftab720\sl360\sa306\partightenfactor0
-
-\f3\b\fs30\fsmilli15300 \cf2 \cb5 observable(value)
-\f0 \'d3\'eb
-\f3 @observable property = value
-\f0 \'ca\'c7\'b5\'c8\'bc\'db\'b5\'c4\'a3\'ac\'d6\'bb\'b2\'bb\'b9\'fd\'d7\'b0\'ca\'ce\'c6\'f7\'b5\'c4\'d0\'b4\'b7\'a8\'b8\'fc\'c7\'bf\'b4\'f3\'d0\'a9\'a3\'ac
-\b0\fs32 \cb3 \'d2\'f2\'ce\'aa
-\b\fs30\fsmilli15300 \cb5 \'cb\'fc\'bb\'e1\'b0\'d1\'d4\'ad\'ca\'bc\'c0\'e0\'d0\'cd\'b5\'c4\'d6\'b5\'d2\'b2\'bb\'e1\'d7\'aa\'ce\'aa\'bf\'c9\'b9\'db\'b2\'ec\'a3\'ac\'be\'cd\'cf\'f1
-\f2\b0\fs27\fsmilli13600 observable.box(value)
-\f0 \'c8\'e7\'a3\'ba
-\f2 var a  = observable.box(0) 
-\f0 a\'b5\'c4\'b7\'b5\'bb\'d8\'d6\'b5\'ca\'c7\'cd\'a8\'b9\'fd
-\f2 proxy
-\f0 \'b0\'fc\'d7\'b0\'ba\'f3\'b5\'c4\'a1\'a3\'b8\'fa
-\f3\b\fs30\fsmilli15300 observable
-\f0\b0\fs27\fsmilli13600 \'d6\'b1\'bd\'d3
-\b\fs30\fsmilli15300 \'d7\'aa\'b5\'c4\'b2\'bb\'d2\'bb\'d1\'f9\'a1\'a3
-\f3 \
-\
 @observable property = value
-\f1\fs36 \cb3 \
-\pard\pardeftab720\sl320\sa272\partightenfactor0
-
-\f2\b0\fs27\fsmilli13600 \cf2 \cb5 observable
-\f1\fs32 \cb3 \'a0
-\f0 \'d2\'b2\'bf\'c9\'d2\'d4\'d3\'c3\'d7\'f7\'ca\'f4\'d0\'d4\'b5\'c4\'d7\'b0\'ca\'ce\'c6\'f7\'a1\'a3\'cb\'fc\'d0\'e8\'d2\'aa{\field{\*\fldinst{HYPERLINK "https://cn.mobx.js.org/best/decorators.html"}}{\fldrslt \cf4 \'c6\'f4\'d3\'c3\'d7\'b0\'ca\'ce\'c6\'f7}}\'b6\'f8\'c7\'d2\'cb\'fc\'ca\'c7
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 extendObservable(this, \{ property: value \})
-\f1\fs32 \cb3 \'a0
-\f0 \'b5\'c4\'d3\'ef\'b7\'a8\'cc\'c7\'a1\'a3
-\f1 \
-\pard\pardeftab720\sl360\sa306\partightenfactor0
-
-\b\fs36 \cf2 \
-
-\f3\fs30\fsmilli15300 \cb5 observable.box(value, options?)
-\f1\fs36 \cb3 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\f0\b0\fs32 \cf2 \'b4\'b4\'bd\'a8\'d2\'bb\'b8\'f6
-\f1  observable 
-\f0 \'b5\'c4\'ba\'d0\'d7\'d3\'a3\'ac\'cb\'fc\'d3\'c3\'c0\'b4\'b4\'e6\'b4\'a2
-\f1 value
-\f0 \'b5\'c4
-\f1  observable 
-\f0 \'d2\'fd\'d3\'c3\'a1\'a3\'ca\'b9\'d3\'c3
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 get()
-\f1\fs32 \cb3 \'a0
-\f0 \'b7\'bd\'b7\'a8\'bf\'c9\'d2\'d4\'b5\'c3\'b5\'bd\'ba\'d0\'d7\'d3\'d6\'d0\'b5\'c4\'b5\'b1\'c7\'b0
-\f1 value
-\f0 \'a3\'ac\'b6\'f8\'ca\'b9\'d3\'c3
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 set()
-\f1\fs32 \cb3 \'a0
-\f0 \'b7\'bd\'b7\'a8\'bf\'c9\'d2\'d4\'b8\'fc\'d0\'c2
-\f1 value
-\f0 \'a1\'a3
-\f1  
-\f0 \'d5\'e2\'ca\'c7\'cb\'f9\'d3\'d0\'c6\'e4\'cb\'fc
-\f1  observable 
-\f0 \'b4\'b4\'bd\'a8\'b5\'c4\'bb\'f9\'b4\'a1\'a3\'ac\'b5\'ab\'ca\'b5\'bc\'ca\'d6\'d0\'c4\'e3\'c6\'e4\'ca\'b5\'ba\'dc\'c9\'d9\'c4\'dc\'ca\'b9\'d3\'c3\'b5\'bd\'cb\'fc\'a1\'a3
-\f1 \
-
-\f0 \'cd\'a8\'b3\'a3\'ba\'d0\'d7\'d3\'bb\'e1\'d7\'d4\'b6\'af\'b5\'d8\'b3\'a2\'ca\'d4\'b0\'d1\'c8\'ce\'ba\'ce\'bb\'b9\'b2\'bb\'ca\'c7
-\f1  observable 
-\f0 \'b5\'c4\'d0\'c2\'d6\'b5\'d7\'aa\'bb\'bb\'b3\'c9
-\f1  observable 
-\f0 \'a1\'a3\'ca\'b9\'d3\'c3
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 \{deep: false\}
-\f1\fs32 \cb3 \'a0
-\f0 \'d1\'a1\'cf\'ee\'bb\'e1\'bd\'fb\'d3\'c3\'d5\'e2\'cf\'ee\'d0\'d0\'ce\'aa\'a1\'a3\
-\pard\pardeftab720\sl420\sa357\partightenfactor0
-
-\f3\b\fs35\fsmilli17850 \cf2 \cb5 observable.box(value, \{ name: "my array" \})
-\f1\fs42 \cb3 \
-\pard\pardeftab720\sl320\partightenfactor0
-
-\f2\b0\fs27\fsmilli13600 \cf2 \cb5 name
-\f1\fs32 \cb3 \'a0
-\f0 \'d1\'a1\'cf\'ee\'d3\'c3\'c0\'b4\'b8\'f8\'ca\'fd\'d7\'e9\'d2\'bb\'b8\'f6\'d3\'d1\'ba\'c3\'b5\'c4\'b5\'f7\'ca\'d4\'c3\'fb\'b3\'c6\'a3\'ac\'d3\'c3\'d3\'da
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 spy
-\f1\fs32 \cb3 \'a0
-\f0 \'bb\'f2\'d5\'df
-\f1  MobX 
-\f0 \'bf\'aa\'b7\'a2\'d5\'df\'b9\'a4\'be\'df\'a1\'a3
-\f1 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-\cf2 \
-\
-\pard\pardeftab720\sl420\sa357\partightenfactor0
-
-\f3\b\fs35\fsmilli17850 \cf2 \cb5 observable.array
-\f1\fs42 \cb3 \
-\pard\tx220\tx720\pardeftab720\li720\fi-720\sl320\partightenfactor0
-\ls1\ilvl0
-\f2\b0\fs27\fsmilli13600 \cf2 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-clear()
-\f1\fs32 \cb3 \'a0- 
-\f0 \'b4\'d3\'ca\'fd\'d7\'e9\'d6\'d0\'c9\'be\'b3\'fd\'cb\'f9\'d3\'d0\'cf\'ee\'a1\'a3
-\f1 \cb1 \
-\ls1\ilvl0
-\f2\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-replace(newItems)
-\f1\fs32 \cb3 \'a0- 
-\f0 \'d3\'c3\'d0\'c2\'cf\'ee\'cc\'e6\'bb\'bb\'ca\'fd\'d7\'e9\'d6\'d0\'cb\'f9\'d3\'d0\'d2\'d1\'b4\'e6\'d4\'da\'b5\'c4\'cf\'ee\'a1\'a3
-\f1 \cb1 \
-\ls1\ilvl0
-\f2\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-find(predicate: (item, index, array) => boolean, thisArg?)
-\f1\fs32 \cb3 \'a0- 
-\f0 \'bb\'f9\'b1\'be\'c9\'cf\'b5\'c8\'cd\'ac\'d3\'da
-\f1  ES7 
-\f0 \'b5\'c4
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 Array.find
-\f1\fs32 \cb3 \'a0
-\f0 \'cc\'e1\'d2\'e9\'a1\'a3
-\f1 \cb1 \
-\ls1\ilvl0
-\f2\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-findIndex(predicate: (item, index, array) => boolean, thisArg?)
-\f1\fs32 \cb3 \'a0- 
-\f0 \'bb\'f9\'b1\'be\'c9\'cf\'b5\'c8\'cd\'ac\'d3\'da
-\f1  ES7 
-\f0 \'b5\'c4
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 Array.findIndex
-\f1\fs32 \cb3 \'a0
-\f0 \'cc\'e1\'d2\'e9\'a1\'a3
-\f1 \cb1 \
-\ls1\ilvl0
-\f2\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-remove(value)
-\f1\fs32 \cb3 \'a0- 
-\f0 \'cd\'a8\'b9\'fd\'d6\'b5\'b4\'d3\'ca\'fd\'d7\'e9\'d6\'d0\'d2\'c6\'b3\'fd\'d2\'bb\'b8\'f6\'b5\'a5\'b8\'f6\'b5\'c4\'cf\'ee\'a1\'a3\'c8\'e7\'b9\'fb\'cf\'ee\'b1\'bb\'d5\'d2\'b5\'bd\'b2\'a2\'d2\'c6\'b3\'fd\'b5\'c4\'bb\'b0\'a3\'ac\'b7\'b5\'bb\'d8
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 true
-\f1\fs32 \cb3 \'a0
-\f0 \'a1\'a3
-\f1 \cb1 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-\cf2 \cb3 \
-\pard\pardeftab720\sl360\partightenfactor0
-
-\f0 \cf2 \'b2\'bb\'cd\'ac\'d3\'da
-\f1 \'a0
-\f2\fs20\fsmilli10200 \cb5 sort
-\f1\fs32 \cb3 \'a0
-\f0 \'ba\'cd
-\f1 \'a0
-\f2\fs20\fsmilli10200 \cb5 reverse
-\f1\fs32 \cb3 \'a0
-\f0 \'ba\'af\'ca\'fd\'b5\'c4\'c4\'da\'d6\'c3\'ca\'b5\'cf\'d6\'a3\'ac
-\f1 observableArray.sort 
-\f0 \'ba\'cd
-\f1  observableArray.reverse 
-\f0 \'b2\'bb\'bb\'e1\'b8\'c4\'b1\'e4\'ca\'fd\'d7\'e9\'b1\'be\'c9\'ed\'a3\'ac\'b6\'f8\'d6\'bb\'ca\'c7\'b7\'b5\'bb\'d8\'d2\'bb\'b8\'f6\'c5\'c5\'d0\'f2\'b9\'fd
-\f1 /
-\f0 \'b7\'b4\'d7\'aa\'b9\'fd\'b5\'c4\'bf\'bd\'b1\'b4\'a1\'a3\'d4\'da
-\f1  MobX 5 
-\f0 \'bc\'b0\'d2\'d4\'c9\'cf\'b0\'e6\'b1\'be\'d6\'d0\'bb\'e1\'b3\'f6\'cf\'d6\'be\'af\'b8\'e6\'a1\'a3\'cd\'c6\'bc\'f6\'ca\'b9\'d3\'c3
-\f1 \'a0
-\f2\fs20\fsmilli10200 \cb5 array.slice().sort()
-\f1\fs32 \cb3 \'a0
-\f0 \'c0\'b4\'cc\'e6\'b4\'fa\'a1\'a3\
-\
-\pard\pardeftab720\sl420\sa357\partightenfactor0
-
-\f3\b\fs35\fsmilli17850 \cf2 \cb5 observable.map(values, options?)
-\f1\fs42 \cb3 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\f0\b0\fs32 \cf2 \'cf\'c2\'c1\'d0
-\f1  observable 
-\f0 \'d3\'b3\'c9\'e4\'cb\'f9\'b1\'a9\'c2\'b6\'b5\'c4\'b7\'bd\'b7\'a8\'ca\'c7\'d2\'c0\'be\'dd
-\f1 \'a0{\field{\*\fldinst{HYPERLINK "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map"}}{\fldrslt \cf4 ES6 Map 
-\f0 \'b9\'e6\'b7\'b6}}:\
-\pard\tx220\tx720\pardeftab720\li720\fi-720\sl320\partightenfactor0
-\ls2\ilvl0
-\f2\fs27\fsmilli13600 \cf2 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-has(key)
-\f1\fs32 \cb3 \'a0- 
-\f0 \'b7\'b5\'bb\'d8\'d3\'b3\'c9\'e4\'ca\'c7\'b7\'f1\'d3\'d0\'cc\'e1\'b9\'a9\'bc\'fc\'b6\'d4\'d3\'a6\'b5\'c4\'cf\'ee\'a1\'a3\'d7\'a2\'d2\'e2\'bc\'fc\'b5\'c4\'b4\'e6\'d4\'da\'b1\'be\'c9\'ed\'be\'cd\'ca\'c7\'bf\'c9\'b9\'db\'b2\'ec\'b5\'c4\'a1\'a3
-\f1 \cb1 \
-\ls2\ilvl0
-\f2\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-set(key, value)
-\f1\fs32 \cb3 \'a0- 
-\f0 \'b0\'d1\'b8\'f8\'b6\'a8\'bc\'fc\'b5\'c4\'d6\'b5\'c9\'e8\'d6\'c3\'ce\'aa
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 value
-\f1\fs32 \cb3 \'a0
-\f0 \'a1\'a3\'cc\'e1\'b9\'a9\'b5\'c4\'bc\'fc\'c8\'e7\'b9\'fb\'d4\'da\'d3\'b3\'c9\'e4\'d6\'d0\'b2\'bb\'b4\'e6\'d4\'da\'b5\'c4\'bb\'b0\'a3\'ac\'c4\'c7\'c3\'b4\'cb\'fc\'bb\'e1\'b1\'bb\'cc\'ed\'bc\'d3\'b5\'bd\'d3\'b3\'c9\'e4\'d6\'ae\'d6\'d0\'a1\'a3
-\f1 \cb1 \
-\ls2\ilvl0
-\f2\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-delete(key)
-\f1\fs32 \cb3 \'a0- 
-\f0 \'b0\'d1\'b8\'f8\'b6\'a8\'bc\'fc\'ba\'cd\'cb\'fc\'b5\'c4\'d6\'b5\'b4\'d3\'d3\'b3\'c9\'e4\'d6\'d0\'c9\'be\'b3\'fd\'a1\'a3
-\f1 \cb1 \
-\ls2\ilvl0
-\f2\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-get(key)
-\f1\fs32 \cb3 \'a0- 
-\f0 \'b7\'b5\'bb\'d8\'b8\'f8\'b6\'a8\'bc\'fc\'b5\'c4\'d6\'b5
-\f1 (
-\f0 \'bb\'f2
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 undefined
-\f1\fs32 \cb3 )
-\f0 \'a1\'a3
-\f1 \cb1 \
-\ls2\ilvl0
-\f2\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-keys()
-\f1\fs32 \cb3 \'a0- 
-\f0 \'b7\'b5\'bb\'d8\'d3\'b3\'c9\'e4\'d6\'d0\'b4\'e6\'d4\'da\'b5\'c4\'cb\'f9\'d3\'d0\'bc\'fc\'b5\'c4\'b5\'fc\'b4\'fa\'c6\'f7\'a1\'a3\'b2\'e5\'c8\'eb\'cb\'b3\'d0\'f2\'bb\'e1\'b1\'bb\'b1\'a3\'c1\'f4\'a1\'a3
-\f1 \cb1 \
-\ls2\ilvl0
-\f2\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-values()
-\f1\fs32 \cb3 \'a0- 
-\f0 \'b7\'b5\'bb\'d8\'d3\'b3\'c9\'e4\'d6\'d0\'b4\'e6\'d4\'da\'b5\'c4\'cb\'f9\'d3\'d0\'d6\'b5\'b5\'c4\'b5\'fc\'b4\'fa\'c6\'f7\'a1\'a3\'b2\'e5\'c8\'eb\'cb\'b3\'d0\'f2\'bb\'e1\'b1\'bb\'b1\'a3\'c1\'f4\'a1\'a3
-\f1 \cb1 \
-\ls2\ilvl0
-\f2\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-entries()
-\f1\fs32 \cb3 \'a0- 
-\f0 \'b7\'b5\'bb\'d8\'d2\'bb\'b8\'f6
-\f1 (
-\f0 \'b1\'a3\'c1\'f4\'b2\'e5\'c8\'eb\'cb\'b3\'d0\'f2
-\f1 )
-\f0 \'b5\'c4\'ca\'fd\'d7\'e9\'b5\'c4\'b5\'fc\'b4\'fa\'c6\'f7\'a3\'ac\'d3\'b3\'c9\'e4\'d6\'d0\'b5\'c4\'c3\'bf\'b8\'f6\'bc\'fc\'d6\'b5\'b6\'d4\'b6\'bc\'bb\'e1\'b6\'d4\'d3\'a6\'ca\'fd\'d7\'e9\'d6\'d0\'b5\'c4\'d2\'bb\'cf\'ee
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 [key, value]
-\f0\fs32 \cb3 \'a1\'a3
-\f1 \cb1 \
-\ls2\ilvl0
-\f2\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-forEach(callback:(value, key, map) => void, thisArg?)
-\f1\fs32 \cb3 \'a0- 
-\f0 \'ce\'aa\'d3\'b3\'c9\'e4\'d6\'d0\'c3\'bf\'b8\'f6\'bc\'fc\'d6\'b5\'b6\'d4\'b5\'f7\'d3\'c3\'b8\'f8\'b6\'a8\'b5\'c4\'bb\'d8\'b5\'f7\'ba\'af\'ca\'fd\'a1\'a3
-\f1 \cb1 \
-\ls2\ilvl0
-\f2\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-clear()
-\f1\fs32 \cb3 \'a0- 
-\f0 \'d2\'c6\'b3\'fd\'d3\'b3\'c9\'e4\'d6\'d0\'b5\'c4\'cb\'f9\'d3\'d0\'cf\'ee\'a1\'a3
-\f1 \cb1 \
-\ls2\ilvl0
-\f2\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-size
-\f1\fs32 \cb3 \'a0- 
-\f0 \'b7\'b5\'bb\'d8\'d3\'b3\'c9\'e4\'d6\'d0\'cf\'ee\'b5\'c4\'ca\'fd\'c1\'bf\'a1\'a3
-\f1 \cb1 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\f0 \cf2 \cb3 \'d2\'d4\'cf\'c2\'ba\'af\'ca\'fd\'b2\'bb\'ca\'f4\'d3\'da
-\f1  ES6 
-\f0 \'b9\'e6\'b7\'b6\'a3\'ac\'b6\'f8\'ca\'c7\'d3\'c9
-\f1  MobX 
-\f0 \'cc\'e1\'b9\'a9
-\f1 :\
-\pard\tx220\tx720\pardeftab720\li720\fi-720\sl320\partightenfactor0
-\ls3\ilvl0
-\f2\fs27\fsmilli13600 \cf2 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-toJS()
-\f1\fs32 \cb3 \'a0- 
-\f0 \'bd\'ab
-\f1  observable 
-\f0 \'d3\'b3\'c9\'e4\'d7\'aa\'bb\'bb\'b3\'c9\'c6\'d5\'cd\'a8\'d3\'b3\'c9\'e4\'a1\'a3
-\f1 \cb1 \
-\ls3\ilvl0
-\f2\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-toJSON()
-\f1\fs32 \cb3 . 
-\f0 \'b7\'b5\'bb\'d8\'b4\'cb\'d3\'b3\'c9\'e4\'b5\'c4\'c7\'b3\'ca\'bd\'c6\'d5\'cd\'a8\'b6\'d4\'cf\'f3\'b1\'ed\'ca\'be\'a1\'a3
-\f1 (
-\f0 \'cf\'eb\'d2\'aa\'c9\'ee\'bf\'bd\'b1\'b4\'a3\'ac\'c7\'eb\'ca\'b9\'d3\'c3
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 mobx.toJS(map)
-\f1\fs32 \cb3 )
-\f0 \'a1\'a3
-\f1 \cb1 \
-\ls3\ilvl0
-\f2\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-intercept(interceptor)
-\f1\fs32 \cb3 \'a0- 
-\f0 \'bf\'c9\'d2\'d4\'d3\'c3\'c0\'b4\'d4\'da\'c8\'ce\'ba\'ce\'b1\'e4\'bb\'af\'d7\'f7\'d3\'c3\'d3\'da\'d3\'b3\'c9\'e4\'c7\'b0\'bd\'ab\'c6\'e4\'c0\'b9\'bd\'d8\'a1\'a3\'b2\'ce\'bc\'fb
-\f1 \'a0{\field{\*\fldinst{HYPERLINK "https://cn.mobx.js.org/refguide/observe.html"}}{\fldrslt \cf4 observe & intercept}}
-\f0 \'a1\'a3
-\f1 \cb1 \
-\ls3\ilvl0
-\f2\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-observe(listener, fireImmediately?)
-\f1\fs32 \cb3 \'a0- 
-\f0 \'d7\'a2\'b2\'e1\'d5\'ec\'cc\'fd\'c6\'f7\'a3\'ac\'d4\'da\'d3\'b3\'c9\'e4\'d6\'d0\'b5\'c4\'c3\'bf\'b8\'f6\'b8\'fc\'b8\'c4\'ca\'b1\'b4\'a5\'b7\'a2\'a3\'ac\'c0\'e0\'cb\'c6\'d3\'da\'ce\'aa
-\f1 \'a0{\field{\*\fldinst{HYPERLINK "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/observe"}}{\fldrslt \cf4 Object.observe}}\'a0
-\f0 \'b7\'a2\'b3\'f6\'b5\'c4\'ca\'c2\'bc\'fe\'a1\'a3\'cf\'eb\'c1\'cb\'bd\'e2\'b8\'fc\'b6\'e0\'cf\'ea\'c7\'e9\'a3\'ac\'c7\'eb\'b2\'ce\'bc\'fb
-\f1 \'a0{\field{\*\fldinst{HYPERLINK "https://cn.mobx.js.org/refguide/observe.html"}}{\fldrslt \cf4 observe & intercept}}
-\f0 \'a1\'a3
-\f1 \cb1 \
-\ls3\ilvl0
-\f2\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-merge(values)
-\f1\fs32 \cb3 \'a0- 
-\f0 \'b0\'d1\'cc\'e1\'b9\'a9\'b6\'d4\'cf\'f3\'b5\'c4\'cb\'f9\'d3\'d0\'cf\'ee\'bf\'bd\'b1\'b4\'b5\'bd\'d3\'b3\'c9\'e4\'d6\'d0\'a1\'a3
-\f2\fs27\fsmilli13600 \cb5 values
-\f1\fs32 \cb3 \'a0
-\f0 \'bf\'c9\'d2\'d4\'ca\'c7\'c6\'d5\'cd\'a8\'b6\'d4\'cf\'f3\'a1\'a2
-\f1 entries 
-\f0 \'ca\'fd\'d7\'e9\'bb\'f2\'d5\'df
-\f1  ES6 
-\f0 \'d7\'d6\'b7\'fb\'b4\'ae\'bc\'fc\'b5\'c4\'d3\'b3\'c9\'e4\'a1\'a3
-\f1 \cb1 \
-\ls3\ilvl0
-\f2\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-replace(values)
-\f1\fs32 \cb3 \'a0- 
-\f0 \'d3\'c3\'cc\'e1\'b9\'a9\'d6\'b5\'cc\'e6\'bb\'bb\'d3\'b3\'c9\'e4\'c8\'ab\'b2\'bf\'c4\'da\'c8\'dd\'a1\'a3\'ca\'c7
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 .clear().merge(values)
-\f1\fs32 \cb3 \'a0
-\f0 \'b5\'c4\'bc\'f2\'d0\'b4\'d0\'ce\'ca\'bd\'a1\'a3
-\f1 \cb1 \
-\pard\pardeftab720\sl360\partightenfactor0
-\cf2 \cb3 \
-\
-\pard\pardeftab720\sl360\sa306\partightenfactor0
-
-\f3\b\fs30\fsmilli15300 \cf2 \cb5 extendObservable
-\f1\fs36 \cb3 \
-\pard\pardeftab720\sl360\partightenfactor0
-
-\f0\b0\fs32 \cf2 \'cb\'fc\'ca\'c7\'b6\'d4\'cf\'d6\'d3\'d0\'b5\'c4
-\f1 observe
-\f0 \'ca\'fd\'be\'dd\'bd\'f8\'d0\'d0\'d0\'de\'bc\'f4\'a3\'ac\'be\'cd\'ca\'c7\'b6\'d4\'ca\'fd\'be\'dd\'d4\'da\'d4\'ad\'d3\'d0\'bb\'f9\'b4\'a1\'c9\'cf\'bd\'f8\'d0\'d0\'d4\'bc\'ca\'f8\'a1\'a3\
-\
-\pard\pardeftab720\sl320\sa272\partightenfactor0
-
-\f2\fs27\fsmilli13600 \cf2 \cb5 extendObservable(target, properties, decorators?, options?)
-\f1\fs32 \cb3 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-\cf2 ExtendObservable 
-\f0 \'d3\'c3\'c0\'b4\'cf\'f2\'d2\'d1\'b4\'e6\'d4\'da\'b5\'c4\'c4\'bf\'b1\'ea\'b6\'d4\'cf\'f3\'cc\'ed\'bc\'d3
-\f1  observable 
-\f0 \'ca\'f4\'d0\'d4\'a1\'a3
-\f1  
-\f0 \'ca\'f4\'d0\'d4\'d3\'b3\'c9\'e4\'d6\'d0\'b5\'c4\'cb\'f9\'d3\'d0\'bc\'fc\'d6\'b5\'b6\'d4\'b6\'bc\'bb\'e1\'b5\'bc\'d6\'c2\'c4\'bf\'b1\'ea\'c9\'cf\'b5\'c4\'d0\'c2\'b5\'c4
-\f1  observable 
-\f0 \'ca\'f4\'d0\'d4\'b1\'bb\'b3\'f5\'ca\'bc\'bb\'af\'ce\'aa\'b8\'f8\'b6\'a8\'d6\'b5\'a1\'a3
-\f1  
-\f0 \'ca\'f4\'d0\'d4\'d3\'b3\'c9\'e4\'d6\'d0\'b5\'c4\'c8\'ce\'d2\'e2
-\f1  getters 
-\f0 \'b6\'bc\'bb\'e1\'d7\'aa\'bb\'af\'b3\'c9\'bc\'c6\'cb\'e3\'ca\'f4\'d0\'d4\'a1\'a3
-\f1 \
-\pard\pardeftab720\sl320\sa272\partightenfactor0
-
-\f2\fs27\fsmilli13600 \cf2 \cb5 decorators
-\f1\fs32 \cb3 \'a0
-\f0 \'b2\'ce\'ca\'fd\'d3\'c3\'c0\'b4\'d6\'d8\'d4\'d8\'d3\'c3\'d3\'da\'d6\'b8\'b6\'a8\'ca\'f4\'d0\'d4\'b5\'c4\'d7\'b0\'ca\'ce\'c6\'f7\'a3\'ac\'c0\'e0\'cb\'c6\'d3\'da
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 decorate
-\f1\fs32 \cb3 \'a0
-\f0 \'ba\'cd
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 observable.object
-\f1\fs32 \cb3 \'a0
-\f0 \'a1\'a3
-\f1 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\f0 \cf2 \'ca\'b9\'d3\'c3
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 deep: false
-\f1\fs32 \cb3 \'a0
-\f0 \'d1\'a1\'cf\'ee\'bf\'c9\'ca\'b9\'b5\'c3\'d0\'c2\'b5\'c4\'ca\'f4\'d0\'d4\'b1\'e4\'b3\'c9\'c7\'b3\'b5\'c4\'a1\'a3\'d2\'b2\'be\'cd\'ca\'c7\'cb\'b5\'a3\'ac\'d7\'e8\'d6\'b9\'cb\'fc\'c3\'c7\'b5\'c4\'d6\'b5\'d7\'d4\'b6\'af\'d7\'aa\'bb\'bb\'b3\'c9
-\f1  observables 
-\f0 \'a1\'a3
-\f1 \
-
-\f0 \'d7\'a2\'d2\'e2
-\f1 :\'a0
-\f2\fs27\fsmilli13600 \cb5 observable.object(object)
-\f1\fs32 \cb3 \'a0
-\f0 \'ca\'b5\'bc\'ca\'c9\'cf\'ca\'c7
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 extendObservable(\{\}, object)
-\f1\fs32 \cb3 \'a0
-\f0 \'b5\'c4\'b1\'f0\'c3\'fb\'a1\'a3
-\f1 \
-
-\f0 \'d7\'a2\'d2\'e2
-\f1 : 
-\f0 \'c0\'e0\'cb\'c6\'d3\'da
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 extendObservable
-\f0\fs32 \cb3 \'a3\'ac
-\f2\fs27\fsmilli13600 \cb5 decorate
-\f1\fs32 \cb3 \'a0
-\f0 \'d3\'c3\'c0\'b4\'ce\'aa\'b6\'d4\'cf\'f3\'d2\'fd\'c8\'eb
-\f1  observable 
-\f0 \'ca\'f4\'d0\'d4\'a1\'a3\'b2\'bb\'cd\'ac\'d6\'ae\'b4\'a6\'d4\'da\'d3\'da
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 extendObservable
-\f1\fs32 \cb3 \'a0
-\f0 \'b1\'bb\'c9\'e8\'bc\'c6\'ce\'aa\'d6\'b1\'bd\'d3\'d4\'da\'c4\'bf\'b1\'ea\'ca\'b5\'c0\'fd\'c9\'cf\'d2\'fd\'c8\'eb\'ca\'f4\'d0\'d4\'a3\'ac\'c6\'e4\'d6\'d0
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 decorate
-\f1\fs32 \cb3 \'a0
-\f0 \'bd\'ab\'cb\'fc\'c3\'c7\'d2\'fd\'c8\'eb\'d4\'ad\'d0\'cd
-\f1 ; 
-\f0 \'bf\'c9\'d2\'d4\'d6\'b1\'bd\'d3\'bd\'ab\'cb\'fc\'b4\'ab\'b5\'dd\'b8\'f8\'b9\'b9\'d4\'ec\'ba\'af\'ca\'fd
-\f1  (
-\f0 \'c0\'e0
-\f1 )
-\f0 \'a3\'ac\'d2\'b2\'bf\'c9\'d2\'d4\'bd\'ab\'c6\'e4\'d7\'f7\'ce\'aa\'c6\'e4\'cb\'fb\'c8\'cb\'b5\'c4\'d4\'ad\'d0\'cd\'a1\'a3
-\f1 \
-\pard\pardeftab720\sl360\partightenfactor0
-
-\f0 \cf2 \'d7\'a2\'d2\'e2
-\f1 : 
-\f0 \'b2\'bb\'c4\'dc\'ca\'b9\'d3\'c3
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 extendObservable
-\f1\fs32 \cb3 \'a0
-\f0 \'c0\'b4\'ce\'aa
-\f1  observable 
-\f0 \'ca\'fd\'d7\'e9\'bb\'f2\'b6\'d4\'cf\'f3\'c9\'cf\'d2\'fd\'c8\'eb\'d0\'c2\'b5\'c4\'ca\'f4\'d0\'d4\'a1\'a3
-\f1 \
-\
-\
-\
-\pard\pardeftab720\sl520\sa357\partightenfactor0
-
-\f0\b\fs42 \cf2 \'d2\'fd\'d3\'c3\'bf\'c9\'b9\'db\'b2\'ec\'d0\'d4
-\f1 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\f0\b0\fs32 \cf2 \'c8\'bb\'ba\'f3\'d4\'da\'c4\'b3\'d0\'a9\'c7\'e9\'bf\'f6\'cf\'c2\'a3\'ac\'b2\'bb\'d0\'e8\'d2\'aa\'bd\'ab\'b6\'d4\'cf\'f3\'d7\'aa\'b1\'e4\'b3\'c9
-\f1  observable 
-\f0 \'a1\'a3
-\f1  
-\f0 \'b5\'e4\'d0\'cd\'b0\'b8\'c0\'fd\'be\'cd\'ca\'c7\'b2\'bb\'bf\'c9\'b1\'e4\'b6\'d4\'cf\'f3\'a3\'ac\'bb\'f2\'d5\'df\'b2\'bb\'ca\'c7\'d3\'c9\'c4\'e3\'b9\'dc\'c0\'ed\'a3\'ac\'b6\'f8\'ca\'c7\'d3\'c9\'cd\'e2\'b2\'bf\'bf\'e2\'b9\'dc\'c0\'ed\'b5\'c4\'b6\'d4\'cf\'f3\'a1\'a3
-\f1  
-\f0 \'c0\'fd\'c8\'e7
-\f1  JSX 
-\f0 \'d4\'aa\'cb\'d8\'a1\'a2
-\f1 DOM 
-\f0 \'d4\'aa\'cb\'d8\'a1\'a2\'cf\'f1
-\f1  History
-\f0 \'a1\'a2
-\f1 window 
-\f0 \'d5\'e2\'d1\'f9\'b5\'c4\'d4\'ad\'c9\'fa\'b6\'d4\'cf\'f3\'a3\'ac\'b5\'c8\'b5\'c8\'a1\'a3
-\f1  
-\f0 \'b6\'d4\'d3\'da\'d5\'e2\'c0\'e0\'b6\'d4\'cf\'f3\'a3\'ac\'d6\'bb\'d0\'e8\'d2\'aa\'b4\'e6\'b4\'a2\'d2\'fd\'d3\'c3\'b6\'f8\'b2\'bb\'d3\'c3\'b0\'d1\'cb\'fc\'c3\'c7\'d7\'aa\'b1\'e4\'b3\'c9
-\f1  observable 
-\f0 \'a1\'a3
-\f1 \
-
-\f0 \'b6\'d4\'d3\'da\'d5\'e2\'d0\'a9\'c7\'e9\'bf\'f6\'a3\'ac\'bf\'c9\'d2\'d4\'ca\'b9\'d3\'c3
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 ref
-\f1\fs32 \cb3 \'a0
-\f0 \'b5\'f7\'bd\'da\'c6\'f7\'a1\'a3\'cb\'fc\'bb\'e1\'c8\'b7\'b1\'a3\'b4\'b4\'bd\'a8
-\f1  observable 
-\f0 \'ca\'f4\'d0\'d4\'ca\'b1\'a3\'ac\'d6\'bb\'d7\'b7\'d7\'d9\'d2\'fd\'d3\'c3\'b6\'f8\'b2\'bb\'bb\'e1\'b0\'d1\'cb\'fc\'b5\'c4\'d6\'b5\'d7\'aa\'b1\'e4\'b3\'c9
-\f1  observable 
-\f0 \'a1\'a3
-\f1  
-\f0 \'ca\'be\'c0\'fd
-\f1 :\
-\pard\pardeftab720\sl320\partightenfactor0
-
-\f2\fs27\fsmilli13600 \cf6 \cb5 class\cf2  \cf7 Message\cf2  \{\
-    @observable message = \cf8 "Hello world"\cf2 \
-\
-    \cf7 // 
-\f0 \'d0\'e9\'b9\'b9\'b5\'c4\'c0\'fd\'d7\'d3\'a3\'ac\'c8\'e7\'b9\'fb
-\f2  author 
-\f0 \'ca\'c7\'b2\'bb\'bf\'c9\'b1\'e4\'b5\'c4\'a3\'ac\'ce\'d2\'c3\'c7\'d6\'bb\'d0\'e8\'d2\'aa\'b4\'e6\'b4\'a2\'d2\'bb\'b8\'f6\'d2\'fd\'d3\'c3\'a3\'ac\'b2\'bb\'d3\'a6\'b8\'c3\'b0\'d1\'cb\'fc\'b1\'e4\'b3\'c9\'d2\'bb\'b8\'f6\'bf\'c9\'b1\'e4\'b5\'c4
-\f2  observable 
-\f0 \'b6\'d4\'cf\'f3
-\f2 \cf2 \
-    @observable.ref author = \cf9 null\cf2 \
-\}
-\fs32 \
-\pard\pardeftab720\sl360\partightenfactor0
-
-\f1 \cf2 \cb3 \
-\
-\pard\pardeftab720\sl220\partightenfactor0
-
-\f2\fs20\fsmilli10200 \cf2 \cb5 autorun
-\f1\fs32 \cb3 \'a0
-\f0 \'d6\'d0\'b5\'c4\'d6\'b5\'b1\'d8\'d0\'eb\'d2\'aa\'ca\'d6\'b6\'af\'c7\'e5\'c0\'ed\'b2\'c5\'d0\'d0\'a3\'ac\'d5\'e2\'b5\'e3\'ba\'cd\'bc\'c6\'cb\'e3\'d6\'b5\'ca\'c7\'d3\'d0\'cb\'f9\'b2\'bb\'cd\'ac\'b5\'c4\'a1\'a3\
-\
-@Computed\
-\pard\pardeftab720\sl480\sa357\partightenfactor0
-
-\f4\b\fs42 \cf10 \cb1 \'bc\'c6\'cb\'e3\'d6\'b5\'b5\'c4
-\f5  setter\
-\pard\pardeftab720\sl280\sa204\partightenfactor0
-
-\f4\b0\fs24 \cf10 \'bb\'b9\'bf\'c9\'d2\'d4\'ce\'aa\'bc\'c6\'cb\'e3\'d6\'b5\'b6\'a8\'d2\'e5
-\f5  setter
-\f4 \'a1\'a3\'d7\'a2\'d2\'e2\'d5\'e2\'d0\'a9
-\f5  setters 
-\f4 \'b2\'bb\'c4\'dc\'d3\'c3\'c0\'b4\'d6\'b1\'bd\'d3\'b8\'c4\'b1\'e4\'bc\'c6\'cb\'e3\'ca\'f4\'d0\'d4\'b5\'c4\'d6\'b5\'a3\'ac\'b5\'ab\'ca\'c7\'cb\'fc\'c3\'c7\'bf\'c9\'d2\'d4\'d3\'c3\'c0\'b4\'d7\'f7
-\f5 \'93
-\f4 \'c4\'e6\'cf\'f2
-\f5 \'94
-\f4 \'d1\'dc\'c9\'fa\'a1\'a3\'c0\'fd\'c8\'e7
-\f5 :\
-\pard\pardeftab720\sl220\partightenfactor0
-
-\f2\fs20\fsmilli10200 \cf6 \cb5 const\cf2  orderLine = observable.object(\{\
-    price: \cf9 0\cf2 ,\
-    amount: \cf9 1\cf2 ,\
-    get total() \{\
-        \cf6 return\cf2  \cf6 this\cf2 .price * \cf6 this\cf2 .amount\
-    \},\
-    set total(total) \{\
-        \cf6 this\cf2 .price = total / \cf6 this\cf2 .amount \cf7 // 
-\f0 \'b4\'d3
-\f2  total 
-\f0 \'d6\'d0\'cd\'c6\'b5\'bc\'b3\'f6
-\f2  price\cf2 \
-    \}\
-\})\
-\pard\pardeftab720\sl220\partightenfactor0
-
-\f1\fs32 \cf2 \cb3 \
-\pard\tx220\tx720\pardeftab720\li720\fi-720\sl320\partightenfactor0
-\ls4\ilvl0
-\f2\fs27\fsmilli13600 \cf2 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-requiresReaction
-\f1\fs32 \cb3 : 
-\f0 \'b6\'d4\'d3\'da\'b7\'c7\'b3\'a3\'b0\'ba\'b9\'f3\'b5\'c4\'bc\'c6\'cb\'e3\'d6\'b5\'a3\'ac\'cd\'c6\'bc\'f6\'c9\'e8\'d6\'c3\'b3\'c9
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 true
-\f1\fs32 \cb3 \'a0
-\f0 \'a1\'a3\'c8\'e7\'b9\'fb\'c4\'e3\'b3\'a2\'ca\'d4\'b6\'c1\'c8\'a1\'cb\'fc\'b5\'c4\'d6\'b5\'a3\'ac\'b5\'ab\'c4\'b3\'d0\'a9\'b9\'db\'b2\'ec\'d5\'df\'c3\'bb\'d3\'d0\'b8\'fa\'d7\'d9\'b8\'c3\'d6\'b5\'a3\'a8\'d4\'da\'d5\'e2\'d6\'d6\'c7\'e9\'bf\'f6\'cf\'c2\'a3\'ac
-\f1 MobX 
-\f0 \'b2\'bb\'bb\'e1\'bb\'ba\'b4\'e6\'b8\'c3\'d6\'b5\'a3\'a9\'a3\'ac\'d4\'f2\'bb\'e1\'b5\'bc\'d6\'c2\'bc\'c6\'cb\'e3\'bd\'e1\'b9\'fb\'b6\'aa\'ca\'a7\'a3\'ac\'b6\'f8\'b2\'bb\'ca\'c7\'bd\'f8\'d0\'d0\'b0\'ba\'b9\'f3\'b5\'c4\'d6\'d8\'d0\'c2\'c6\'c0\'b9\'c0\'a1\'a3
-\f1 \cb1 \
-\pard\pardeftab720\sl220\partightenfactor0
-\cf2 \cb3 \
-\pard\pardeftab720\sl320\partightenfactor0
-
-\f2\fs27\fsmilli13600 \cf6 \cb5 class\cf2  \cf7 Foo\cf2  \{\
-    @observable length = \cf9 2\cf2 ;\
-    @computed get squared() \{\
-        \cf6 return\cf2  \cf6 this\cf2 .length * \cf6 this\cf2 .length;\
-    \}\
-    set squared(value) \{ \cf7 // 
-\f0 \'d5\'e2\'ca\'c7\'d2\'bb\'b8\'f6\'d7\'d4\'b6\'af\'b5\'c4\'b6\'af\'d7\'f7\'a3\'ac\'b2\'bb\'d0\'e8\'d2\'aa\'d7\'a2\'bd\'e2
-\f2 \cf2 \
-        \cf6 this\cf2 .length = \cf9 Math\cf2 .sqrt(value);\
-    \}\
-\}
-\fs32 \
-\pard\pardeftab720\sl360\sa306\partightenfactor0
-
-\f1\b\fs36 \cf2 \cb3 \
-\
-\
-\
-\
-\
-\pard\pardeftab720\sl520\sa357\partightenfactor0
-
-\f0\fs42 \cf2 \'ba\'ce\'ca\'b1\'ca\'b9\'d3\'c3\'b6\'af\'d7\'f7\'a3\'bf
-\f1 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\f0\b0\fs32 \cf2 \'d3\'a6\'b8\'c3\'d3\'c0\'d4\'b6\'d6\'bb\'b6\'d4
-\b \'d0\'de\'b8\'c4
-\b0 \'d7\'b4\'cc\'ac\'b5\'c4\'ba\'af\'ca\'fd\'ca\'b9\'d3\'c3\'b6\'af\'d7\'f7\'a1\'a3
-\f1  
-\f0 \'d6\'bb\'d6\'b4\'d0\'d0\'b2\'e9\'d5\'d2\'a3\'ac\'b9\'fd\'c2\'cb\'c6\'f7\'b5\'c8\'ba\'af\'ca\'fd
-\b \'b2\'bb
-\b0 \'d3\'a6\'b8\'c3\'b1\'bb\'b1\'ea\'bc\'c7\'ce\'aa\'b6\'af\'d7\'f7\'a3\'ac\'d2\'d4\'d4\'ca\'d0\'ed
-\f1  MobX 
-\f0 \'b8\'fa\'d7\'d9\'cb\'fc\'c3\'c7\'b5\'c4\'b5\'f7\'d3\'c3\'a1\'a3
-\f1 \
-\pard\pardeftab720\sl360\sa306\partightenfactor0
-
-\b\fs36 \cf2 \
-\pard\pardeftab720\sl520\sa357\partightenfactor0
-
-\f0\fs42 \cf2 \'b0\'f3\'b6\'a8\'b5\'c4\'b6\'af\'d7\'f7
-\f1 \
-\pard\pardeftab720\sl320\sa272\partightenfactor0
-
-\f2\b0\fs27\fsmilli13600 \cf2 \cb5 action
-\f1\fs32 \cb3 \'a0
-\f0 \'d7\'b0\'ca\'ce\'c6\'f7
-\f1 /
-\f0 \'ba\'af\'ca\'fd\'d7\'f1\'d1\'ad
-\f1  javascript 
-\f0 \'d6\'d0\'b1\'ea\'d7\'bc\'b5\'c4\'b0\'f3\'b6\'a8\'b9\'e6\'d4\'f2\'a1\'a3
-\f1  
-\f0 \'b5\'ab\'ca\'c7\'a3\'ac
-\f2\fs27\fsmilli13600 \cb5 action.bound
-\f1\fs32 \cb3 \'a0
-\f0 \'bf\'c9\'d2\'d4\'d3\'c3\'c0\'b4\'d7\'d4\'b6\'af\'b5\'d8\'bd\'ab\'b6\'af\'d7\'f7\'b0\'f3\'b6\'a8\'b5\'bd\'c4\'bf\'b1\'ea\'b6\'d4\'cf\'f3\'a1\'a3
-\f1  
-\f0 \'d7\'a2\'d2\'e2\'a3\'ac\'d3\'eb
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 action
-\f1\fs32 \cb3 \'a0
-\f0 \'b2\'bb\'cd\'ac\'b5\'c4\'ca\'c7\'a3\'ac
-\f2\fs27\fsmilli13600 \cb5 (@)action.bound
-\f1\fs32 \cb3 \'a0
-\f0 \'b2\'bb\'d0\'e8\'d2\'aa\'d2\'bb\'b8\'f6
-\f1 name
-\f0 \'b2\'ce\'ca\'fd\'a3\'ac\'c3\'fb\'b3\'c6\'bd\'ab\'ca\'bc\'d6\'d5\'bb\'f9\'d3\'da\'b6\'af\'d7\'f7\'b0\'f3\'b6\'a8\'b5\'c4\'ca\'f4\'d0\'d4\'a1\'a3
-\f1 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\f0 \cf2 \'ca\'be\'c0\'fd
-\f1 :\
-\pard\pardeftab720\sl320\partightenfactor0
-
-\f2\fs27\fsmilli13600 \cf6 \cb5 class\cf2  \cf7 Ticker\cf2  \{\
-    @observable tick = \cf9 0\cf2 \
-\
-    @action.bound\
-    increment() \{\
-        \cf6 this\cf2 .tick++ \cf7 // 'this' 
-\f0 \'d3\'c0\'d4\'b6\'b6\'bc\'ca\'c7\'d5\'fd\'c8\'b7\'b5\'c4
-\f2 \cf2 \
-    \}\
-\}\
-\
-\cf6 const\cf2  ticker = \cf6 new\cf2  Ticker()\
-setInterval(ticker.increment, \cf9 1000\cf2 )\
-\pard\pardeftab720\sl380\qc\partightenfactor0
-
-\fs32 \cf10 \cb3 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\f0 \cf2 \'d7\'a2\'d2\'e2
-\f1\i :\'a0action.bound\'a0
-\f0\i0 \'b2\'bb\'d2\'aa\'ba\'cd\'bc\'fd\'cd\'b7\'ba\'af\'ca\'fd\'d2\'bb\'c6\'f0\'ca\'b9\'d3\'c3\'a3\'bb\'bc\'fd\'cd\'b7\'ba\'af\'ca\'fd\'d2\'d1\'be\'ad\'ca\'c7\'b0\'f3\'b6\'a8\'b9\'fd\'b5\'c4\'b2\'a2\'c7\'d2\'b2\'bb\'c4\'dc\'d6\'d8\'d0\'c2\'b0\'f3\'b6\'a8\'a1\'a3
-\f1 \
-\pard\pardeftab720\sl360\sa306\partightenfactor0
-
-\b\fs36 \cf2 \
-\
-\pard\pardeftab720\sl460\sa306\partightenfactor0
-\cf2 Flow\
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\f0\b0\fs32 \cf2 \'d3\'c3\'b7\'a8
-\f1 :\'a0
-\f2\fs27\fsmilli13600 \cb5 flow(function* (args) \{ \})
-\f1\fs32 \cb3 \
-\pard\pardeftab720\sl320\sa272\partightenfactor0
-
-\f2\fs27\fsmilli13600 \cf2 \cb5 flow()
-\f1\fs32 \cb3 \'a0
-\f0 \'bd\'d3\'ca\'d5
-\f1  generator 
-\f0 \'ba\'af\'ca\'fd\'d7\'f7\'ce\'aa\'cb\'fc\'ce\'a8\'d2\'bb\'b5\'c4\'ca\'e4\'c8\'eb
-\f1 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\f0 \cf2 \'b5\'b1\'b4\'a6\'c0\'ed
-\b \'d2\'ec\'b2\'bd\'b6\'af\'d7\'f7
-\b0 \'ca\'b1\'a3\'ac\'bb\'d8\'b5\'f7\'d6\'d0\'d6\'b4\'d0\'d0\'b5\'c4\'b4\'fa\'c2\'eb\'b2\'bb\'bb\'e1\'b1\'bb
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 action
-\f1\fs32 \cb3 \'a0
-\f0 \'b0\'fc\'d7\'b0\'a1\'a3\'d5\'e2\'d2\'e2\'ce\'b6\'d7\'c5\'c4\'e3\'d0\'de\'b8\'c4\'b5\'c4
-\f1  observable state 
-\f0 \'ce\'de\'b7\'a8\'cd\'a8\'b9\'fd
-\f1 \'a0{\field{\*\fldinst{HYPERLINK "https://cn.mobx.js.org/refguide/api.html#configure"}}{\fldrslt 
-\f2\fs27\fsmilli13600 \cf4 \cb5 enforceActions}}\'a0
-\f0 \'bc\'ec\'b2\'e9\'a1\'a3\'b1\'a3\'c1\'f4\'b6\'af\'d7\'f7\'d3\'ef\'d2\'e5\'b5\'c4\'bc\'f2\'b5\'a5\'b7\'bd\'b7\'a8\'ca\'c7\'ca\'b9\'d3\'c3
-\f1  flow 
-\f0 \'c0\'b4\'b0\'fc\'d7\'b0\'d2\'ec\'b2\'bd\'ba\'af\'ca\'fd\'a1\'a3\'d5\'e2\'bd\'ab\'c8\'b7\'b1\'a3\'cb\'f9\'d3\'d0\'bb\'d8\'b5\'f7\'b6\'bc\'bb\'e1\'b1\'bb
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 action()
-\f1\fs32 \cb3 \'a0
-\f0 \'b0\'fc\'d7\'b0\'a1\'a3
-\f1 \
-
-\f0 \'d7\'a2\'d2\'e2\'a3\'ac\'d2\'ec\'b2\'bd\'ba\'af\'ca\'fd\'b1\'d8\'d0\'eb\'ca\'c7
-\f1 \'a0
-\i generator
-\i0 \'a0
-\f0 \'a3\'ac\'b6\'f8\'c7\'d2\'d4\'da\'c4\'da\'b2\'bf\'d6\'bb\'c4\'dc
-\f1 \'a0
-\i yield
-\i0 \'a0promises 
-\f0 \'a1\'a3
-\f2\fs27\fsmilli13600 \cb5 flow
-\f1\fs32 \cb3 \'a0
-\f0 \'bb\'e1\'b7\'b5\'bb\'d8\'d2\'bb\'b8\'f6
-\f1  promise 
-\f0 \'a3\'ac\'d0\'e8\'d2\'aa\'b5\'c4\'bb\'b0\'bf\'c9\'d2\'d4\'ca\'b9\'d3\'c3
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 cancel()
-\f1\fs32 \cb3 \'a0
-\f0 \'bd\'f8\'d0\'d0\'b3\'b7\'cf\'fa\'a1\'a3
-\f1 \
-\pard\pardeftab720\sl320\partightenfactor0
-
-\f2\fs27\fsmilli13600 \cf6 \cb5 import\cf2  \{ configure \} \cf6 from\cf2  \cf8 'mobx'\cf2 ;\
-\
-\cf7 // 
-\f0 \'b2\'bb\'d4\'ca\'d0\'ed\'d4\'da\'b6\'af\'d7\'f7\'cd\'e2\'b2\'bf\'d0\'de\'b8\'c4\'d7\'b4\'cc\'ac
-\f2 \cf2 \
-configure(\{ enforceActions: \cf9 true\cf2  \});\
-\
-\cf6 class\cf2  \cf7 Store\cf2  \{\
-    @observable githubProjects = [];\
-    @observable state = \cf8 "pending"\cf2 ; \cf7 // "pending" / "done" / "error"\cf2 \
-\
-\
-    fetchProjects = flow(\cf6 function\cf11 * \cf7 fetchProjects\cf11 () \cf2 \{ \cf7 // <- 
-\f0 \'d7\'a2\'d2\'e2
-\f2 *
-\f0 \'ba\'c5\'a3\'ac\'d5\'e2\'ca\'c7\'c9\'fa\'b3\'c9\'c6\'f7\'ba\'af\'ca\'fd\'a3\'a1
-\f2 \cf2 \
-        \cf6 this\cf2 .githubProjects = [];\
-        \cf6 this\cf2 .state = \cf8 "pending"\cf2 ;\
-        \cf6 try\cf2  \{\
-            \cf6 const\cf2  projects = \cf6 yield\cf2  fetchGithubProjectsSomehow(); \cf7 // 
-\f0 \'d3\'c3
-\f2  yield 
-\f0 \'b4\'fa\'cc\'e6
-\f2  await\cf2 \
-            \cf6 const\cf2  filteredProjects = somePreprocessing(projects);\
-\
-            \cf7 // 
-\f0 \'d2\'ec\'b2\'bd\'b4\'fa\'c2\'eb\'d7\'d4\'b6\'af\'bb\'e1\'b1\'bb
-\f2  `action` 
-\f0 \'b0\'fc\'d7\'b0
-\f2 \cf2 \
-            \cf6 this\cf2 .state = \cf8 "done"\cf2 ;\
-            \cf6 this\cf2 .githubProjects = filteredProjects;\
-        \} \cf6 catch\cf2  (error) \{\
-            \cf6 this\cf2 .state = \cf8 "error"\cf2 ;\
-        \}\
-    \})\
-\}\
-\pard\pardeftab720\sl380\qc\partightenfactor0
-
-\fs32 \cf3 \cb12 Copy\
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\f0 \cf2 \cb3 \'cc\'e1\'ca\'be
-\f1\i : 
-\f0\i0 \'cd\'c6\'bc\'f6\'ce\'aa
-\f1\i  generator 
-\f0\i0 \'ba\'af\'ca\'fd\'c6\'f0\'b8\'f6\'c3\'fb\'b3\'c6\'a3\'ac\'b4\'cb\'c3\'fb\'b3\'c6\'bd\'ab\'b3\'f6\'cf\'d6\'d4\'da\'bf\'aa\'b7\'a2\'b9\'a4\'be\'df\'d6\'d0
-\f1 \
-\pard\pardeftab720\sl380\sa272\partightenfactor0
-
-\b \cf2 Flows 
-\f0 \'bf\'c9\'d2\'d4\'b3\'b7\'cf\'fa
-\f1\b0 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-\cf2 Flows 
-\f0 \'ca\'c7\'bf\'c9\'d2\'d4\'c8\'a1\'cf\'fb\'b5\'c4\'a3\'ac\'d5\'e2\'d2\'e2\'ce\'b6\'d7\'c5\'b5\'f7\'d3\'c3\'b7\'b5\'bb\'d8\'b5\'c4
-\f1  promise 
-\f0 \'b5\'c4
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 cancel()
-\f1\fs32 \cb3 \'a0
-\f0 \'b7\'bd\'b7\'a8\'a1\'a3\'d5\'e2\'bb\'e1\'c1\'a2\'bc\'b4\'cd\'a3\'d6\'b9
-\f1  generator 
-\f0 \'a3\'ac\'b5\'ab\'ca\'c7
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 finally
-\f1\fs32 \cb3 \'a0
-\f0 \'d7\'d3\'be\'e4\'c8\'d4\'bb\'e1\'b1\'bb\'b4\'a6\'c0\'ed\'a1\'a3
-\f1  
-\f0 \'b7\'b5\'bb\'d8\'b5\'c4
-\f1  promise 
-\f0 \'b1\'be\'c9\'ed\'bb\'e1\'ca\'b9\'d3\'c3
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 FLOW_CANCELLED
-\f1\fs32 \cb3 \'a0
-\f0 \'bd\'f8\'d0\'d0
-\f1  reject 
-\f0 \'a1\'a3
-\f1 \
-\pard\pardeftab720\sl380\sa272\partightenfactor0
-
-\b \cf2 Flows 
-\f0 \'d6\'a7\'b3\'d6\'d2\'ec\'b2\'bd\'b5\'fc\'b4\'fa\'c6\'f7
-\f1\b0 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-\cf2 Flows 
-\f0 \'d6\'a7\'b3\'d6\'d2\'ec\'b2\'bd\'b5\'fc\'b4\'fa\'c6\'f7\'a3\'ac\'d5\'e2\'d2\'e2\'ce\'b6\'d7\'c5\'bf\'c9\'d2\'d4\'ca\'b9\'d3\'c3\'d2\'ec\'b2\'bd
-\f1  generators :\
-\pard\pardeftab720\sl320\partightenfactor0
-
-\f2\fs27\fsmilli13600 \cf6 \cb5 async\cf2  \cf6 function\cf11 * \cf7 someNumbers\cf11 () \cf2 \{\
-    \cf6 yield\cf2  \cf9 Promise\cf2 .resolve(\cf9 1\cf2 )\
-    \cf6 yield\cf2  \cf9 Promise\cf2 .resolve(\cf9 2\cf2 )\
-    \cf6 yield\cf2  \cf9 Promise\cf2 .resolve(\cf9 3\cf2 )\
-\}\
-\
-\cf6 const\cf2  count = mobx.flow(\cf6 async\cf2  \cf6 function\cf11 *() \cf2 \{\
-    \cf7 // 
-\f0 \'ca\'b9\'d3\'c3
-\f2  await 
-\f0 \'c0\'b4\'d1\'ad\'bb\'b7\'d2\'ec\'b2\'bd\'b5\'fc\'b4\'fa\'c6\'f7
-\f2 \cf2 \
-    \cf6 for\cf2  \cf6 await\cf2  (\cf6 const\cf2  number \cf6 of\cf2  someNumbers()) \{\
-        total += number\
-    \}\
-    \cf6 return\cf2  total\
-\})\
-\
-\cf6 const\cf2  res = \cf6 await\cf2  count() \cf7 // 6\cf2 \
-\pard\pardeftab720\sl380\qc\partightenfactor0
-
-\fs32 \cf3 \cb12 Copy\
-\pard\pardeftab720\sl360\sa306\partightenfactor0
-
-\f1\b\fs36 \cf2 \cb3 \
-\
-\pard\pardeftab720\sl520\sa357\partightenfactor0
-
-\f0\fs42 \cf2 \'cf\'dd\'da\'e5
-\f1 : 
-\f0 \'d7\'e9\'bc\'fe\'d6\'d0\'b5\'c4\'bc\'e4\'bd\'d3\'d2\'fd\'d3\'c3\'d6\'b5
-\f1 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\b0\fs32 \cf2 MobX 
-\f0 \'bf\'c9\'d2\'d4\'d7\'f6\'ba\'dc\'b6\'e0\'ca\'c2\'a3\'ac\'b5\'ab\'ca\'c7\'cb\'fc\'ce\'de\'b7\'a8\'ca\'b9\'d4\'ad\'ca\'bc\'ca\'fd\'be\'dd\'c0\'e0\'d0\'cd\'d6\'b5\'d7\'aa\'b1\'e4\'b3\'c9\'bf\'c9\'b9\'db\'b2\'ec\'b5\'c4
-\f1 (
-\f0 \'be\'a1\'b9\'dc\'cb\'fc\'bf\'c9\'d2\'d4\'d3\'c3\'b6\'d4\'cf\'f3\'c0\'b4\'b0\'fc\'d7\'b0\'cb\'fc\'c3\'c7\'a3\'ac\'b2\'ce\'bc\'fb
-\f1 \'a0{\field{\*\fldinst{HYPERLINK "https://cn.mobx.js.org/refguide/boxed.html"}}{\fldrslt \cf4 boxed observables}})
-\f0 \'a1\'a3
-\f1  
-\f0 \'cb\'f9\'d2\'d4
-\b \'d6\'b5
-\b0 \'ca\'c7\'b2\'bb\'bf\'c9\'b9\'db\'b2\'ec\'b5\'c4\'a3\'ac\'b5\'ab\'ca\'c7\'b6\'d4\'cf\'f3\'b5\'c4
-\b \'ca\'f4\'d0\'d4
-\b0 \'bf\'c9\'d2\'d4\'a1\'a3\'d5\'e2\'d2\'e2\'ce\'b6\'d7\'c5
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 @observer
-\f1\fs32 \cb3 \'a0
-\f0 \'ca\'b5\'bc\'ca\'c9\'cf\'ca\'c7\'b6\'d4\'bc\'e4\'bd\'d3\'d2\'fd\'d3\'c3
-\f1 (dereference)
-\f0 \'d6\'b5\'b5\'c4\'b7\'b4\'d3\'a6\'a1\'a3
-\f1  
-\f0 \'c4\'c7\'c3\'b4\'d4\'da\'c9\'cf\'c3\'e6\'b5\'c4\'ca\'be\'c0\'fd\'d6\'d0\'a3\'ac\'c8\'e7\'b9\'fb\'ca\'c7\'d3\'c3\'cf\'c2\'c3\'e6\'d5\'e2\'d6\'d6\'b7\'bd\'ca\'bd\'b3\'f5\'ca\'bc\'bb\'af\'b5\'c4\'a3\'ac
-\f2\fs27\fsmilli13600 \cb5 Timer
-\f1\fs32 \cb3 \'a0
-\f0 \'d7\'e9\'bc\'fe\'ca\'c7
-\b \'b2\'bb\'bb\'e1
-\b0 \'d3\'d0\'b7\'b4\'d3\'a6\'b5\'c4
-\f1 :\
-\pard\pardeftab720\sl320\partightenfactor0
-
-\f2\fs27\fsmilli13600 \cf2 \cb5 React.render(\cf13 <Timer timerData=\cf8 \{timerData.secondsPassed\}\cf13  />\cf2 , document.body)\
-\pard\pardeftab720\sl380\qc\partightenfactor0
-
-\fs32 \cf3 \cb12 Copy\
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\f0 \cf2 \cb3 \'d4\'da\'d5\'e2\'b8\'f6\'b4\'fa\'c2\'eb\'c6\'ac\'b6\'ce\'d6\'d0\'d6\'bb\'ca\'c7\'b0\'d1
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 secondsPassed
-\f1\fs32 \cb3 \'a0
-\f0 \'b5\'c4\'b5\'b1\'c7\'b0\'d6\'b5\'b4\'ab\'b5\'dd\'b8\'f8\'c1\'cb
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 Timer
-\f1\fs32 \cb3 \'a0
-\f0 \'d7\'e9\'bc\'fe\'a3\'ac\'d5\'e2\'b8\'f6\'d6\'b5\'ca\'c7\'b2\'bb\'bf\'c9\'b1\'e4\'d6\'b5
-\f2\fs27\fsmilli13600 \cb5 0
-\f1\fs32 \cb3 (JS
-\f0 \'d6\'d0\'cb\'f9\'d3\'d0\'b5\'c4\'d4\'ad\'ca\'bc\'c0\'e0\'d0\'cd\'d6\'b5\'b6\'bc\'ca\'c7\'b2\'bb\'bf\'c9\'b1\'e4\'b5\'c4
-\f1 )
-\f0 \'a1\'a3
-\f1  
-\f0 \'d5\'e2\'b8\'f6\'ca\'fd\'d6\'b5\'d3\'c0\'d4\'b6\'b6\'bc\'b2\'bb\'bb\'e1\'b8\'c4\'b1\'e4\'a3\'ac\'d2\'f2\'b4\'cb
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 Timer
-\f1\fs32 \cb3 \'a0
-\f0 \'d7\'e9\'bc\'fe\'b2\'bb\'bb\'e1\'b8\'fc\'d0\'c2\'a1\'a3
-\f2\fs27\fsmilli13600 \cb5 secondsPassed
-\f0\fs32 \cb3 \'b5\'c4\'d6\'b5\'bd\'ab\'c0\'b4\'bb\'e1\'b7\'a2\'c9\'fa\'b8\'c4\'b1\'e4\'a3\'ac
-\f1  
-\f0 \'cb\'f9\'d2\'d4\'ce\'d2\'c3\'c7\'d0\'e8\'d2\'aa\'d4\'da\'d7\'e9\'bc\'fe
-\b \'d6\'d0
-\b0 \'b7\'c3\'ce\'ca\'cb\'fc\'a1\'a3\'bb\'f2\'d5\'df\'bb\'bb\'be\'e4\'bb\'b0\'cb\'b5
-\f1 : 
-\f0 \'d6\'b5\'d0\'e8\'d2\'aa
-\b \'cd\'a8\'b9\'fd\'d2\'fd\'d3\'c3
-\b0 \'c0\'b4\'b4\'ab\'b5\'dd\'b6\'f8\'b2\'bb\'ca\'c7\'cd\'a8\'b9\'fd
-\f1 (
-\f0 \'d7\'d6\'c3\'e6\'c1\'bf
-\f1 )
-\f0 \'d6\'b5\'c0\'b4\'b4\'ab\'b5\'dd\'a1\'a3
-\f1 \
-\pard\pardeftab720\sl360\sa306\partightenfactor0
-
-\b\fs36 \cf2 \
-\
-\pard\pardeftab720\sl520\sa357\partightenfactor0
-
-\f0\fs42 \cf2 \'bf\'c9\'b9\'db\'b2\'ec\'b5\'c4\'be\'d6\'b2\'bf\'d7\'e9\'bc\'fe\'d7\'b4\'cc\'ac
-\f1 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\f0\b0\fs32 \cf2 \'be\'cd\'cf\'f1\'c6\'d5\'cd\'a8\'c0\'e0\'d2\'bb\'d1\'f9\'a3\'ac\'c4\'e3\'bf\'c9\'d2\'d4\'cd\'a8\'b9\'fd\'ca\'b9\'d3\'c3
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 @observable
-\f1\fs32 \cb3 \'a0
-\f0 \'d7\'b0\'ca\'ce\'c6\'f7\'d4\'da
-\f1 React
-\f0 \'d7\'e9\'bc\'fe\'c9\'cf\'d2\'fd\'c8\'eb\'bf\'c9\'b9\'db\'b2\'ec\'ca\'f4\'d0\'d4\'a1\'a3
-\f1  
-\f0 \'d5\'e2\'d2\'e2\'ce\'b6\'d7\'c5\'c4\'e3\'bf\'c9\'d2\'d4\'d4\'da\'d7\'e9\'bc\'fe\'d6\'d0\'d3\'b5\'d3\'d0\'b9\'a6\'c4\'dc\'cd\'ac\'d1\'f9\'c7\'bf\'b4\'f3\'b5\'c4\'b1\'be\'b5\'d8\'d7\'b4\'cc\'ac
-\f1 (local state)
-\f0 \'a3\'ac\'b6\'f8\'b2\'bb\'d0\'e8\'d2\'aa\'cd\'a8\'b9\'fd
-\f1  React 
-\f0 \'b5\'c4\'c8\'df\'b3\'a4\'ba\'cd\'c7\'bf\'d6\'c6\'d0\'d4\'b5\'c4
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 setState
-\f1\fs32 \cb3 \'a0
-\f0 \'bb\'fa\'d6\'c6\'c0\'b4\'b9\'dc\'c0\'ed\'a1\'a3
-\f1  
-\f0 \'cf\'ec\'d3\'a6\'ca\'bd\'d7\'b4\'cc\'ac\'bb\'e1\'b1\'bb
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 render
-\f1\fs32 \cb3 \'a0
-\f0 \'cc\'e1\'c8\'a1\'b5\'f7\'d3\'c3\'a3\'ac\'b5\'ab\'b2\'bb\'bb\'e1\'b5\'f7\'d3\'c3\'c6\'e4\'cb\'fc
-\f1  React 
-\f0 \'b5\'c4\'c9\'fa\'c3\'fc\'d6\'dc\'c6\'da\'b7\'bd\'b7\'a8\'a3\'ac\'b3\'fd\'c1\'cb
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 componentWillUpdate
-\f1\fs32 \cb3 \'a0
-\f0 \'ba\'cd
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 componentDidUpdate
-\f1\fs32 \cb3 \'a0
-\f0 \'a1\'a3
-\f1  
-\f0 \'c8\'e7\'b9\'fb\'c4\'e3\'d0\'e8\'d2\'aa\'d3\'c3\'b5\'bd\'c6\'e4\'cb\'fb
-\f1  React 
-\f0 \'c9\'fa\'c3\'fc\'d6\'dc\'c6\'da\'b7\'bd\'b7\'a8
-\f1  
-\f0 \'a3\'ac\'d6\'bb\'d0\'e8\'ca\'b9\'d3\'c3\'bb\'f9\'d3\'da
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 state
-\f1\fs32 \cb3 \'a0
-\f0 \'b5\'c4\'b3\'a3\'b9\'e6
-\f1  React API 
-\f0 \'bc\'b4\'bf\'c9\'a1\'a3
-\f1 \
-
-\f0 \'c9\'cf\'c3\'e6\'b5\'c4\'c0\'fd\'d7\'d3\'bb\'b9\'bf\'c9\'d2\'d4\'d5\'e2\'d1\'f9\'d0\'b4
-\f1 :\
-\pard\pardeftab720\sl320\partightenfactor0
-
-\f2\fs27\fsmilli13600 \cf6 \cb5 import\cf2  \{observer\} \cf6 from\cf2  \cf8 "mobx-react"\cf2 \
-\cf6 import\cf2  \{observable\} \cf6 from\cf2  \cf8 "mobx"\cf2 \
-\
-@observer \cf6 class\cf2  \cf7 Timer\cf2  \cf6 extends\cf2  \cf7 React\cf2 .\cf7 Component\cf2  \{\
-    @observable secondsPassed = \cf9 0\cf2 \
-\
-    componentWillMount() \{\
-        setInterval(() => \{\
-            \cf6 this\cf2 .secondsPassed++\
-        \}, \cf9 1000\cf2 )\
-    \}\
-\
-    render() \{\
-        \cf6 return\cf2  (\cf13 <span>\cf2 Seconds passed: \{ this.secondsPassed \} \cf13 </span>\cf2  )\
-    \}\
-\}\
-\
-ReactDOM.render(\cf13 <Timer />\cf2 , document.body)
-\fs32 \
-\pard\pardeftab720\sl360\sa306\partightenfactor0
-
-\f1\b\fs36 \cf2 \cb3 \
-\
-\pard\pardeftab720\sl420\sa357\partightenfactor0
-
-\f3\fs35\fsmilli17850 \cf2 \cb5 componentWillReact
-\f1\fs42 \cb3 \'a0(
-\f0 \'c9\'fa\'c3\'fc\'d6\'dc\'c6\'da\'b9\'b3\'d7\'d3
-\f1 )\
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\b0\fs32 \cf2 React 
-\f0 \'d7\'e9\'bc\'fe\'cd\'a8\'b3\'a3\'d4\'da\'d0\'c2\'b5\'c4\'b6\'d1\'d5\'bb\'c9\'cf\'e4\'d6\'c8\'be\'a3\'ac\'d5\'e2\'ca\'b9\'b5\'c3\'cd\'a8\'b3\'a3\'ba\'dc\'c4\'d1\'c5\'aa\'c7\'e5\'b3\'fe\'ca\'c7\'ca\'b2\'c3\'b4
-\b \'b5\'bc\'d6\'c2
-\b0 \'d7\'e9\'bc\'fe\'b5\'c4\'d6\'d8\'d0\'c2\'e4\'d6\'c8\'be\'a1\'a3
-\f1  
-\f0 \'b5\'b1\'ca\'b9\'d3\'c3
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 mobx-react
-\f1\fs32 \cb3 \'a0
-\f0 \'ca\'b1\'bf\'c9\'d2\'d4\'b6\'a8\'d2\'e5\'d2\'bb\'b8\'f6\'d0\'c2\'b5\'c4\'c9\'fa\'c3\'fc\'d6\'dc\'c6\'da\'b9\'b3\'d7\'d3\'ba\'af\'ca\'fd
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 componentWillReact
-\f1\fs32 \cb3 (
-\f0 \'d2\'bb\'d3\'ef\'cb\'ab\'b9\'d8
-\f1 )
-\f0 \'a1\'a3\'b5\'b1\'d7\'e9\'bc\'fe\'d2\'f2\'ce\'aa\'cb\'fc\'b9\'db\'b2\'ec\'b5\'c4\'ca\'fd\'be\'dd\'b7\'a2\'c9\'fa\'c1\'cb\'b8\'c4\'b1\'e4\'a3\'ac\'cb\'fc\'bb\'e1\'b0\'b2\'c5\'c5\'d6\'d8\'d0\'c2\'e4\'d6\'c8\'be\'a3\'ac\'d5\'e2\'b8\'f6\'ca\'b1\'ba\'f2
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 componentWillReact
-\f1\fs32 \cb3 \'a0
-\f0 \'bb\'e1\'b1\'bb\'b4\'a5\'b7\'a2\'a1\'a3\'d5\'e2\'ca\'b9\'b5\'c3\'cb\'fc\'ba\'dc\'c8\'dd\'d2\'d7\'d7\'b7\'cb\'dd\'e4\'d6\'c8\'be\'b2\'a2\'d5\'d2\'b5\'bd\'b5\'bc\'d6\'c2\'e4\'d6\'c8\'be\'b5\'c4\'b2\'d9\'d7\'f7
-\f1 (action)
-\f0 \'a1\'a3
-\f1 \
-\pard\pardeftab720\sl320\partightenfactor0
-
-\f2\fs27\fsmilli13600 \cf6 \cb5 import\cf2  \{observer\} \cf6 from\cf2  \cf8 "mobx-react"\cf2 ;\
-\
-@observer \cf6 class\cf2  \cf7 TodoView\cf2  \cf6 extends\cf2  \cf7 React\cf2 .\cf7 Component\cf2  \{\
-    componentWillReact() \{\
-        \cf9 console\cf2 .log(\cf8 "I will re-render, since the todo has changed!"\cf2 );\
-    \}\
-\
-    render() \{\
-        \cf6 return\cf2  \cf13 <div>\cf2 this.props.todo.title\cf13 </div>\cf2 ;\
-    \}\
-\}\
-\pard\pardeftab720\sl380\qc\partightenfactor0
-
-\fs32 \cf3 \cb12 Copy\
-\pard\tx220\tx720\pardeftab720\li720\fi-720\sl320\partightenfactor0
-\ls5\ilvl0
-\fs27\fsmilli13600 \cf2 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-componentWillReact
-\f1\fs32 \cb3 \'a0
-\f0 \'b2\'bb\'bd\'d3\'ca\'d5\'b2\'ce\'ca\'fd
-\f1 \cb1 \
-\ls5\ilvl0
-\f2\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-componentWillReact
-\f1\fs32 \cb3 \'a0
-\f0 \'b3\'f5\'ca\'bc\'bb\'af\'e4\'d6\'c8\'be\'c7\'b0\'b2\'bb\'bb\'e1\'b4\'a5\'b7\'a2
-\f1  (
-\f0 \'ca\'b9\'d3\'c3
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 componentWillMount
-\f1\fs32 \cb3 \'a0
-\f0 \'cc\'e6\'b4\'fa
-\f1 )\cb1 \
-\ls5\ilvl0
-\f2\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-componentWillReact
-\f1\fs32 \cb3 \'a0
-\f0 \'b6\'d4\'d3\'da
-\f1  mobx-react@4+, 
-\f0 \'b5\'b1\'bd\'d3\'ca\'d5\'d0\'c2\'b5\'c4
-\f1  props 
-\f0 \'ca\'b1\'b2\'a2\'d4\'da
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 setState
-\f1\fs32 \cb3 \'a0
-\f0 \'b5\'f7\'d3\'c3\'ba\'f3\'bb\'e1\'b4\'a5\'b7\'a2\'b4\'cb\'b9\'b3\'d7\'d3
-\f1 \cb1 \
-\pard\pardeftab720\sl360\sa306\partightenfactor0
-
-\b\fs36 \cf2 \cb3 \
-\
-\pard\pardeftab720\sl580\sa408\partightenfactor0
-
-\fs48 \cf2 Autorun\
-\pard\pardeftab720\sl360\partightenfactor0
-
-\b0\fs32 \cf2 \'a0
-\f0 \'be\'ad\'d1\'e9\'b7\'a8\'d4\'f2\'a3\'ba\'c8\'e7\'b9\'fb\'c4\'e3\'d3\'d0\'d2\'bb\'b8\'f6\'ba\'af\'ca\'fd\'d3\'a6\'b8\'c3\'d7\'d4\'b6\'af\'d4\'cb\'d0\'d0\'a3\'ac\'b5\'ab\'b2\'bb\'bb\'e1\'b2\'fa\'c9\'fa\'d2\'bb\'b8\'f6\'d0\'c2\'b5\'c4\'d6\'b5\'a3\'ac\'c7\'eb\'ca\'b9\'d3\'c3
-\f2\fs20\fsmilli10200 \cb5 autorun
-\f0 \'a3\'ac
-\fs32 \cb3 \'c0\'fd\'c8\'e7\'b4\'f2\'d3\'a1\'c8\'d5\'d6\'be\'a1\'a2\'b3\'d6\'be\'c3\'bb\'af\'bb\'f2\'d5\'df\'b8\'fc\'d0\'c2
-\f1 UI
-\f0 \'b5\'c4\'b4\'fa\'c2\'eb\
-\pard\pardeftab720\sl520\sa357\partightenfactor0
-
-\b\fs42 \cf2 \'d1\'a1\'cf\'ee
-\f1 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\b0\fs32 \cf2 Autorun 
-\f0 \'bd\'d3\'ca\'d5\'b5\'da\'b6\'fe\'b8\'f6\'b2\'ce\'ca\'fd\'a3\'ac\'cb\'fc\'ca\'c7\'d2\'bb\'b8\'f6\'b2\'ce\'ca\'fd\'b6\'d4\'cf\'f3\'a3\'ac\'d3\'d0\'c8\'e7\'cf\'c2\'bf\'c9\'d1\'a1\'b5\'c4\'b2\'ce\'ca\'fd
-\f1 :\
-\pard\tx220\tx720\pardeftab720\li720\fi-720\sl320\partightenfactor0
-\ls6\ilvl0
-\f2\fs27\fsmilli13600 \cf2 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-delay
-\f1\fs32 \cb3 : 
-\f0 \'bf\'c9\'d3\'c3\'d3\'da\'b6\'d4\'d0\'a7\'b9\'fb\'ba\'af\'ca\'fd\'bd\'f8\'d0\'d0\'c8\'a5\'b6\'b6\'b6\'af\'b5\'c4\'ca\'fd\'d7\'d6
-\f1 (
-\f0 \'d2\'d4\'ba\'c1\'c3\'eb\'ce\'aa\'b5\'a5\'ce\'bb
-\f1 )
-\f0 \'a1\'a3\'c8\'e7\'b9\'fb\'ca\'c7
-\f1  0(
-\f0 \'c4\'ac\'c8\'cf\'d6\'b5
-\f1 ) 
-\f0 \'b5\'c4\'bb\'b0\'a3\'ac\'c4\'c7\'c3\'b4\'b2\'bb\'bb\'e1\'bd\'f8\'d0\'d0\'c8\'a5\'b6\'b6\'a1\'a3
-\f1 \cb1 \
-\ls6\ilvl0
-\f2\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-name
-\f1\fs32 \cb3 : 
-\f0 \'d7\'d6\'b7\'fb\'b4\'ae\'a3\'ac\'d3\'c3\'d3\'da\'d4\'da\'c0\'fd\'c8\'e7\'cf\'f1
-\f1 \'a0{\field{\*\fldinst{HYPERLINK "https://cn.mobx.js.org/refguide/spy.html"}}{\fldrslt 
-\f2\fs27\fsmilli13600 \cf4 \cb5 spy}}\'a0
-\f0 \'d5\'e2\'d1\'f9\'ca\'c2\'bc\'fe\'d6\'d0\'d3\'c3\'d7\'f7\'b4\'cb
-\f1  reaction 
-\f0 \'b5\'c4\'c3\'fb\'b3\'c6\'a1\'a3
-\f1 \cb1 \
-\ls6\ilvl0
-\f2\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-onError
-\f1\fs32 \cb3 : 
-\f0 \'d3\'c3\'c0\'b4\'b4\'a6\'c0\'ed
-\f1  reaction 
-\f0 \'b5\'c4\'b4\'ed\'ce\'f3\'a3\'ac\'b6\'f8\'b2\'bb\'ca\'c7\'b4\'ab\'b2\'a5\'cb\'fc\'c3\'c7\'a1\'a3
-\f1 \cb1 \
-\ls6\ilvl0
-\f2\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-scheduler
-\f1\fs32 \cb3 : 
-\f0 \'c9\'e8\'d6\'c3\'d7\'d4\'b6\'a8\'d2\'e5\'b5\'f7\'b6\'c8\'c6\'f7\'d2\'d4\'be\'f6\'b6\'a8\'c8\'e7\'ba\'ce\'b5\'f7\'b6\'c8
-\f1  autorun 
-\f0 \'ba\'af\'ca\'fd\'b5\'c4\'d6\'d8\'d0\'c2\'d4\'cb\'d0\'d0
-\f1 \cb1 \
-\pard\pardeftab720\sl360\partightenfactor0
-
-\f0 \cf2 \cb3 \'d2\'bb\'b8\'f6\'c8\'ab\'be\'d6\'b5\'c4
-\f1  onError 
-\f0 \'b4\'a6\'c0\'ed\'b7\'bd\'b7\'a8\'bf\'c9\'d2\'d4\'ca\'b9\'d3\'c3
-\f1 \'a0
-\f2\fs20\fsmilli10200 \cb5 onReactionError(handler)
-\f1\fs32 \cb3 \'a0
-\f0 \'c0\'b4\'c9\'e8\'d6\'c3\'a1\'a3\'d5\'e2\'d4\'da\'b2\'e2\'ca\'d4\'bb\'f2\'bc\'e0\'bf\'d8\'d6\'d0\'ba\'dc\'d3\'d0\'d3\'c3\'a1\'a3
-\f1\b\fs36 \
-
-\f0\b0\fs32 \
-\
-\
-\pard\pardeftab720\sl580\sa408\partightenfactor0
-
-\f1\b\fs48 \cf2 when\
-\pard\pardeftab720\sl320\sa272\partightenfactor0
-
-\f2\b0\fs27\fsmilli13600 \cf2 \cb5 when(predicate: () => boolean, effect?: () => void, options?)
-\f1\fs32 \cb3 \
-
-\f2\fs27\fsmilli13600 \cb5 when
-\f1\fs32 \cb3 \'a0
-\f0 \'b9\'db\'b2\'ec\'b2\'a2\'d4\'cb\'d0\'d0\'b8\'f8\'b6\'a8\'b5\'c4
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 predicate
-\f0\fs32 \cb3 \'a3\'ac\'d6\'b1\'b5\'bd\'b7\'b5\'bb\'d8
-\f1 true
-\f0 \'a1\'a3
-\f1  
-\f0 \'d2\'bb\'b5\'a9\'b7\'b5\'bb\'d8
-\f1  true
-\f0 \'a3\'ac\'b8\'f8\'b6\'a8\'b5\'c4
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 effect
-\f1\fs32 \cb3 \'a0
-\f0 \'be\'cd\'bb\'e1\'b1\'bb\'d6\'b4\'d0\'d0\'a3\'ac\'c8\'bb\'ba\'f3
-\f1  autorunner(
-\f0 \'d7\'d4\'b6\'af\'d4\'cb\'d0\'d0\'b3\'cc\'d0\'f2
-\f1 ) 
-\f0 \'bb\'e1\'b1\'bb\'c7\'e5\'c0\'ed\'a1\'a3
-\f1  
-\f0 \'b8\'c3\'ba\'af\'ca\'fd\'b7\'b5\'bb\'d8\'d2\'bb\'b8\'f6\'c7\'e5\'c0\'ed\'c6\'f7\'d2\'d4\'cc\'e1\'c7\'b0\'c8\'a1\'cf\'fb\'d7\'d4\'b6\'af\'d4\'cb\'d0\'d0\'b3\'cc\'d0\'f2\'a1\'a3
-\f1 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\f0 \cf2 \'b6\'d4\'d3\'da\'d2\'d4\'cf\'ec\'d3\'a6\'ca\'bd\'b7\'bd\'ca\'bd\'c0\'b4\'bd\'f8\'d0\'d0\'b4\'a6\'c0\'ed\'bb\'f2\'d5\'df\'c8\'a1\'cf\'fb\'a3\'ac\'b4\'cb\'ba\'af\'ca\'fd\'b7\'c7\'b3\'a3\'d3\'d0\'d3\'c3\'a1\'a3
-\f1  
-\f0 \'ca\'be\'c0\'fd
-\f1 :\
-\pard\pardeftab720\sl320\partightenfactor0
-
-\f2\fs27\fsmilli13600 \cf6 \cb5 class\cf2  \cf7 MyResource\cf2  \{\
-    \cf6 constructor\cf2 () \{\
-        when(\
-            \cf7 // 
-\f0 \'d2\'bb\'b5\'a9
-\f2 ...\cf2 \
-            () => !\cf6 this\cf2 .isVisible,\
-            \cf7 // ... 
-\f0 \'c8\'bb\'ba\'f3
-\f2 \cf2 \
-            () => \cf6 this\cf2 .dispose()\
-        );\
-    \}\
-\
-    @computed get isVisible() \{\
-        \cf7 // 
-\f0 \'b1\'ea\'ca\'b6\'b4\'cb\'cf\'ee\'ca\'c7\'b7\'f1\'bf\'c9\'bc\'fb
-\f2 \cf2 \
-    \}\
-\
-    dispose() \{\
-        \cf7 // 
-\f0 \'c7\'e5\'c0\'ed
-\f2 \cf2 \
-    \}\
-\}
-\fs32 \
-\pard\pardeftab720\sl460\sa306\partightenfactor0
-
-\f0 \cf2 \cb3 \
-\
-\
-\pard\pardeftab720\sl360\sa306\partightenfactor0
-
-\f3\b\fs30\fsmilli15300 \cf2 \cb5 toJS
-\f1\fs36 \cb3 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\f0\b0\fs32 \cf2 \'d3\'c3\'b7\'a8
-\f1 :\'a0
-\f2\fs27\fsmilli13600 \cb5 toJS(observableDataStructure, options?)
-\f1\fs32 \cb3 \'a0
-\f0 \'a1\'a3\'b0\'d1
-\f1  observable 
-\f0 \'ca\'fd\'be\'dd\'bd\'e1\'b9\'b9\'d7\'aa\'bb\'bb\'b3\'c9\'c6\'d5\'cd\'a8\'b5\'c4
-\f1  javascript 
-\f0 \'b6\'d4\'cf\'f3\'b2\'a2\'ba\'f6\'c2\'d4\'bc\'c6\'cb\'e3\'d6\'b5\'a1\'a3
-\f1 \
-\pard\pardeftab720\sl320\sa272\partightenfactor0
-
-\f2\fs27\fsmilli13600 \cf2 \cb5 options
-\f1\fs32 \cb3 \'a0
-\f0 \'b0\'fc\'c0\'a8
-\f1 :\
-\pard\tx220\tx720\pardeftab720\li720\fi-720\sl320\partightenfactor0
-\ls7\ilvl0
-\f3\b\fs27\fsmilli13600 \cf2 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-detectCycles: boolean
-\f1\b0\fs32 \cb3 : 
-\f0 \'bc\'ec\'b2\'e9
-\f1  observalbe 
-\f0 \'ca\'fd\'be\'dd\'bd\'e1\'b9\'b9\'d6\'d0\'b5\'c4\'d1\'ad\'bb\'b7\'d2\'fd\'d3\'c3\'a1\'a3\'c4\'ac\'c8\'cf\'ce\'aa
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 true
-\f1\fs32 \cb1 \
-\ls7\ilvl0
-\f3\b\fs27\fsmilli13600 \cb5 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
-exportMapsAsObjects: boolean
-\f1\b0\fs32 \cb3 : 
-\f0 \'bd\'ab
-\f1  ES6 Map 
-\f0 \'d7\'f7\'ce\'aa\'c6\'d5\'cd\'a8\'b6\'d4\'cf\'f3\'b5\'bc\'b3\'f6\'a1\'a3\'c4\'ac\'c8\'cf\'ce\'aa
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 true
-\f1\fs32 \cb1 \
-\pard\pardeftab720\sl460\sa306\partightenfactor0
-
-\f0 \cf2 \cb3 \
-\pard\pardeftab720\sl360\sa306\partightenfactor0
-
-\f3\b\fs30\fsmilli15300 \cf2 \cb5 isObservable
-\f1\fs36 \cb3 \'a0
-\f0 \'ba\'cd
-\f1 \'a0
-\f3\fs30\fsmilli15300 \cb5 isObservableProp
-\f1\fs36 \cb3 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\f0\b0\fs32 \cf2 \'d3\'c3\'b7\'a8
-\f1 :\'a0
-\f2\fs27\fsmilli13600 \cb5 isObservable(thing)
-\f1\fs32 \cb3 \'a0
-\f0 \'bb\'f2
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 isObservableProp(thing, property?)
-\f1\fs32 \cb3 \'a0
-\f0 \'a1\'a3\'c8\'e7\'b9\'fb\'b8\'f8\'b6\'a8\'b5\'c4
-\f1  thing
-\f0 \'a3\'ac\'bb\'f2\'d5\'df
-\f1  thing 
-\f0 \'d6\'b8\'b6\'a8\'b5\'c4
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 property
-\f1\fs32 \cb3 \'a0
-\f0 \'ca\'c7
-\f1  observable 
-\f0 \'b5\'c4\'bb\'b0\'a3\'ac\'b7\'b5\'bb\'d8
-\f1  true
-\f0 \'a1\'a3
-\f1  
-\f0 \'ca\'ca\'d3\'c3\'d3\'da\'cb\'f9\'d3\'d0\'b5\'c4
-\f1  observable
-\f0 \'a1\'a2\'bc\'c6\'cb\'e3\'d6\'b5\'ba\'cd
-\f1  reaction 
-\f0 \'b5\'c4\'c7\'e5\'c0\'ed\'ba\'af\'ca\'fd\'a1\'a3
-\f1 \
-\pard\pardeftab720\sl460\sa306\partightenfactor0
-
-\f0 \cf2 \
-\pard\pardeftab720\sl360\sa306\partightenfactor0
-
-\f3\b\fs30\fsmilli15300 \cf2 \cb5 isArrayLike
-\f1\fs36 \cb3 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\f0\b0\fs32 \cf2 \'d3\'c3\'b7\'a8
-\f1 :\'a0
-\f2\fs27\fsmilli13600 \cb5 isArrayLike(thing)
-\f0\fs32 \cb3 \'a1\'a3\'c8\'e7\'b9\'fb\'b8\'f8\'b6\'a8\'b5\'c4
-\f1  thing 
-\f0 \'ca\'c7
-\f1  javascript 
-\f0 \'ca\'fd\'d7\'e9\'bb\'f2\'d5\'df
-\f1  observable (MobX
-\f0 \'b5\'c4
-\f1 )
-\f0 \'ca\'fd\'d7\'e9\'b5\'c4\'bb\'b0\'a3\'ac\'b7\'b5\'bb\'d8
-\f1  true
-\f0 \'a1\'a3
-\f1  
-\f0 \'d5\'e2\'b8\'f6\'b7\'bd\'b7\'a8\'b8\'fc\'bc\'f2\'b1\'e3\'a1\'a3
-\f1  
-\f0 \'d7\'a2\'d2\'e2\'a3\'ac
-\f1 observable 
-\f0 \'ca\'fd\'d7\'e9\'bf\'c9\'d2\'d4\'cd\'a8\'b9\'fd
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 .slice()
-\f1\fs32 \cb3 \'a0
-\f0 \'d7\'aa\'b1\'e4\'b3\'c9
-\f1  javascript 
-\f0 \'ca\'fd\'d7\'e9\'a1\'a3
-\f1 \
-\pard\pardeftab720\sl360\sa306\partightenfactor0
-
-\f3\b\fs30\fsmilli15300 \cf2 \cb5 isAction
-\f1\fs36 \cb3 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\f0\b0\fs32 \cf2 \'d3\'c3\'b7\'a8
-\f1 :\'a0
-\f2\fs27\fsmilli13600 \cb5 isAction(func)
-\f0\fs32 \cb3 \'a1\'a3\'c8\'e7\'b9\'fb\'b8\'f8\'b6\'a8\'ba\'af\'ca\'fd\'ca\'c7\'d3\'c3
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 action
-\f1\fs32 \cb3 \'a0
-\f0 \'b7\'bd\'b7\'a8\'b0\'fc\'b9\'fc\'b5\'c4\'bb\'f2\'d5\'df\'ca\'c7\'d3\'c3
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 @action
-\f1\fs32 \cb3 \'a0
-\f0 \'d7\'b0\'ca\'ce\'b5\'c4\'bb\'b0\'a3\'ac\'b7\'b5\'bb\'d8
-\f1  true
-\f0 \'a1\'a3
-\f1 \
-\pard\pardeftab720\sl360\sa306\partightenfactor0
-
-\f3\b\fs30\fsmilli15300 \cf2 \cb5 isComputed
-\f1\fs36 \cb3 \'a0
-\f0 \'bb\'f2
-\f1 \'a0
-\f3\fs30\fsmilli15300 \cb5 isComputedProp
-\f1\fs36 \cb3 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\f0\b0\fs32 \cf2 \'d3\'c3\'b7\'a8
-\f1 :\'a0
-\f2\fs27\fsmilli13600 \cb5 isComputed(thing)
-\f1\fs32 \cb3 \'a0
-\f0 \'bb\'f2
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 isComputedProp(thing, property?)
-\f1\fs32 \cb3 \'a0
-\f0 \'a1\'a3\'c8\'e7\'b9\'fb\'b8\'f8\'b6\'a8\'b5\'c4
-\f1  thing 
-\f0 \'ca\'c7\'bc\'c6\'cb\'e3\'d6\'b5\'bb\'f2\'d5\'df
-\f1  thing 
-\f0 \'d6\'b8\'b6\'a8\'b5\'c4
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 property
-\f1\fs32 \cb3 \'a0
-\f0 \'ca\'c7\'bc\'c6\'cb\'e3\'d6\'b5\'b5\'c4\'bb\'b0\'a3\'ac\'b7\'b5\'bb\'d8
-\f1  true 
-\f0 \'a1\'a3
-\f1 \
-\pard\pardeftab720\sl360\sa306\partightenfactor0
-
-\f3\b\fs30\fsmilli15300 \cf2 \cb5 intercept
-\f1\fs36 \cb3 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\f0\b0\fs32 \cf2 \'d3\'c3\'b7\'a8
-\f1 :\'a0
-\f2\fs27\fsmilli13600 \cb5 intercept(object, property?, interceptor)
-\f1\fs32 \cb3 . 
-\f0 \'d5\'e2\'b8\'f6
-\f1  API 
-\f0 \'bf\'c9\'d2\'d4\'d4\'da\'d3\'a6\'d3\'c3
-\f1  observable 
-\f0 \'b5\'c4
-\f1 API
-\f0 \'d6\'ae\'c7\'b0\'a3\'ac\'c0\'b9\'bd\'d8\'b8\'fc\'b8\'c4\'a1\'a3\'b6\'d4\'d3\'da\'d1\'e9\'d6\'a4\'a1\'a2\'b1\'ea\'d7\'bc\'bb\'af\'ba\'cd\'c8\'a1\'cf\'fb\'b5\'c8\'b2\'d9\'d7\'f7\'ca\'ae\'b7\'d6\'d3\'d0\'d3\'c3\'a1\'a3
-\f1 \
-\pard\pardeftab720\sl460\sa306\partightenfactor0
-
-\f0 \cf2 \
-\
-\pard\pardeftab720\sl300\sa255\partightenfactor0
-
-\f3\b\fs25\fsmilli12750 \cf2 \cb5 isolateGlobalState: boolean
-\f1\fs30 \cb3 \
-\pard\pardeftab720\sl360\sa272\partightenfactor0
-
-\f0\b0\fs32 \cf2 \'b5\'b1\'cd\'ac\'d2\'bb\'bb\'b7\'be\'b3\'d6\'d0\'d3\'d0\'b6\'e0\'b8\'f6
-\f1  MobX 
-\f0 \'ca\'b5\'c0\'fd\'ca\'b1\'a3\'ac\'bd\'ab
-\f1  MobX 
-\f0 \'b5\'c4\'c8\'ab\'be\'d6\'d7\'b4\'cc\'ac\'b8\'f4\'c0\'eb\'a1\'a3
-\f1  
-\f0 \'b5\'b1\'ca\'b9\'d3\'c3
-\f1  MobX 
-\f0 \'b5\'c4\'cd\'ac\'ca\'b1\'bb\'b9\'ca\'b9\'d3\'c3\'c1\'cb\'ca\'b9\'d3\'c3
-\f1  MobX 
-\f0 \'b5\'c4\'b7\'e2\'d7\'b0\'bf\'e2\'ca\'b1\'a3\'ac\'d5\'e2\'ca\'c7\'b7\'c7\'b3\'a3\'d3\'d0\'d3\'c3\'b5\'c4\'a1\'a3
-\f1  
-\f0 \'b5\'b1\'d4\'da\'bf\'e2\'d6\'d0\'b5\'f7\'d3\'c3
-\f1 \'a0
-\f2\fs27\fsmilli13600 \cb5 configure(\{isolateGlobalState
-\f0 \'a3\'ba
-\f2 true\})
-\f1\fs32 \cb3 \'a0
-\f0 \'ca\'b1\'a3\'ac\'bf\'e2\'c4\'da\'b5\'c4\'cf\'ec\'d3\'a6\'d0\'d4\'bd\'ab\'b1\'a3\'b3\'d6\'b6\'c0\'c1\'a2\'a1\'a3
-\f1 \
-
-\f0 \'ca\'b9\'d3\'c3\'b4\'cb\'d1\'a1\'cf\'ee\'a3\'ac\'c8\'e7\'b9\'fb\'b6\'e0\'b8\'f6
-\f1  MobX 
-\f0 \'ca\'b5\'c0\'fd\'d5\'fd\'d4\'da\'ca\'b9\'d3\'c3\'b5\'c4\'bb\'b0\'a3\'ac\'c4\'da\'b2\'bf\'d7\'b4\'cc\'ac\'ca\'c7\'bb\'e1\'b9\'b2\'cf\'ed\'b5\'c4\'a1\'a3\'d3\'c5\'b5\'e3\'be\'cd\'ca\'c7\'c1\'bd\'b8\'f6\'ca\'b5\'c0\'fd\'b5\'c4
-\f1  observables 
-\f0 \'bf\'c9\'d2\'d4\'d0\'ad\'cd\'ac\'d4\'cb\'d0\'d0\'a3\'ac\'c8\'b1\'b5\'e3\'ca\'c7
-\f1  MobX 
-\f0 \'b5\'c4\'b0\'e6\'b1\'be\'b1\'d8\'d0\'eb\'c6\'a5\'c5\'e4\'a1\'a3
-\f1 \
-\pard\pardeftab720\sl320\partightenfactor0
-
-\f2\fs27\fsmilli13600 \cf2 \cb5 configure(\{ isolateGlobalState: \cf9 true\cf2  \});
-\fs32 \
-\pard\pardeftab720\sl460\sa306\partightenfactor0
-
-\f0 \cf2 \cb3 \
+observable 也可以用作属性的装饰器。它需要启用装饰器而且它是 extendObservable(this, { property: value }) 的语法糖。
+
+observable.box(value, options?)
+创建一个 observable 的盒子，它用来存储value的 observable 引用。使用 get() 方法可以得到盒子中的当前value，而使用 set() 方法可以更新value。 这是所有其它 observable 创建的基础，但实际中你其实很少能使用到它。
+通常盒子会自动地尝试把任何还不是 observable 的新值转换成 observable 。使用 {deep: false} 选项会禁用这项行为。
+observable.box(value, { name: "my array" })
+name 选项用来给数组一个友好的调试名称，用于 spy 或者 MobX 开发者工具。
+
+
+observable.array
+	•	clear() - 从数组中删除所有项。
+	•	replace(newItems) - 用新项替换数组中所有已存在的项。
+	•	find(predicate: (item, index, array) => boolean, thisArg?) - 基本上等同于 ES7 的 Array.find 提议。
+	•	findIndex(predicate: (item, index, array) => boolean, thisArg?) - 基本上等同于 ES7 的 Array.findIndex 提议。
+	•	remove(value) - 通过值从数组中移除一个单个的项。如果项被找到并移除的话，返回 true 。
+
+不同于 sort 和 reverse 函数的内置实现，observableArray.sort 和 observableArray.reverse 不会改变数组本身，而只是返回一个排序过/反转过的拷贝。在 MobX 5 及以上版本中会出现警告。推荐使用 array.slice().sort() 来替代。
+
+observable.map(values, options?)
+下列 observable 映射所暴露的方法是依据 ES6 Map 规范:
+	•	has(key) - 返回映射是否有提供键对应的项。注意键的存在本身就是可观察的。
+	•	set(key, value) - 把给定键的值设置为 value 。提供的键如果在映射中不存在的话，那么它会被添加到映射之中。
+	•	delete(key) - 把给定键和它的值从映射中删除。
+	•	get(key) - 返回给定键的值(或 undefined)。
+	•	keys() - 返回映射中存在的所有键的迭代器。插入顺序会被保留。
+	•	values() - 返回映射中存在的所有值的迭代器。插入顺序会被保留。
+	•	entries() - 返回一个(保留插入顺序)的数组的迭代器，映射中的每个键值对都会对应数组中的一项 [key, value]。
+	•	forEach(callback:(value, key, map) => void, thisArg?) - 为映射中每个键值对调用给定的回调函数。
+	•	clear() - 移除映射中的所有项。
+	•	size - 返回映射中项的数量。
+以下函数不属于 ES6 规范，而是由 MobX 提供:
+	•	toJS() - 将 observable 映射转换成普通映射。
+	•	toJSON(). 返回此映射的浅式普通对象表示。(想要深拷贝，请使用 mobx.toJS(map))。
+	•	intercept(interceptor) - 可以用来在任何变化作用于映射前将其拦截。参见 observe & intercept。
+	•	observe(listener, fireImmediately?) - 注册侦听器，在映射中的每个更改时触发，类似于为 Object.observe 发出的事件。想了解更多详情，请参见 observe & intercept。
+	•	merge(values) - 把提供对象的所有项拷贝到映射中。values 可以是普通对象、entries 数组或者 ES6 字符串键的映射。
+	•	replace(values) - 用提供值替换映射全部内容。是 .clear().merge(values) 的简写形式。
+
+
+extendObservable
+它是对现有的observe数据进行修剪，就是对数据在原有基础上进行约束。
+
+extendObservable(target, properties, decorators?, options?)
+ExtendObservable 用来向已存在的目标对象添加 observable 属性。 属性映射中的所有键值对都会导致目标上的新的 observable 属性被初始化为给定值。 属性映射中的任意 getters 都会转化成计算属性。
+decorators 参数用来重载用于指定属性的装饰器，类似于 decorate 和 observable.object 。
+使用 deep: false 选项可使得新的属性变成浅的。也就是说，阻止它们的值自动转换成 observables 。
+注意: observable.object(object) 实际上是 extendObservable({}, object) 的别名。
+注意: 类似于 extendObservable，decorate 用来为对象引入 observable 属性。不同之处在于 extendObservable 被设计为直接在目标实例上引入属性，其中 decorate 将它们引入原型; 可以直接将它传递给构造函数 (类)，也可以将其作为其他人的原型。
+注意: 不能使用 extendObservable 来为 observable 数组或对象上引入新的属性。
+
+
+
+引用可观察性
+然后在某些情况下，不需要将对象转变成 observable 。 典型案例就是不可变对象，或者不是由你管理，而是由外部库管理的对象。 例如 JSX 元素、DOM 元素、像 History、window 这样的原生对象，等等。 对于这类对象，只需要存储引用而不用把它们转变成 observable 。
+对于这些情况，可以使用 ref 调节器。它会确保创建 observable 属性时，只追踪引用而不会把它的值转变成 observable 。 示例:
+class Message {
+    @observable message = "Hello world"
+
+    // 虚构的例子，如果 author 是不可变的，我们只需要存储一个引用，不应该把它变成一个可变的 observable 对象
+    @observable.ref author = null
 }
+
+
+autorun 中的值必须要手动清理才行，这点和计算值是有所不同的。
+
+@Computed
+计算值的 setter
+还可以为计算值定义 setter。注意这些 setters 不能用来直接改变计算属性的值，但是它们可以用来作“逆向”衍生。例如:
+const orderLine = observable.object({
+    price: 0,
+    amount: 1,
+    get total() {
+        return this.price * this.amount
+    },
+    set total(total) {
+        this.price = total / this.amount // 从 total 中推导出 price
+    }
+})
+
+	•	requiresReaction: 对于非常昂贵的计算值，推荐设置成 true 。如果你尝试读取它的值，但某些观察者没有跟踪该值（在这种情况下，MobX 不会缓存该值），则会导致计算结果丢失，而不是进行昂贵的重新评估。
+
+class Foo {
+    @observable length = 2;
+    @computed get squared() {
+        return this.length * this.length;
+    }
+    set squared(value) { // 这是一个自动的动作，不需要注解
+        this.length = Math.sqrt(value);
+    }
+}
+
+
+
+
+
+
+何时使用动作？
+应该永远只对修改状态的函数使用动作。 只执行查找，过滤器等函数不应该被标记为动作，以允许 MobX 跟踪它们的调用。
+
+绑定的动作
+action 装饰器/函数遵循 javascript 中标准的绑定规则。 但是，action.bound 可以用来自动地将动作绑定到目标对象。 注意，与 action 不同的是，(@)action.bound 不需要一个name参数，名称将始终基于动作绑定的属性。
+示例:
+class Ticker {
+    @observable tick = 0
+
+    @action.bound
+    increment() {
+        this.tick++ // 'this' 永远都是正确的
+    }
+}
+
+const ticker = new Ticker()
+setInterval(ticker.increment, 1000)
+
+注意: action.bound 不要和箭头函数一起使用；箭头函数已经是绑定过的并且不能重新绑定。
+
+
+Flow
+用法: flow(function* (args) { })
+flow() 接收 generator 函数作为它唯一的输入
+当处理异步动作时，回调中执行的代码不会被 action 包装。这意味着你修改的 observable state 无法通过 enforceActions 检查。保留动作语义的简单方法是使用 flow 来包装异步函数。这将确保所有回调都会被 action() 包装。
+注意，异步函数必须是 generator ，而且在内部只能 yield promises 。flow 会返回一个 promise ，需要的话可以使用 cancel() 进行撤销。
+import { configure } from 'mobx';
+
+// 不允许在动作外部修改状态
+configure({ enforceActions: true });
+
+class Store {
+    @observable githubProjects = [];
+    @observable state = "pending"; // "pending" / "done" / "error"
+
+
+    fetchProjects = flow(function* fetchProjects() { // <- 注意*号，这是生成器函数！
+        this.githubProjects = [];
+        this.state = "pending";
+        try {
+            const projects = yield fetchGithubProjectsSomehow(); // 用 yield 代替 await
+            const filteredProjects = somePreprocessing(projects);
+
+            // 异步代码自动会被 `action` 包装
+            this.state = "done";
+            this.githubProjects = filteredProjects;
+        } catch (error) {
+            this.state = "error";
+        }
+    })
+}
+Copy
+提示: 推荐为 generator 函数起个名称，此名称将出现在开发工具中
+Flows 可以撤销
+Flows 是可以取消的，这意味着调用返回的 promise 的 cancel() 方法。这会立即停止 generator ，但是 finally 子句仍会被处理。 返回的 promise 本身会使用 FLOW_CANCELLED 进行 reject 。
+Flows 支持异步迭代器
+Flows 支持异步迭代器，这意味着可以使用异步 generators :
+async function* someNumbers() {
+    yield Promise.resolve(1)
+    yield Promise.resolve(2)
+    yield Promise.resolve(3)
+}
+
+const count = mobx.flow(async function*() {
+    // 使用 await 来循环异步迭代器
+    for await (const number of someNumbers()) {
+        total += number
+    }
+    return total
+})
+
+const res = await count() // 6
+Copy
+
+
+陷阱: 组件中的间接引用值
+MobX 可以做很多事，但是它无法使原始数据类型值转变成可观察的(尽管它可以用对象来包装它们，参见 boxed observables)。 所以值是不可观察的，但是对象的属性可以。这意味着 @observer 实际上是对间接引用(dereference)值的反应。 那么在上面的示例中，如果是用下面这种方式初始化的，Timer 组件是不会有反应的:
+React.render(<Timer timerData={timerData.secondsPassed} />, document.body)
+Copy
+在这个代码片段中只是把 secondsPassed 的当前值传递给了 Timer 组件，这个值是不可变值0(JS中所有的原始类型值都是不可变的)。 这个数值永远都不会改变，因此 Timer 组件不会更新。secondsPassed的值将来会发生改变， 所以我们需要在组件中访问它。或者换句话说: 值需要通过引用来传递而不是通过(字面量)值来传递。
+
+
+可观察的局部组件状态
+就像普通类一样，你可以通过使用 @observable 装饰器在React组件上引入可观察属性。 这意味着你可以在组件中拥有功能同样强大的本地状态(local state)，而不需要通过 React 的冗长和强制性的 setState 机制来管理。 响应式状态会被 render 提取调用，但不会调用其它 React 的生命周期方法，除了 componentWillUpdate 和 componentDidUpdate 。 如果你需要用到其他 React 生命周期方法 ，只需使用基于 state 的常规 React API 即可。
+上面的例子还可以这样写:
+import {observer} from "mobx-react"
+import {observable} from "mobx"
+
+@observer class Timer extends React.Component {
+    @observable secondsPassed = 0
+
+    componentWillMount() {
+        setInterval(() => {
+            this.secondsPassed++
+        }, 1000)
+    }
+
+    render() {
+        return (<span>Seconds passed: { this.secondsPassed } </span> )
+    }
+}
+
+ReactDOM.render(<Timer />, document.body)
+
+
+componentWillReact (生命周期钩子)
+React 组件通常在新的堆栈上渲染，这使得通常很难弄清楚是什么导致组件的重新渲染。 当使用 mobx-react 时可以定义一个新的生命周期钩子函数 componentWillReact(一语双关)。当组件因为它观察的数据发生了改变，它会安排重新渲染，这个时候 componentWillReact 会被触发。这使得它很容易追溯渲染并找到导致渲染的操作(action)。
+import {observer} from "mobx-react";
+
+@observer class TodoView extends React.Component {
+    componentWillReact() {
+        console.log("I will re-render, since the todo has changed!");
+    }
+
+    render() {
+        return <div>this.props.todo.title</div>;
+    }
+}
+Copy
+	•	componentWillReact 不接收参数
+	•	componentWillReact 初始化渲染前不会触发 (使用 componentWillMount 替代)
+	•	componentWillReact 对于 mobx-react@4+, 当接收新的 props 时并在 setState 调用后会触发此钩子
+
+
+Autorun
+ 经验法则：如果你有一个函数应该自动运行，但不会产生一个新的值，请使用autorun，例如打印日志、持久化或者更新UI的代码
+选项
+Autorun 接收第二个参数，它是一个参数对象，有如下可选的参数:
+	•	delay: 可用于对效果函数进行去抖动的数字(以毫秒为单位)。如果是 0(默认值) 的话，那么不会进行去抖。
+	•	name: 字符串，用于在例如像 spy 这样事件中用作此 reaction 的名称。
+	•	onError: 用来处理 reaction 的错误，而不是传播它们。
+	•	scheduler: 设置自定义调度器以决定如何调度 autorun 函数的重新运行
+一个全局的 onError 处理方法可以使用 onReactionError(handler) 来设置。这在测试或监控中很有用。
+
+
+
+when
+when(predicate: () => boolean, effect?: () => void, options?)
+when 观察并运行给定的 predicate，直到返回true。 一旦返回 true，给定的 effect 就会被执行，然后 autorunner(自动运行程序) 会被清理。 该函数返回一个清理器以提前取消自动运行程序。
+对于以响应式方式来进行处理或者取消，此函数非常有用。 示例:
+class MyResource {
+    constructor() {
+        when(
+            // 一旦...
+            () => !this.isVisible,
+            // ... 然后
+            () => this.dispose()
+        );
+    }
+
+    @computed get isVisible() {
+        // 标识此项是否可见
+    }
+
+    dispose() {
+        // 清理
+    }
+}
+
+
+
+toJS
+用法: toJS(observableDataStructure, options?) 。把 observable 数据结构转换成普通的 javascript 对象并忽略计算值。
+options 包括:
+	•	detectCycles: boolean: 检查 observalbe 数据结构中的循环引用。默认为 true
+	•	exportMapsAsObjects: boolean: 将 ES6 Map 作为普通对象导出。默认为 true
+
+isObservable 和 isObservableProp
+用法: isObservable(thing) 或 isObservableProp(thing, property?) 。如果给定的 thing，或者 thing 指定的 property 是 observable 的话，返回 true。 适用于所有的 observable、计算值和 reaction 的清理函数。
+
+isArrayLike
+用法: isArrayLike(thing)。如果给定的 thing 是 javascript 数组或者 observable (MobX的)数组的话，返回 true。 这个方法更简便。 注意，observable 数组可以通过 .slice() 转变成 javascript 数组。
+isAction
+用法: isAction(func)。如果给定函数是用 action 方法包裹的或者是用 @action 装饰的话，返回 true。
+isComputed 或 isComputedProp
+用法: isComputed(thing) 或 isComputedProp(thing, property?) 。如果给定的 thing 是计算值或者 thing 指定的 property 是计算值的话，返回 true 。
+intercept
+用法: intercept(object, property?, interceptor). 这个 API 可以在应用 observable 的API之前，拦截更改。对于验证、标准化和取消等操作十分有用。
+
+
+isolateGlobalState: boolean
+当同一环境中有多个 MobX 实例时，将 MobX 的全局状态隔离。 当使用 MobX 的同时还使用了使用 MobX 的封装库时，这是非常有用的。 当在库中调用 configure({isolateGlobalState：true}) 时，库内的响应性将保持独立。
+使用此选项，如果多个 MobX 实例正在使用的话，内部状态是会共享的。优点就是两个实例的 observables 可以协同运行，缺点是 MobX 的版本必须匹配。
+configure({ isolateGlobalState: true });
+
