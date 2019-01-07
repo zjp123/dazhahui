@@ -16,4 +16,83 @@ flask的form表单与宏，flask中有一些特殊的变量不需要通过模板
 
 Python3环境使用的是pymysql  python2使用的是Mysql-python
 
-在flask中，如果是在python2环境中，除了要下载flask-sqlalcheme 之外，还要下载Mysql-python(数据库驱动)
+在flask中，如果是在python2环境中，除了要下载flask-sqlalcheme 之外，还要下载Mysql-python(数据库驱动),或者下载，flask-mysqldb
+
+表的命名：数据库缩写_表名
+
+查询语法：
+User.query.all() 所有数据
+User.query.first() 第一条
+User.query.get(2) 第二条
+
+查询之前可进行过滤筛选
+User.query.filter_by(name=wang, id=2).first()  查不到是None
+User.query.filter(User.name==wang, id=1).first() 两种方式不一样
+Import sqlalchemy import or_
+User.query.filter(or_(User.name==wang, id=1)).all() 
+User.query.offset(2).all() 跳过几条  做分页时可用
+User.query.offset(2).limit(2).all() 跳过几条  做分页时可用
+
+排序：
+
+User.query.order_by(User.id.desc()).all()
+
+分组：
+db.session.query(User.role_id, func.count(User.role_id)).group_by(User.role_id).all()
+
+关联查询：
+role = Role.query.get(1)
+role.users
+
+
+修改：
+1.
+user = User.query.first()
+user.name = ‘laowang’
+db.session.add(user)
+db.session.commit()
+
+2.
+User.query.filter_by(name='zhang').update({'name':'li'})
+User.query.filter_by(name='zhang').update({'name':'li'})
+
+
+
+删除：
+user = User.query.first()
+db.session.delete(user)
+db.session.commit()
+
+
+
+request.get_json()把json转为字典
+
+通过命令操作数据库
+#这个命令会创建migrations文件夹，所有迁移文件都放在里面。
+python database.py db init  初始化  后面就不用再执行了
+
+#创建自动迁移脚本
+python database.py db migrate -m 'initial migration'
+
+更新数据库
+python database.py db upgrade
+
+
+
+回退数据库
+回退数据库时，需要指定回退版本号，由于版本号是随机字符串，为避免出错，建议先使用python database.py db history命令查看历史版本的具体版本号，然后复制具体版本号执行回退。
+python database.py db downgrade 版本号
+
+
+
+蓝图概念：
+是一个小模块的抽象，是解决模块与模块相互引用时的问题，其实就是组件化思想，解决主程序与子模块之间的耦合度
+
+“.”就代表当前包模块
+
+Python中当导入一个包的时候，会默认执行包中的__init__.py文件，其他文件不执行，除非在__init__.py文件中涉及到
+
+
+蓝图目录中的模板文件，如果跟总的模板文件里面的文件名相同，那么以总的为准
+
+
