@@ -96,3 +96,67 @@ Python中当导入一个包的时候，会默认执行包中的__init__.py文件
 蓝图目录中的模板文件，如果跟总的模板文件里面的文件名相同，那么以总的为准
 
 
+单元测试：
+
+assert 断言  后面跟一个表达式  如果表达式返回真，那么程序继续执行，如果返回假，那么会抛出一个异常，
+
+
+all([a, b, ags])
+
+#coding=utf-8
+import unittest
+from Flask_day04 import app #需要测试的程序所在文件
+class TestCase(unittest.TestCase):
+    # 创建测试环境，在测试代码执行前执行  初始化的东西
+    def setUp(self):
+        self.app = app
+        # 激活测试标志
+        app.config['TESTING'] = True
+        self.client = self.app.test_client()
+
+    # 在测试代码执行完成后执行
+    def tearDown(self):
+        pass
+
+    # 测试代码 方法名必须以test_ 开头
+    def test_email(self):
+        resp = self.client.get('/')
+        # rep = self.clent.post(‘/’, data={})
+        print resp.data
+        self.assertEqual(resp.data,'Sent　Succeed')
+
+
+数据库测试：
+#coding=utf-8
+import unittest
+from author_book import *
+
+#自定义测试类，setUp方法和tearDown方法会分别在测试前后执行。以test_开头的函数就是具体的测试代码。
+
+class DatabaseTest(unittest.TestCase):
+    def setUp(self):
+        app.config['TESTING'] = True
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:mysql@localhost/test0'
+        self.app = app
+        db.create_all()
+
+	#程序最后执行，做一些清理操作
+    def tearDown(self):
+        db.session.remove()
+        db.drop_all()
+
+    #测试代码
+    def test_append_data(self):
+        au = Author(name='itcast')
+        bk = Book(info='python')
+        db.session.add_all([au,bk])
+        db.session.commit()
+        author = Author.query.filter_by(name='itcast').first()
+        book = Book.query.filter_by(info='python').first()
+        #断言数据存在
+        self.assertIsNotNone(author)
+        self.assertIsNotNone(book)
+
+一个程序可以在一台机器上不同的端口上执行，不同的端口代表着不同的进程，同时这个进程上可以开多个子进程
+
+
