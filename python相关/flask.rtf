@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {\rtf1\ansi\ansicpg936\cocoartf1561\cocoasubrtf400
 {\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset134 PingFangSC-Regular;\f2\fnil\fcharset0 Menlo-Regular;
 \f3\fnil\fcharset0 HelveticaNeue;}
@@ -268,3 +269,167 @@ class DatabaseTest(unittest.TestCase):\
 \
 \
 }
+=======
+Session的存储方式其实是，一条sessionid，存储多个值比如：sessionid:[{key, value}, {name, value}]
+
+Xss攻击是指在网页中，插入一段恶意js脚本，解决：把脚本转义为普通字符串
+
+一台nginx服务器，差不多可以处理，链接非活跃和活跃链接总共20万个，djanog服务器，差不多是2000个，并且服务器一般是专机专用，数据库就是数据库的服务器，web服务器就是web服务器。
+
+nginx可以开的进程数一般和cpu的个数成1.5到2倍的关系
+
+json就是字符串。
+
+width上下文相当于 try-catch-finally
+
+python2的时候，在使用中文的时候记得加上u“xxx”
+
+flask的form表单与宏，flask中有一些特殊的变量不需要通过模板传递，就可以在模板中直接使用，闪现是在第一次访问的时候出现的消息，通过session机制存储
+
+Python3环境使用的是pymysql  python2使用的是Mysql-python
+
+在flask中，如果是在python2环境中，除了要下载flask-sqlalcheme 之外，还要下载Mysql-python(数据库驱动),或者下载，flask-mysqldb
+
+表的命名：数据库缩写_表名
+
+查询语法：
+User.query.all() 所有数据
+User.query.first() 第一条
+User.query.get(2) 第二条
+
+查询之前可进行过滤筛选
+User.query.filter_by(name=wang, id=2).first()  查不到是None
+User.query.filter(User.name==wang, id=1).first() 两种方式不一样
+Import sqlalchemy import or_
+User.query.filter(or_(User.name==wang, id=1)).all() 
+User.query.offset(2).all() 跳过几条  做分页时可用
+User.query.offset(2).limit(2).all() 跳过几条  做分页时可用
+
+排序：
+
+User.query.order_by(User.id.desc()).all()
+
+分组：
+db.session.query(User.role_id, func.count(User.role_id)).group_by(User.role_id).all()
+
+关联查询：
+role = Role.query.get(1)
+role.users
+
+
+修改：
+1.
+user = User.query.first()
+user.name = ‘laowang’
+db.session.add(user)
+db.session.commit()
+
+2.
+User.query.filter_by(name='zhang').update({'name':'li'})
+User.query.filter_by(name='zhang').update({'name':'li'})
+
+
+
+删除：
+user = User.query.first()
+db.session.delete(user)
+db.session.commit()
+
+
+
+request.get_json()把json转为字典
+
+通过命令操作数据库
+#这个命令会创建migrations文件夹，所有迁移文件都放在里面。
+python database.py db init  初始化  后面就不用再执行了
+
+#创建自动迁移脚本
+python database.py db migrate -m 'initial migration'
+
+更新数据库
+python database.py db upgrade
+
+
+
+回退数据库
+回退数据库时，需要指定回退版本号，由于版本号是随机字符串，为避免出错，建议先使用python database.py db history命令查看历史版本的具体版本号，然后复制具体版本号执行回退。
+python database.py db downgrade 版本号
+
+
+
+蓝图概念：
+是一个小模块的抽象，是解决模块与模块相互引用时的问题，其实就是组件化思想，解决主程序与子模块之间的耦合度
+
+“.”就代表当前包模块
+
+Python中当导入一个包的时候，会默认执行包中的__init__.py文件，其他文件不执行，除非在__init__.py文件中涉及到
+
+
+蓝图目录中的模板文件，如果跟总的模板文件里面的文件名相同，那么以总的为准
+
+
+单元测试：
+
+assert 断言  后面跟一个表达式  如果表达式返回真，那么程序继续执行，如果返回假，那么会抛出一个异常，
+
+
+all([a, b, ags])
+
+#coding=utf-8
+import unittest
+from Flask_day04 import app #需要测试的程序所在文件
+class TestCase(unittest.TestCase):
+    # 创建测试环境，在测试代码执行前执行  初始化的东西
+    def setUp(self):
+        self.app = app
+        # 激活测试标志
+        app.config['TESTING'] = True
+        self.client = self.app.test_client()
+
+    # 在测试代码执行完成后执行
+    def tearDown(self):
+        pass
+
+    # 测试代码 方法名必须以test_ 开头
+    def test_email(self):
+        resp = self.client.get('/')
+        # rep = self.clent.post(‘/’, data={})
+        print resp.data
+        self.assertEqual(resp.data,'Sent　Succeed')
+
+
+数据库测试：
+#coding=utf-8
+import unittest
+from author_book import *
+
+#自定义测试类，setUp方法和tearDown方法会分别在测试前后执行。以test_开头的函数就是具体的测试代码。
+
+class DatabaseTest(unittest.TestCase):
+    def setUp(self):
+        app.config['TESTING'] = True
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:mysql@localhost/test0'
+        self.app = app
+        db.create_all()
+
+	#程序最后执行，做一些清理操作
+    def tearDown(self):
+        db.session.remove()
+        db.drop_all()
+
+    #测试代码
+    def test_append_data(self):
+        au = Author(name='itcast')
+        bk = Book(info='python')
+        db.session.add_all([au,bk])
+        db.session.commit()
+        author = Author.query.filter_by(name='itcast').first()
+        book = Book.query.filter_by(info='python').first()
+        #断言数据存在
+        self.assertIsNotNone(author)
+        self.assertIsNotNone(book)
+
+一个程序可以在一台机器上不同的端口上执行，不同的端口代表着不同的进程，同时这个进程上可以开多个子进程
+
+
+>>>>>>> cdf9ba0418458c4aa1dae4a6e0b29fbae45016dd
