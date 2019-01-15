@@ -1,0 +1,182 @@
+Httpsurl：把中文和一些符号加密，形式为%加上16进制形式
+
+如果不设置user-agent 那么默认是python  反爬虫
+referer  请求地址的来源    可用于反爬虫
+
+302 临时重定向   301 永久重定向
+
+resquest.urlopen(url, data={}) data为none时 是get请求
+Request.urlretrieve('请求地址'， 存放路径)  把请求的网页保存到本地
+
+Urlencode 编码url参数  parse.urlencode()
+parse_qs   解码参数     parse.parse_qs()
+
+urlparse urlsplit
+Parse.urlparse(url)
+
+url = 'http://www.baidu.com?w=jsjjsjsj&name=jsjjs'
+ParseResult(scheme='http', netloc='www.baidu.com', path='', params='', query='w=jsjjsjsj&name=jsjjs', fragment='')
+
+SplitResult(scheme='http', netloc='www.baidu.com', path='', query='w=jsjjsjsj&name=jsjjs', fragment='')
+
+request.Request类
+req = request.Request(url,headers=headers,data=data,methond='POST')
+Request.urlopen(req)
+有了opener时候，就可以不用request发请求了
+
+
+
+
+ProxyHandle 代理设置
+代理服务商：
+     西刺免费代理   快代理   代理云
+
+检测请求的IP地址:http://httpbin.org
+
+cookie格式：
+Set-Cookie:name=value;Expires/Max-age=DATE;Path=PATH;Domain=MAIN-NAME; SECURE
+SECURE--HTTPS协议下
+Domain--针对什么域名
+path---针对什么路径
+
+
+http.cookiejar:
+
+Cookiejar filecookiejar  mozillacookiejar  LWPcookiejar
+/////////////////////////////
+requests库：
+
+Pip install requests
+
+处理不被认可的ssl证书：
+resp = requests.get('http://www.12306.cn/mormhweb/',verify=False)
+
+
+
+
+XPATH语法，用于提取html和xml文件里面的数据
+Chrome浏览器需要下载xpath helper 扩展程序
+
+/ 代表直接子节点
+
+// 代表着子孙节点
+
+html//div[@id]   代表着查找html标签下所有带有id属性的div
+
+//div[last()] 没有意义
+
+//div[contains(@class, 'lf')] 匹配包含该属性的div
+
+lxml库
+
+pip install lxml  from lxml inport etree
+Etree.tostring(ele)
+
+Xpath返回的是一个列表
+
+base_url = "base_url = "http://dytt8.net/html/gndy/dyzz/list_23_{}.html"" 花括号是占坑位
+base_url.format(5)--- base_url = "http://dytt8.net/html/gndy/dyzz/list_23_5.html"
+
+Xpath获取属性时，比如一个元素的style样式也可以当做属性，如style="color=#000",那么color也是可以当成的属性的
+
+map语法：
+
+map(lambda url:BASE_DOMAIN+url, detail_urls)
+
+for index,info in enumerate(infos):
+   可以获得列表的下标和对应的元素
+
+
+
+BeautifulSoup4  跟xpath差不多 都是解析html和xml的解析器,注意string和contens的区别
+
+解析器：htmlslib 容错率比较强，比lxml效率略低，因为容错率搞  pip install html5lib
+
+正则提取数据：
+
+贪婪模式：意思是以能匹配更多的方式匹配，
+费贪婪模式： 只要符合要求了就停止匹配
+
+当有组合和取一部分的情况下就要用()了
+
+python正则中：match只匹配开头，不查找全部，在写正则表达式一般前面加上 r'****'  r'\n' = \n
+
+group(1,2)  groups()  re.findall()  re.sub()替换  re.split() re.compile(reg, re.VERBOSE) re.DOTALL可以让.匹配所有包括空字符换行字符
+
+a = [1,2] b=[3,4] c = zip(a, b)  c = [ (1, 3), (2, 4)]
+
+import json       json.dumps(obj)转为json  json.dump(obj, fp) 可以将数据写到文件中 
+
+转为python json.loads(obj) json.load(fp)读取文件中的数据
+
+csv文件:
+
+Import csv
+
+Csv.reader(fp)返回的是迭代器(列表)  csv.DictReader(fp)返回的字典
+
+写入csv文件
+csv.writer(fp)
+Csv.DictWriter(fp)
+
+
+线程爬虫：
+threading.enumerate() 可以查看一共有多少个线程  查看当前进程 threading.current_thread()
+多线程全局变量共享，注意当多线程修改全局变量时要锁的机制
+threading.Lock() threading.Condition()这个效率要高些
+线程结合Queque q = Queque(4) q.get(block=true) q.put(block=true) 默认都是阻塞模式
+
+
+
+获取文件扩展名：
+import os 
+os.path.splitext(url)
+
+
+Class abc(xxx):
+   def __int__(self,自定义参数...,*args,**kwargs):这样就不会报错了，同时达到添加参数的办法
+	super(abc, self).__init__(*args,**kwargs)
+
+	self.自定义 = 自定义
+
+
+关于Queque
+def main():
+
+    q = Queue(8)
+    for x in range(8):
+        q.put(x)
+
+    for x in range(5):
+        t = TT(q)
+        t.start()
+   # print(00)
+
+
+if __name__ == '__main__':
+    main()
+
+
+执行效果是先一次性打印01234 因为是5个线程，然后在一次性打印567，此时队列中已经空了，结束执行，所以关键在设置队列空间的设置上！
+就算是100个线程也只能打印队列设置的那个数值。
+
+多核计算机：在同一时刻可以执行多个线程
+多线程适合io密集型，多进程适合计算密集型
+
+
+driver:
+driver.page_source, 它返回的数据包括ajax请求的数据，也就是所见即所得
+
+
+在使用driver时，它是来找网页中的元素的，不是拿它来获取文本的，获取文本用etree
+
+tessract 图像识别库：
+
+
+
+
+
+
+
+ 
+
