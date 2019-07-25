@@ -1,0 +1,6 @@
+Python中想运用全局变量的话，使用时需要注意
+首先在顶部位置定义一个变量如：code = 100，然后在函数内部使用时，在函数的顶部再次声明：global code,然后再对code进行操作
+
+获取字典的value obj.get('key') obj['key']  如果是json的话  需要转为字典在进行操作 python中json被当做字符串
+
+
