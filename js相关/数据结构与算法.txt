@@ -1,0 +1,1324 @@
+所谓的数据结构，不过是通过原生的数组或者对象，通过一定的变换，或者设计，变成了一种描述，构建，比如：通过数组可以构建栈或者队列，集合等
+
+它跟设计模式是一样的，自导自演。
+
+栈  队列  链表，双向链表，循环列表，有序列表   集合set  字典map  散列列表  图 二叉搜索树
+
+toString() {
+
+  if (this.isEmpty()) {
+return ''; }
+  let objString = `${this.items[0]}`; // {1}
+  for (let i = 1; i < this.count; i++) { // {2}
+    objString = `${objString},${this.items[i]}`; // {3}
+  }
+  return objString;
+}
+
+class ValuePair {
+  constructor(key, value) {
+
+    this.key = key; 
+    this.value = value;
+  }
+  toString() {
+    return `[#${this.key}: ${this.value}]`;
+  } 
+
+}
+
+Map:
+class ValuePair {
+  constructor(key, value) {
+
+    this.key = key; 
+    this.value = value;
+  }
+  toString() {
+    return `[#${this.key}: ${this.value}]`;
+  } 
+
+  hasKey(key) {
+      return this.table[this.toStrFn(key)] != null;
+  }
+  set(key, value) {
+     if (key != null && value != null) {
+         const tableKey = this.toStrFn(key); // {1}
+         this.table[tableKey] = new ValuePair(key, value); // {2}
+         return true;
+      }
+      return false;
+   }
+   
+   remove(key) {
+      if (this.hasKey(key)) {
+        delete this.table[this.toStrFn(key)];
+        return true;
+      }
+      return false;
+    }
+
+    get(key) {
+      const valuePair = this.table[this.toStrFn(key)]; // {1}
+      return valuePair == null ? undefined : valuePair.value; // {2}
+    }
+
+    keyValues() {
+      const valuePairs = [];
+      for (const k in this.table) { // {1}
+        if (this.hasKey(k)) {
+          valuePairs.push(this.table[k]); // {2}
+       
+        } 
+      } 
+      return valuePairs;
+     }
+     keys() {
+     
+       return this.keyValues().map(valuePair => valuePair.key); 
+     }
+
+
+     forEach(callbackFn) {
+         const valuePairs = this.keyValues(); // {1}
+         for (let i = 0; i < valuePairs.length; i++) { // {2}
+            const result = callbackFn(valuePairs[i].key, valuePairs[i].value); // {3} 
+            if (result === false) {
+                  break; // {4}
+             }
+          } 
+     }
+
+      
+}
+
+字典中的key可以为任意值的原理就是这个，把对象转为字符串
+
+
+栈：
+//const items = new WeakMap()
+items 在 Stack 类里是真正的私有属性。采用这种方法，代码的可读性 不强，而且在扩展该类时无法继承私有属性。鱼和熊掌不可兼得!，
+必须用键才可以取出值。这些类没有 entries、keys 和 values 等迭代器方法，因此，除非你知道键，否则没有办法取出值。这印证了我们在第 4 章的做法，即使用 WeakMap类封装 ES2015 类的私有属性。
+
+  //const _items = Symbol('stackItems'); // {1}
+操作上走的通，但是有点别扭
+
+class Stack {
+  constructor() {
+     this._items = []; // {1}
+     //this.items = {};
+     //this.count = 0 
+     //用对象也可以实现
+
+     //使用weakmap
+     //items.set(this, [])
+  }
+
+  push(item){
+     this._items.push(item)
+  }
+  
+  pop(){
+     return this._item.pop()
+  }
+
+  peek(){
+     if(this.size()>0){
+     	Return this._items[0]
+     }else{
+       Return undefinde
+     } 
+  }
+  
+  isEmpty(){
+ 	
+    if(this.size()>0){
+     	Return true
+     }
+     Return false
+  }
+  
+  clear(){
+     This._items.length = 0
+  }
+
+
+  
+
+
+}
+
+
+
+队列：
+class Queue {
+      constructor() {
+        this.count = 0; // {1}
+        this.lowestCount = 0; // {2}
+        this.items = {}; // {3}
+       } 
+
+      add(element) {
+       this.items[this.count] = element;
+       this.count++;
+      }
+ toString() {
+      if (this.isEmpty()) {
+return ''; }
+      let objString = `${this.items[this.lowestCount]}`;
+      for (let i = this.lowestCount + 1; i < this.count; i++) {
+        objString = `${objString},${this.items[i]}`;
+      }
+      return objString;
+    }
+
+      enqueue(element) {
+        this.items[this.count] = element;
+        this.count++;
+      }
+isEmpty() {
+      return this.size() === 0;
+}
+      dequeue() {
+         if (this.isEmpty()) {
+            return undefined;
+         }
+         const result = this.items[this.lowestCount]; // {1}
+         delete this.items[this.lowestCount]; // {2}
+         this.lowestCount++; // {3}
+          return result; // {4}
+      }
+      peek() {
+        if (this.isEmpty()) {
+          return undefined;
+         }
+         return this.items[this.lowestCount];
+      }
+
+
+      clear() { 0 this.items = {};
+           this.count = 0;
+          this.lowestCount = 0;
+       }
+
+        size(){
+             return this.count - this.lowestCount;
+        }
+}
+
+链表：
+当你需要添加和移除很多元 素时，最好的选择就是链表，而非数组。
+export class Node {
+       constructor(element) {
+         this.element = element;
+         this.next = undefined;
+       }
+}
+
+export default class LinkedList {
+  constructor(equalsFn = defaultEquals) {
+    this.count = 0; // {2}
+    this.head = undefined; // {3}
+    //this.equalsFn = equalsFn; // {4}
+   } 
+   push(element) {
+      const node = new Node(element); // {1}
+      let current; // {2}
+      if (this.head == null) { // {3}
+        this.head = node;
+      } else {
+         current = this.head; // {4}
+          while (current.next != null) { // {5} 获得最后一项
+             current = current.next;
+           }
+           // 将其 next 赋为新元素，建立链接
+           current.next = node; // {6}
+      }
+
+      this.count++; // {7} 
+      }
+
+
+     removeAt(index) {
+        // 检查越界值
+        if (index >= 0 && index < this.count) { // {1}
+             let current = this.head; // {2}
+        // 移除第一项
+             if (index === 0) { // {3}
+                this.head = current.next;
+              } else {
+              let previous; // {4}
+               for (let i = 0; i < index; i++) { // {5}
+                    previous = current; // {6}
+                    current = current.next; // {7}
+                }
+                // 将previous与current的下一项链接起来:跳过current，从而移除它
+                     previous.next = current.next; // {8}
+           }
+           this.count--; // {9}
+           return current.element;
+        }
+        return undefined; // {10}
+      }
+     
+
+     getElementAt(index) {
+      if (index >= 0 && index <= this.count) { // {1}
+        let node = this.head; // {2}
+        for (let i = 0; i < index && node != null; i++) { // {3}
+          node = node.next;
+        }
+        return node; // {4}
+      }
+      return undefined; // {5}
+    }
+    
+     indexOf(element) {
+         let current = this.head; // {1}
+          for (let i = 0; i < this.count && current != null; i++) { // {2}
+             if (this.equalsFn(element, current.element)) { // {3}
+                 return i; // {4}
+              }
+              current = current.next; // {5}
+           }
+          return -1; // {6}
+       }
+    
+     remove(element) {
+       const index = this.indexOf(element);
+       return this.removeAt(index);
+     }
+
+
+      size() {
+          return this.count;
+      }
+
+      isEmpty() {
+          return this.size() === 0;
+       }
+
+}
+
+export function defaultEquals(a, b) {
+       return a === b;
+}
+
+
+双向链表：
+
+
+ class DoublyNode extends Node { // {1}
+       constructor(element, next, prev) {
+         super(element, next); // {2}
+         this.prev = prev; // {3} 新增的 
+        }
+}
+     class DoublyLinkedList extends LinkedList { // {4}
+       constructor(equalsFn = defaultEquals) {
+         super(equalsFn); // {5}
+         this.tail = undefined; // {6} 新增的  保存对链表最后一个元素的引用
+        }
+
+        insert(element, index) {
+    if (index >= 0 && index <= this.count) {
+        const node = new DoublyNode(element);
+        let current = this.head;
+        if (index === 0) {
+            if (this.head == null) { // {1} 新增的 this.head = node;
+                this.tail = node;
+
+            } else {
+                node.next = this.head; // {2}
+                current.prev = node; // {3} 新增的 0 this.head = node; // {4}
+            }
+        } else if (index === this.count) { // 最后一项 // 新增的
+            current = this.tail; // {5} 1 current.next = node; // {6}
+            node.prev = current; // {7}
+            this.tail = node; // {8}
+        } else {
+            const previous = this.getElementAt(index - 1); // {9} current = previous.next; // {10}
+            node.next = current; // {11}
+            previous.next = node; // {12}
+            current.prev = node; // {13} 新增的
+            node.prev = previous; // {14} 新增的
+        }
+        this.count++;
+        return true;
+    }
+    return false;
+}
+
+
+     removeAt(index) {
+        if (index >= 0 && index < this.count) { 
+            let current = this.head;
+            if (index === 0) {
+                this.head = current.next; // {1} // 如果只有一项，更新tail // 新增的 
+                if (this.count === 1) { // {2}
+                  this.tail = undefined;
+                } else {
+                   this.head.prev = undefined; // {3}
+                 }
+        } else if (index === this.count - 1) { // 最后一项 //新增的 current = this.tail; // {4}
+            this.tail = current.prev; // {5}
+            this.tail.next = undefined; // {6}
+        } else {
+            current = this.getElementAt(index); // {7}
+            const previous = current.prev; // {8}
+            // 将previous与current的下一项链接起来——跳过
+            current previous.next = current.next; // {9} 
+            current.next.prev = previous; // {10} 新增的
+      
+        
+       
+        }
+        this.count--;
+        return current.element;
+        }
+        
+       return undefined;
+     }
+
+
+       insert(element, index) {
+      if (index >= 0 && index <= this.count) {
+        const node = new Node(element);
+        let current = this.head;
+        if (index === 0) {
+if (this.head == null) {
+this.head = node; // {1}
+node.next = this.head; // {2} 新增的
+} else {
+node.next = current; // {3}
+current = this.getElementAt(this.size()); // {4} // 更新最后一个元素
+this.head = node; // {5}
+current.next = this.head; // {6} 新增的
+}
+} else { // 这种场景没有变化
+          const previous = this.getElementAt(index - 1);
+          node.next = previous.next;
+          previous.next = node;
+        }
+        this.count++;
+        return true;
+}
+      return false;
+    }
+  
+
+     }
+
+
+
+
+集合：
+
+ class Set {
+     constructor() {
+         this.items = {};
+      }
+      has(element){ 
+         return Object.prototype.hasOwnProperty.call(this.items, element);
+      };
+
+      
+      add(element) {
+         if (!this.has(element)) {
+            this.items[element] = element; // {1}
+            return true;
+          }
+          return false;
+      }
+      delete(element) {
+         if (this.has(element)) {
+            delete this.items[element]; // {1}
+            return true;
+         }
+         return false;
+      }
+
+      clear() {
+          this.items = {}; // {2}
+      }
+      size() {
+          Return Object.keys(this.items).length
+       }
+
+      values() {
+          return Object.values(this.items);
+      }
+
+ }
+
+并集：
+
+    const union = (setA, setB) => {
+          const unionAb = new Set();
+          setA.forEach(value => unionAb.add(value));
+          setB.forEach(value => unionAb.add(value));
+          return unionAb;
+     }
+
+
+交集：
+
+     const intersection = (setA, setB) => {
+         const intersectionSet = new Set();
+         setA.forEach(value => {
+              if (setB.has(value)) {
+                intersectionSet.add(value);
+          } });
+
+      return intersectionSet; 8 };
+
+差集：
+const difference = (setA, setB) => {
+      const differenceSet = new Set();
+      setA.forEach(value => {
+           if (!setB.has(value)) { // {1}
+                differenceSet.add(value);
+                return differenceSet;
+            };
+       })}
+
+
+
+字典：Map
+字典经常用来保存对象的引用地址
+class ValuePair {
+  constructor(key, value) {
+
+    this.key = key; 
+    this.value = value;
+  }
+  toString() {
+    return `[#${this.key}: ${this.value}]`;
+  } 
+}
+
+export function defaultToString(item) {
+       if (item === null) {
+         return 'NULL';
+       } else if (item === undefined) {
+         return 'UNDEFINED';
+       } else if (typeof item === 'string' || item instanceof String) {
+         return `${item}`;
+       }
+       return item.toString(); // {1}
+     }
+
+    export default class Dictionary {
+         constructor(toStrFn = defaultToString) {
+              this.toStrFn = toStrFn; // {1}
+               this.table = {}; // {2} 
+          }
+
+          hasKey(key) {
+                return this.table[this.toStrFn(key)] != null;
+           }
+          set(key, value) {
+              if (key != null && value != null) {
+                 const tableKey = this.toStrFn(key); // {1}
+                 this.table[tableKey] = new ValuePair(key, value); // {2}
+                 return true;
+               }
+               return false;
+           }
+           remove(key) {
+                if (this.hasKey(key)) {
+                    delete this.table[this.toStrFn(key)];
+                    return true;
+                 }
+                 return false;
+            }    
+            get(key) {
+                 const valuePair = this.table[this.toStrFn(key)]; // {1}
+                 return valuePair == null ? undefined : valuePair.value; // {2}
+            }
+           keyValues() {
+              return Object.values(this.table);
+           }
+           keys() { 
+              return this.keyValues().map(valuePair => valuePair.key); 
+           }
+      
+
+     }
+
+
+散列算法的作用是尽可能快地在数据结构中找到一个值，散列表有一些在计算机科学中应用的例子。因为它是字典的一种实现，所以可以用作关联数 组。它也可以用来对数据库进行索引
+散列表：
+ class HashTable {
+      constructor(toStrFn = defaultToString) {
+        this.toStrFn = toStrFn;
+        this.table = {};
+      }
+
+
+      put(key, value) {
+          if (key != null && value != null) { // {1}
+  
+          const position = this.hashCode(key); // {2}
+              this.table[position] = new ValuePair(key, value); // {3}
+              return true;
+           }
+           return false;
+      }
+
+      get(key) {
+          const valuePair = this.table[this.hashCode(key)];
+          return valuePair == null ? undefined : valuePair.value;
+      }
+
+      remove(key) {
+          const hash = this.hashCode(key); // {1}
+          const valuePair = this.table[hash]; // {2}
+          if (valuePair != null) {
+             delete this.table[hash]; // {3}
+             return true;
+          }
+          return false;
+       }
+
+       hashCode(key) {
+            const tableKey = this.toStrFn(key); // {1}
+            let hash = 5381; // {2}
+            for (let i = 0; i < tableKey.length; i++) { // {3}
+               hash = (hash * 33) + tableKey.charCodeAt(i); // {4}
+            }
+            return hash % 1013; // {5}
+        }
+
+}
+
+ES2105 WeakMap 类和 WeakSet 类
+ 除了 Set 和 Map 这两种新的数据结构，ES2015 还增加了它们的弱化版本，WeakSet 和 WeakMap。 基本上，Map 和 Set 与其弱化版本之间仅有的区别是:
+ WeakSet 或 WeakMap 类没有 entries、keys 和 values 等方法; 
+ 只能用对象作为键。
+创建和使用这两个类主要是为了性能。WeakSet 和 WeakMap 是弱化的(用对象作为键)， 没有强引用的键。这使得 JavaScript 的垃圾回收器可以从中清除整个入口。
+另一个优点是，必须用键才可以取出值。这些类没有 entries、keys 和 values 等迭代器方法，因此，除非你知道键，否则没有办法取出值。这印证了我们在第 4 章的做法，即使用 WeakMap类封装 ES2015 类的私有属性。
+
+二叉树
+二叉树中的节点最多只能有两个子节点:一个是左侧子节点，另一个是右侧子节点
+
+二叉搜索树(BST)是二叉树的一种，但是只允许你在左侧节点存储(比父节点)小的值， 在右侧节点存储(比父节点)大的值。上一节的图中就展现了一棵二叉搜索树
+
+const Compare = {
+      LESS_THAN: -1,
+      BIGGER_THAN: 1
+};
+     
+
+function defaultCompare(a, b) {
+    if (a === b) { // {1}
+         return 0; 
+    }
+     return a < b ? Compare.LESS_THAN : Compare.BIGGER_THAN; // {2}
+}
+
+
+    export class Node {
+      constructor(key) {
+          this.key = key; // {1} 节点值 
+          this.left = null; // 左侧子节点引用 
+          this.right = null; // 右侧子节点引用
+      } 
+   }
+
+export default class BinarySearchTree {
+  
+    constructor(compareFn = defaultCompare) { 
+          this.compareFn = compareFn; // 用来比较节点值 
+          this.root = null; // {1} Node 
+     }
+
+     insert(key) {
+       if (this.root == null) { // {1}
+         this.root = new Node(key); // {2}
+       } else {
+         this.insertNode(this.root, key); // {3}
+       }
+     }
+     
+      insertNode(root,key) {
+         if (this.compareFn(key, root.key) === Compare.LESS_THAN) { // {4}
+             if (root.left == null) { // {5}
+                 root.left = new Node(key); // {6}
+              } else {
+                  this.insertNode(root.left, key); // {7}
+
+             }
+        }else {
+             if (root.right == null) { // {8}
+                root.right = new Node(key); // {9}
+             } else {
+                this.insertNode(root.right, key); // {10}
+             } 
+      }
+      //中序遍历 
+从最小到最大的顺序 访问所有节点。中序遍历的一种应用就是对树进行排序操作
+      inOrderTraverse(callback) {
+             this.inOrderTraverseNode(this.root, callback); // {1}
+       }
+       inOrderTraverseNode(node, callback) {
+               if (node != null) { // {2}
+                    this.inOrderTraverseNode(node.left, callback); // {3}
+                    callback(node.key); // {4}
+                    this.inOrderTraverseNode(node.right, callback); // {5}
+               }
+       }
+    //先序遍历是以优先于后代节点的顺序访问每个节点的。先序遍历的一种应用是打印一个结构
+化的文档
+       preOrderTraverse(callback) {
+           this.preOrderTraverseNode(this.root, callback);
+       }
+
+    preOrderTraverseNode(node, callback) {
+        if (node != null) {
+             callback(node.key); // {1}
+             this.preOrderTraverseNode(node.left, callback); // {2}
+             this.preOrderTraverseNode(node.right, callback); // {3}
+        } 
+     } 
+ 
+    //后序遍历则是先访问节点的后代节点，再访问节点本身。后序遍历的一种应用是计算一个目
+ 录及其子目录中所有文件所占空间的大小。
+
+       postOrderTraverse(callback) {
+           this.postOrderTraverseNode(this.root, callback);
+       }
+
+       postOrderTraverseNode(node, callback) {
+              if (node != null) {
+                  this.postOrderTraverseNode(node.left, callback); // {1}
+                   this.postOrderTraverseNode(node.right, callback); // {2}
+                   callback(node.key); // {3}
+               } 
+        }
+        //最小值
+         min() {
+              return this.minNode(this.root); // {1}
+          }
+
+          minNode(node) {
+               let current = node; 
+               while (current != null && current.left != null) { // {2}
+                        current = current.left; // {3}
+                }
+                return current; // {4}
+          }
+         //最大值
+         max() {
+               return this.maxNode(this.root);
+          }
+          maxNode(node) {
+               let current = node;
+               while (current != null && current.right != null) { // {5}
+                     current = current.right;
+                 }
+                return current; 
+           }
+            
+
+           search(key) {
+                 return this.searchNode(this.root, key); // {1}
+            }
+            searchNode(node, key) {
+                    if (node == null) { // {2}
+                          return false;
+                    }
+                    if (this.compareFn(key, node.key) === Compare.LESS_THAN) { // {3}
+                           return this.searchNode(node.left, key); // {4}
+                     } else if ( this.compareFn(key, node.key) === Compare.BIGGER_THAN) { // {5}
+                            return this.searchNode(node.right, key); // {6}
+                     } else {
+                            return true; // {7}
+                      }
+              }
+            //移除
+            remove(key) {
+                 this.root = this.removeNode(this.root, key); // {1}
+            }
+             removeNode(node, key) {
+                  if (node == null) { // {2}
+                      return null;
+                    }
+                 if (this.compareFn(key, node.key) === Compare.LESS_THAN) { // {3}
+                     node.left = this.removeNode(node.left, key); // {4}
+                     return node; // {5}
+                  } else if (
+                         this.compareFn(key, node.key) === Compare.BIGGER_THAN
+                         ) { // {6}
+                          node.right = this.removeNode(node.right, key); // {7}
+                           return node; // {8}
+                   } else {
+// 键等于node.key
+// 第一种情况
+if (node.left == null && node.right == null) { // {9}
+           node = null; // {10}
+           return node; // {11}
+         }
+// 第二种情况
+if (node.left == null) { // {12}
+           node = node.right; // {13}
+           return node; // {14}
+         } else if (node.right == null) { // {15}
+           node = node.left; // {16}
+           return node; // {17}
+         }
+// 第三种情况
+const aux = this.minNode(node.right); // {18}
+node.key = aux.key; // {19}
+node.right = this.removeNode(node.right, aux.key); // 
+return node; // {21}
+} }
+ }
+
+树的遍历：
+中序、先序和后序
+
+自平衡树:
+
+AVL 树是一种自平衡二叉搜索树，意思是任 何一个节点左右两侧子树的高度之差最多为 1
+const BalanceFactor = {
+  UNBALANCED_RIGHT: 1,
+  SLIGHTLY_UNBALANCED_RIGHT: 2,
+  BALANCED: 3,
+  SLIGHTLY_UNBALANCED_LEFT: 4,
+  UNBALANCED_LEFT: 5
+};
+class AVLTree extends BinarySearchTree {
+  constructor(compareFn = defaultCompare) {
+         super(compareFn); 
+         this.compareFn = compareFn;
+         this.root = null;
+  } 
+  //计算节点高度
+  getNodeHeight(node) {
+      if (node == null) {
+           return -1; 
+       }
+       return Math.max(
+            this.getNodeHeight(node.left), this.getNodeHeight(node.right) ) + 1;
+    }
+   
+    getBalanceFactor(node) {
+         const heightDifference = this.getNodeHeight(node.left) - this.getNodeHeight(node.right);
+         switch (heightDifference) {
+            case -2:
+            return BalanceFactor.UNBALANCED_RIGHT;
+            case -1:
+            return BalanceFactor.SLIGHTLY_UNBALANCED_RIGHT;
+            case 1:
+            return BalanceFactor.SLIGHTLY_UNBALANCED_LEFT;
+            case 2:
+            return BalanceFactor.UNBALANCED_LEFT;
+            default:
+            return BalanceFactor.BALANCED;
+     } 
+
+   }
+
+}
+红黑树：略过
+
+二叉堆：它并不是按照有序去排列的,它是无序的。不是最大堆，就是最小堆。
+猜测：第一个元素是最小的，或者是最大的。节点中左右子节点不分大小。
+一种特殊的二叉树，也就是堆 数据结构，也叫作二叉堆。常被应用于优先队列。它也被用于著名的堆排序算法中
+
+二叉堆是一种特殊的二叉树，有以下两个特性。
+   它是一棵完全二叉树，表示树的每一层都有左侧和右侧子节点(除了最后一层的叶节点)， 并且最后一层的叶节点尽可能都是左侧子节点，这叫作结构特性。
+ 二叉堆不是最小堆就是最大堆。最小堆允许你快速导出树的最小值，最大堆允许你快速 导出树的最大值。所有的节点都大于等于(最大堆)或小于等于(最小堆)每个它的子 节点。这叫作堆特性。
+
+
+尽管二叉堆是二叉树，但并不一定是二叉搜索树(BST)。在二叉堆中，每个子节点都要大 于等于父节点(最小堆)或小于等于父节点(最大堆)。然而在二叉搜索树中，左侧子节点总是 比父节点小，右侧子节点也总是更大。
+创建最小堆
+export class MinHeap {
+      constructor(compareFn = defaultCompare) {
+        this.compareFn = compareFn; // {1}
+        this.heap = []; // {2}
+      }
+      getLeftIndex(index) {
+         return 2 * index + 1;
+      }
+      getRightIndex(index) {
+         return 2 * index + 2;
+       }
+      getParentIndex(index) {
+          if (index === 0) {
+              return undefined;
+          }
+       return Math.floor((index - 1) / 2);
+    }
+    insert(value) {
+        if (value != null) {
+           this.heap.push(value); // {1}
+            this.siftUp(this.heap.length - 1); // {2}
+            return true;
+         }
+      return false;
+    }
+  siftUp(index) {
+ //只对比父节点，理解的时候一定要用节点去理解，虽然形式上是数组，但是并不是按照数组的排序
+      let parent = this.getParentIndex(index); // {1}
+      while (
+index > 0 &&
+          this.compareFn(this.heap[parent], this.heap[index]) >
+    Compare.BIGGER_THAN
+        ) { // {2}
+        swap(this.heap, parent, index); // {3}
+        index = parent;
+        parent = this.getParentIndex(index); // {4}
+} }
+
+  size() {
+      return this.heap.length;
+}
+isEmpty() {
+      return this.size() === 0;
+    }
+    findMinimum() {
+      return this.isEmpty() ? undefined : this.heap[0]; // {1}
+}
+//移除最小值(最小堆)或最大值(最大堆)表示移除数组中的第一个元素(堆的根节点)。 在移除后，我们将堆的最后一个元素移动至根部并执行 siftDown 函数
+siftDown(index) {
+      let element = index;
+      const left = this.getLeftIndex(index); // {1}
+      const right = this.getRightIndex(index); // {2}
+      const size = this.size();
+      if (
+        left < size &&
+        this.compareFn(this.heap[element], this.heap[left]) >Compare.BIGGER_THAN
+
+    ) { // {3} element = left; // {4} }
+if (
+    right < size &&
+    this.compareFn(this.heap[element], this.heap[right]) >Compare.BIGGER_THAN
+  ) { // {5}
+    element = right; // {6}
+  }
+  if (index !== element) { // {7}
+
+ swap(this.heap, index, element); // {8} 8
+        this.siftDown(element); // {9}
+      }
+}
+
+
+extract() {
+      if (this.isEmpty()) {
+        return undefined; // {1}
+      }
+      if (this.size() === 1) {
+        return this.heap.shift(); // {2}
+      }
+      const removedValue = this.heap.shift(); // {3}
+      this.siftDown(0); // {4}
+      return removedValue; // {5}
+}
+
+
+
+
+
+
+
+}
+
+要访问使用普通数组的二叉树节点，我们可以用下面的方式操作 index。 对于给定位置 index 的节点:
+ 它的左侧子节点的位置是 2 * index + 1(如果位置可用);  它的右侧子节点的位置是 2 * index + 2(如果位置可用);  它的父节点位置是 index / 2(如果位置可用)。
+
+
+
+图：
+
+class Graph {
+      constructor(isDirected = false) {
+        this.isDirected = isDirected; // {1}
+        this.vertices = []; // {2}
+        this.adjList = new Dictionary(); // {3}
+} 
+
+   addVertex(v) {
+      if (!this.vertices.includes(v)) { // {5}
+        this.vertices.push(v); // {6}
+        this.adjList.set(v, []); // {7}
+      }
+
+}
+
+
+   addEdge(v, w) {
+       if (!this.adjList.get(v)) {
+          this.addVertex(v); // {8}
+       }
+       if (!this.adjList.get(w)) {
+           this.addVertex(w); // {9}
+       }
+       this.adjList.get(v).push(w); // {10}
+       if (!this.isDirected) {
+               this.adjList.get(w).push(v); // {11}
+       }
+
+       getVertices() {
+           return this.vertices;
+       }
+       getAdjList() {
+          return this.adjList;
+        }
+ 
+
+        toString() {
+      let s = '';
+      for (let i = 0; i < this.vertices.length; i++) { // {15}
+        s += `${this.vertices[i]} -> `;
+        const neighbors = this.adjList.get(this.vertices[i]); // {16}
+        for (let j = 0; j < neighbors.length; j++) { // {17}
+          s += `${neighbors[j]} `;
+        }
+        s += '\n'; // {18}
+      }
+return s; }
+
+
+和树数据结构类似，我们可以访问图的所有节点。有两种算法可以对图进行遍历:广度优先 搜索(breadth-first search，BFS)和深度优先搜索(depth-first search，DFS)。图遍历可以用来寻 找特定的顶点或寻找两个顶点之间的路径，检查图是否连通，检查图是否含有环，等等
+
+
+
+
+}
+
+图的遍历：
+深度优先搜索            栈           描 述：将顶点存入栈(在第 4 章中学习过)，顶点是沿着路径被探索的，存在新的相邻顶点，就去访问
+
+
+广度优先搜索            队列        描述：将顶点存入队列(在第 5 章中学习过)，最先入队列的顶点先被探索
+
+
+////////////////////////////////////////////////////////////////////
+当要标注已经访问过的顶点时，我们用三种颜色来反映它们的状态。
+ 白色:表示该顶点还没有被访问。
+ 灰色:表示该顶点被访问过，但并未被探索过。 
+ 黑色:表示该顶点被访问过且被完全探索过。
+const Colors = {
+  WHITE: 0,
+  GREY: 1,
+  BLACK: 2
+};
+
+const initializeColor = vertices => {
+      const color = {};
+      for (let i = 0; i < vertices.length; i++) {
+        color[vertices[i]] = Colors.WHITE;
+      }
+      return color;
+    };
+
+
+广度优先搜索：
+广度优先搜索算法会从指定的第一个顶点开始遍历图，先访问其所有的邻点(相邻顶点)，
+就像一次访问图的一层。换句话说，就是先宽后深地访问顶点，
+
+
+export const breadthFirstSearch = (graph, startVertex, callback) => { 
+const vertices = graph.getVertices();// 所有顶点
+const adjList = graph.getAdjList(); // 邻接表 Map
+const color = initializeColor(vertices); // {1}
+      
+const queue = new Queue(); // {2}
+  queue.enqueue(startVertex); // {3}
+  while (!queue.isEmpty()) { // {4}
+    const u = queue.dequeue(); // {5}
+    const neighbors = adjList.get(u); // {6}
+    color[u] = Colors.GREY; // {7}
+    for (let i = 0; i < neighbors.length; i++) { // {8}
+      const w = neighbors[i]; // {9}
+      if (color[w] === Colors.WHITE) { // {10}
+        color[w] = Colors.GREY; // {11}
+        queue.enqueue(w); // {12}
+    }
+    color[u] = Colors.BLACK; // {13}
+    if (callback) { // {14}
+      callback(u);
+    }
+} };
+
+
+
+
+排序算法：
+
+冒泡排序：效率最低
+
+function bubbleSort(array, compareFn = defaultCompare) {
+      const { length } = array; // {1}
+      for (let i = 0; i < length; i++) { // {2}
+for (let j = 0; j < length - 1; j++) { // {3}
+if (compareFn(array[j], array[j + 1]) === Compare.BIGGER_THAN) { // {4}
+            swap(array, j, j + 1); // {5}
+          }
+} }
+      return array;
+    }
+
+
+function swap(array, a, b) {
+/* const temp = array[a];
+array[a] = array[b];
+array[b] = temp; */ // 经典方式
+[array[a], array[b]] = [array[b], array[a]]; // ES2015 的方式
+}
+
+改进后的冒泡排序
+如果从内循环减去外循环中已跑过的轮数，就可以避免内循环中所有不必要的比较(行{1})。
+function modifiedBubbleSort(array, compareFn = defaultCompare) { const { length } = array;
+for (let i = 0; i < length; i++) {
+        for (let j = 0; j < length - 1 - i; j++) { // {1}
+          if (compareFn(array[j], array[j + 1]) === Compare.BIGGER_THAN) {
+            swap(array, j, j + 1);
+          }
+} }
+      return array;
+    }
+
+
+选择排序：
+
+选择排序算法是一种原址比较排序算法。选择排序大致的思路是找到数据结构中的最小值并 将其放置在第一位，接着找到第二小的值并将其放在第二位，以此类推。
+
+function selectionSort(array, compareFn = defaultCompare) {
+      const { length } = array; // {1}
+      let indexMin;
+      for (let i = 0; i < length - 1; i++) { // {2}
+        indexMin = i; // {3}
+        for (let j = i; j < length; j++) { // {4}
+if (compareFn(array[indexMin], array[j]) === Compare.BIGGER_THAN) { 
+
+// {5}   indexMin = j; 
+ // {6}
+    }
+    if (i !== indexMin) { // {7}
+      swap(array, i, indexMin);
+    }
+}
+  return array;
+};
+
+插入排序：
+插入排序每次排一个数组项，以此方式构建最后的排序数组。假定第一项已经排序了。接着， 它和第二项进行比较——第二项是应该待在原位还是插到第一项之前呢?这样，头两项就已正确 排序，接着和第三项比较(它是该插入到第一、第二还是第三的位置呢)，以此类推。
+function insertionSort(array, compareFn = defaultCompare) {
+      const { length } = array; // {1}
+      let temp;
+      for (let i = 1; i < length; i++) { // {2}
+let j = i; // {3}
+temp = array[i]; // {4}
+while (j > 0 && compareFn(array[j - 1], temp) === Compare.BIGGER_THAN) { // {5}
+          array[j] = array[j - 1]; // {6}
+j--; }
+        array[j] = temp; // {7}
+      }
+      return array;
+    };
+
+
+排序小型数组时，此算法比选择排序和冒泡排序性能要好。 
+
+归并排序是第一个可以实际使用的排序算法。你在本书中学到的前三个排序算法性能不好，
+但归并排序性能不错，其复杂度为 O(nlog(n))。
+
+function mergeSort(array, compareFn = defaultCompare) {
+if (array.length > 1) { // {1} 
+   
+  const { length } = array;
+  const middle = Math.floor(length / 2); // {2}
+   const left = mergeSort(array.slice(0, middle), compareFn); // {3}
+   const right = mergeSort(array.slice(middle, length), compareFn); // {4}
+    array = merge(left, right, compareFn); // {5}
+}
+   return array;
+
+}
+
+function merge(left, right, compareFn) {
+      let i = 0; // {6}
+      let j = 0;
+      const result = [];
+      while (i < left.length && j < right.length) { // {7}
+        result.push(
+compareFn(left[i], right[j]) === Compare.LESS_THAN ? left[i++] : right[j++] ); // {8}
+}
+return result.concat(i < left.length ? left.slice(i) : right.slice(j)); // {9} }
+
+
+/////////////////////////
+Merge另一个版本
+var merge = function(left, right){
+        var result = [], // {7}
+  il = 0,
+图灵社区会员 macro9001 专享 尊重版权
+//{3} //{4}
+ir = 0;
+while(il < left.length && ir < right.length) { // {8}
+    if(left[il] < right[ir]) {
+        result.push(left[il++]);  // {9}
+    } else{
+
+result.push(right[ir++]); // {10}
+} }
+    while (il < left.length){
+         result.push(left[il++]);
+}
+    while (ir < right.length){
+        result.push(right[ir++]);
+}
+    return result; // {13}
+};
+
+
+
+快速排序：
+
+快速排序也许是最常用的排序算法了。它的复杂度为 O(nlog(n))，且性能通常比其他复杂度 为 O(nlog(n))的排序算法要好。和归并排序一样，快速排序也使用分而治之的方法，将原始数组 分为较小的数组(但它没有像归并排序那样将它们分割开)。
+
+
+function quickSort(array, compareFn = defaultCompare) {
+      return quick(array, 0, array.length - 1, compareFn);
+};
+
+function quick(array, left, right, compareFn) {
+      let index; // {1}
+      if (array.length > 1) { // {2}
+        index = partition(array, left, right, compareFn); // {3}
+        if (left < index - 1) { // {4}
+          quick(array, left, index - 1, compareFn); // {5}
+        }
+        if (index < right) { // {6}
+          quick(array, index, right, compareFn); // {7}
+} }
+      return array;
+    };
+
+
+function partition(array, left, right, compareFn) {
+      const pivot = array[Math.floor((right + left) / 2)]; // {8}
+      let i = left; // {9}
+      let j = right; // {10}
+while (i <= j) { // {11}
+while (compareFn(array[i], pivot) === Compare.LESS_THAN) { // {12}
+i++; }
+while (compareFn(array[j], pivot) === Compare.BIGGER_THAN) { // {13} j--;
+        }
+        if (i <= j) { // {14}
+          swap(array, i, j); // {15}
+} }
+
+ i++; j--;
+      return i; // {16}
+    }
+
+计数排序：
+是我们在本书中学习的第一个分布式排序。分布式排序使用已组织好的辅助数据结构(称为桶)，然后进行合并，得到排好序的数组。计数排序使用一个用来存储每个元素在原始 数组中出现次数的临时数组。在所有元素都计数完成后，临时数组已排好序并可迭代以构建排序 后的结果数组。
+它是用来排序整数的优秀算法(它是一个整数排序算法)，时间复杂度为 O(n+k)，其中 k 是 临时计数数组的大小;但是，它确实需要更多的内存来存放临时数组。
+
+计数排序的核心原理：是利用了数组会按照下标来存储，数组的下标是按照顺序的。
+
+ function findMaxValue(array) {
+      let max = array[0];
+      for (let i = 1; i < array.length; i++) {
+        if (array[i] > max) {
+          max = array[i];
+} }
+return max; }
+
+
+function countingSort(array) {
+      if (array.length < 2) { // {1}
+        return array;
+      }
+      const maxValue = findMaxValue(array); // {2}
+      const counts = new Array(maxValue + 1); // {3}
+    //   console.log(counts)
+      array.forEach(element => {
+        if (!counts[element]) { // {4}
+          counts[element] = 0;
+        }
+        counts[element]++; // {5}
+      });
+      console.log(counts)
+      console.log(array)
+      let sortedIndex = 0;
+      counts.forEach((count, i) => {
+        while (count > 0) { // {6}
+        //  console.log('aa', count, i, sortedIndex++)
+          array[sortedIndex++] = i; // {7}
+          count--; // {8}
+          console.log('array', array)
+} });
+      return array;
+    }
+
+
+
+搜索算法：
+顺序搜索，顺序搜索是最低效的一种搜索算法。
+
+二分搜索
+这个算法要求被搜索的数据结构已排序。以下是该算法遵循的步骤。
+(1) 选择数组的中间值。
+(2) 如果选中值是待搜索值，那么算法执行完毕(值找到了)。
+(3) 如果待搜索值比选中值要小，则返回步骤 1 并在选中值左边的子数组中寻找(较小)。 
+(4) 如果待搜索值比选中值要大，则返回步骤 1 并在选种值右边的子数组中寻找(较大)。
+function binarySearch(item) { 
+const sortedArray = quickSort(array); // {1}
+var low = 0,                 //{2}
+          high = array.length - 1, //{3}
+          mid, element;
+      while (low <= high){ //{4}
+          mid = Math.floor((low + high) / 2); //{5}
+         element = array[mid];
+        if (element < item) {
+            low = mid + 1;
+        } else if (element > item) {
+            high = mid - 1;
+        } else {
+return mid;
+} }
+    return -1; //{12}
+
+  }
+
+开始前需要先将数组排序
+
+随机算法:
+Fisher-Yates 随机
+它的含义是迭代数组，从最后一位开始并将当前位置和一个随机位置进行交换。这个随机位 置比当前位置小。这样，这个算法可以保证随机过的位置不会再被随机一次(洗扑克牌的次数越 多，随机效果越差)。
+
+function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const randomIndex = Math.floor(Math.random() * (i + 1));
+        swap(array, i, randomIndex);
+      }
+      return array;
+    }
+
+分而治之算法可以分成三个部分。
+(1) 分解原问题为多个子问题(原问题的多个小实例)。
+(2) 解决子问题，用返回解决子问题的方式的递归算法。递归算法的基本情形可以用来解决子 问题。
+(3) 组合这些子问题的解决方式，得到原问题的解。
+
+动态规划(dynamic programming，DP)是一种将复杂问题分解成更小的子问题来解决的优
+ 化技术。
+ 注意，动态规划和分而治之是不同的方法。分而治之方法是把问题分解成相互独 立的子问题，然后组合它们的答案，而动态规划则是将问题分解成相互依赖的子 问题。
+
+
+动态规划的一个例子是第 9 章解决的斐波那契问题。我们将斐波那契问题分解成了一些小 问题。
+用动态规划解决问题时，要遵循三个重要步骤:
+(1) 定义子问题;
+(2) 实现要反复执行来解决子问题的部分(这一步要参考前一节讨论的递归的步骤); 
+(3) 识别并求解出基线条件。
+
+
+
+
+
