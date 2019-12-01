@@ -1,0 +1,728 @@
+vue
+
+computed与watch区别：
+  它们都有相似的功能，不同的是watch中可以执行异步和大的开销，和请求
+
+<template> 元素上使用 v-if 条件渲染分组, 最终的渲染结果将不包含 <template> 元素,相当于react当中的<fragment>
+
+一般来说，v-if 有更高的切换开销，而 v-show 有更高的初始渲染开销。因此，如果需要非常频繁地切换，则使用 v-show 较好；如果在运行时条件很少改变，则使用 v-if 较好。
+
+v-if 与 v-for 一起使用
+
+
+--------------------------------------------------
+由于 JavaScript 的限制，Vue 不能检测以下变动的数组：
+
+当你利用索引直接设置一个项时，例如：vm.items[indexOfItem] = newValue
+当你修改数组的长度时，例如：vm.items.length = newLength
+
+解决：
+  第一种：
+  Vue.set(vm.items, indexOfItem, newValue)
+  vm.items.splice(indexOfItem, 1, newValue)
+  
+  第二种：
+    vm.items.splice(newLength)
+
+还是由于 JavaScript 的限制，Vue 不能检测对象属性的添加或删除：
+var vm = new Vue({
+  data: {
+    a: 1
+  }
+})
+// `vm.a` 现在是响应式的
+
+vm.b = 2
+// `vm.b` 不是响应式的
+
+
+对于已经创建的实例，Vue 不能动态添加根级别的响应式属性。但是，可以使用 Vue.set(object, propertyName, value) 方法向嵌套对象添加响应式属性。例如，对于：
+
+var vm = new Vue({
+  data: {
+    userProfile: {
+      name: 'Anika'
+    }
+  }
+})
+你可以添加一个新的 age 属性到嵌套的 userProfile 对象：
+
+Vue.set(vm.userProfile, 'age', 27)
+
+
+
+有时你可能需要为已有对象赋予多个新属性，比如使用 Object.assign() 或 _.extend()。在这种情况下，你应该用两个对象的属性创建一个新的对象。所以，如果你想添加新的响应式属性，不要像这样：
+
+Object.assign(vm.userProfile, {
+  age: 27,
+  favoriteColor: 'Vue Green'
+})
+你应该这样做：
+
+vm.userProfile = Object.assign({}, vm.userProfile, {
+  age: 27,
+  favoriteColor: 'Vue Green'
+})
+
+-----------------------------------------------
+
+显示过滤/排序结果
+有时，我们想要显示一个数组的过滤或排序副本，而不实际改变或重置原始数据。在这种情况下，可以创建返回过滤或排序数组的计算属性。
+例如：
+
+<li v-for="n in evenNumbers">{{ n }}</li>
+data: {
+  numbers: [ 1, 2, 3, 4, 5 ]
+},
+computed: {
+  evenNumbers: function () {
+    return this.numbers.filter(function (number) {
+      return number % 2 === 0
+    })
+  }
+}
+
+----
+
+在计算属性不适用的情况下 (例如，在嵌套 v-for 循环中) 你可以使用一个 method 方法：
+
+<li v-for="n in even(numbers)">{{ n }}</li>
+data: {
+  numbers: [ 1, 2, 3, 4, 5 ]
+},
+methods: {
+  even: function (numbers) {
+    return numbers.filter(function (number) {
+      return number % 2 === 0
+    })
+  }
+}
+
+----------------------------
+
+
+is="todo-item" 属性,效果与 <todo-item> 相同，但是可以避开一些潜在的浏览器解析错误,写法上也比较优美
+
+-----------------------------
+你还可以通过全局 config.keyCodes 对象自定义按键修饰符别名：
+
+// 可以使用 `v-on:keyup.f1`
+Vue.config.keyCodes.f1 = 112
+
+-------------------------
+
+
+v-model 在内部为不同的输入元素使用不同的属性并抛出不同的事件：
+
+text 和 textarea 元素使用 value 属性和 input 事件；
+checkbox 和 radio 使用 checked 属性和 change 事件；
+select 字段将 value 作为 prop 并将 change 作为事件。
+
+-----------------------
+
+单项数据流：
+
+这个 prop 用来传递一个初始值；这个子组件接下来希望将其作为一个本地的 prop 数据来使用。在这种情况下，最好定义一个本地的 data 属性并将这个 prop 用作其初始值：
+
+props: ['initialCounter'],
+data: function () {
+  return {
+    counter: this.initialCounter
+  }
+}
+
+
+这个 prop 以一种原始的值传入且需要进行转换。在这种情况下，最好使用这个 prop 的值来定义一个计算属性：
+
+props: ['size'],
+computed: {
+  normalizedSize: function () {
+    return this.size.trim().toLowerCase()
+  }
+}
+
+-------------------------------
+
+V-model用于表单输入时 它的变量是跟value的值绑定的，表单value值的变化就是v-model定义变量值的变化，他们的值是一样的
+<option v-bind:value="{ number: 123 }">123</option>
+
+----------------------
+自定义事件：
+父级组件可以像处理 native DOM 事件一样通过 v-on 监听子组件实例的任意事件：
+
+<blog-post
+  ...
+  v-on:enlarge-text="postFontSize += 0.1"
+></blog-post>
+同时子组件可以通过调用内建的 $emit 方法 并传入事件名称来触发一个事件：
+
+<button v-on:click="$emit('enlarge-text')">
+  Enlarge text
+</button>
+
+还可以使用 $emit 的第二个参数来提供这个值：
+<button v-on:click="$emit('enlarge-text', 0.1)">
+  Enlarge text
+</button>
+
+<blog-post
+  ...
+  v-on:enlarge-text="postFontSize += $event"
+></blog-post>
+
+第二个参数就相当于$event
+
+----------------------
+
+在组件上使用 v-model
+自定义事件也可以用于创建支持 v-model 的自定义输入组件。记住：
+
+<input v-model="searchText">
+等价于：
+
+<input
+  v-bind:value="searchText"
+  v-on:input="searchText = $event.target.value"
+>
+当用在组件上时，v-model 则会这样：
+
+<custom-input
+  v-bind:value="searchText"
+  v-on:input="searchText = $event"
+></custom-input>
+
+-----------------------
+
+V-model定义的那个变量一定要在data中定义，这个变量会被当做prop属性传递到组件中；input初始化时的值是v-model定义变量的值，显示则是传入的prop对应的属性值，而后面的输入操作都是传入的prop值，只是初始化时的值不一样
+
+-----------------------
+
+这种写法还可以更简单。就像假定未指明的内容对应默认插槽一样，不带参数的 v-slot 被假定对应默认插槽：
+
+<current-user v-slot="slotProps">
+  {{ slotProps.user.firstName }}
+</current-user>
+注意默认插槽的缩写语法不能和具名插槽混用，因为它会导致作用域不明确：
+
+<!-- 无效，会导致警告 -->
+<current-user v-slot="slotProps">
+  {{ slotProps.user.firstName }}
+  <template v-slot:other="otherSlotProps">
+    slotProps is NOT available here
+  </template>
+</current-user>
+
+---------------------
+
+后备插槽，子组件的数据在父级当中使用  使用数据绑定v-bind:propname 在子组件上绑定
+
+-----------------
+This.$root===this
+
+-----------------
+
+组件深度通信：依赖注入 |  this.$parent
+
+provide 选项允许我们指定我们想要提供给后代组件的数据/方法。在这个例子中，就是 <google-map> 内部的 getMap 方法：
+
+provide: function () {
+  return {
+    getMap: this.getMap
+  }
+}
+然后在任何后代组件里，我们都可以使用 inject 选项来接收指定的我们想要添加在这个实例上的属性：
+
+inject: ['getMap']
+
+-----------------
+强制更新：$forceUpdate
+
+-----------------
+通过 v-once 创建低开销的静态组件 这个相当于纯显示组件和react对比
+
+-----------------
+
+过度与动画：
+
+<transition :duration="{ enter: 500, leave: 800 }">...</transition>
+
+推荐对于仅使用 JavaScript 过渡的元素添加 v-bind:css="false"，Vue 会跳过 CSS 的检测。这也可以避免过渡过程中 CSS 的影响。
+
+-------------------
+
+appear 特性设置
+
+-------------
+
+Animate.css   velocity.js  tween.js
+
+-----------------
+
+混入：
+同名钩子函数将合并为一个数组，因此都将被调用。另外，混入对象的钩子将在组件自身钩子之前调用。
+
+-----------
+自定义指令:
+// 注册一个全局自定义指令 `v-focus`
+Vue.directive('focus', {
+  // 当被绑定的元素插入到 DOM 中时……
+  inserted: function (el) {
+    // 聚焦元素
+    el.focus()
+  }
+})
+
+
+directives: {
+  focus: {
+    // 指令的定义
+    inserted: function (el) {
+      el.focus()
+    }
+  }
+}
+
+
+------------------
+使用渲染函数讲失去 v-model 的功能  对应的逻辑自己实现
+
+-------------------
+render函数：
+ this.$slots 访问静态插槽的内容
+
+ this.$scopedSlots 访问作用域插槽，每个作用域插槽都是一个返回若干 VNode 的函数
+
+如果要用渲染函数向子组件中传递作用域插槽，可以利用 VNode 数据对象中的 scopedSlots 字段
+
+
+---------------------
+
+var vm = new Vue({
+  data:{
+    a:1
+  }
+})
+
+// `vm.a` 是响应式的
+
+vm.b = 2
+// `vm.b` 是非响应式的
+
+
+解决：
+
+Vue.set(vm.someObject, 'b', 2)
+
+this.$set(this.someObject,'b',2)
+
+// 代替 `Object.assign(this.someObject, { a: 1, b: 2 })`
+this.someObject = Object.assign({}, this.someObject, { a: 1, b: 2 })
+---------------------
+
+
+当你设置 vm.someData = 'new value'，该组件不会立即重新渲染。当刷新队列时，组件会在下一个事件循环“tick”中更新。多数情况我们不需要关心这个过程，但是如果你想基于更新后的 DOM 状态来做点什么，这就可能会有些棘手。虽然 Vue.js 通常鼓励开发人员使用“数据驱动”的方式思考，避免直接接触 DOM，但是有时我们必须要这么做。为了在数据变化之后等待 Vue 完成更新 DOM，可以在数据变化之后立即使用 Vue.nextTick(callback)。这样回调函数将在 DOM 更新完成后被调用。例如：
+var vm = new Vue({
+  el: '#example',
+  data: {
+    message: '123'
+  }
+})
+vm.message = 'new message' // 更改数据
+vm.$el.textContent === 'new message' // false
+Vue.nextTick(function () {
+  vm.$el.textContent === 'new message' // true
+})
+
+---------------------
+
+
+Vuex
+
+
+当一个组件需要获取多个状态时候，将这些状态都声明为计算属性会有些重复和冗余。为了解决这个问题，我们可以使用 mapState 辅助函数帮助我们生成计算属性
+computed: mapState({
+    // 箭头函数可使代码更简练
+    count: state => state.count,
+
+    // 传字符串参数 'count' 等同于 `state => state.count`
+    countAlias: 'count',
+
+    // 为了能够使用 `this` 获取局部状态，必须使用常规函数
+    countPlusLocalState (state) {
+      return state.count + this.localCount
+    }
+  })
+
+------------------------
+
+Getter:
+
+有时候我们需要从 store 中的 state 中派生出一些状态，例如对列表进行过滤并计数：
+
+const store = new Vuex.Store({
+  state: {
+    todos: [
+      { id: 1, text: '...', done: true },
+      { id: 2, text: '...', done: false }
+    ]
+  },
+  getters: {
+    doneTodos: state => {
+      return state.todos.filter(todo => todo.done)
+    }
+  }
+})
+
+
+
+------------------
+
+
+mapGetters 辅助函数
+
+
+mapGetters 辅助函数仅仅是将 store 中的 getter 映射到局部计算属性：
+
+import { mapGetters } from 'vuex'
+
+export default {
+  // ...
+  computed: {
+  // 使用对象展开运算符将 getter 混入 computed 对象中
+    ...mapGetters([
+      'doneTodosCount',
+      'anotherGetter',
+      // ...
+    ])
+  }
+}
+如果你想将一个 getter 属性另取一个名字，使用对象形式：
+
+mapGetters({
+  // 把 `this.doneCount` 映射为 `this.$store.getters.doneTodosCount`
+  doneCount: 'doneTodosCount'
+})
+
+
+--------------------
+
+Mutation 必须是同步函数,它相当于redux当中的动作的名字
+
+
+mutations: {
+  increment (state, payload) {
+    state.count += payload.amount
+  }
+}
+
+store.commit({
+  type: 'increment',
+  amount: 10
+})
+
+
+---------------
+
+在组件中提交 Mutation
+你可以在组件中使用 this.$store.commit('xxx') 提交 mutation，或者使用 mapMutations 辅助函数将组件中的 methods 映射为 store.commit 调用（需要在根节点注入 store）。
+
+import { mapMutations } from 'vuex'
+
+export default {
+  // ...
+  methods: {
+    ...mapMutations([
+      'increment', // 将 `this.increment()` 映射为 `this.$store.commit('increment')`
+
+      // `mapMutations` 也支持载荷：
+      'incrementBy' // 将 `this.incrementBy(amount)` 映射为 `this.$store.commit('incrementBy', amount)`
+    ]),
+    ...mapMutations({
+      add: 'increment' // 将 `this.add()` 映射为 `this.$store.commit('increment')`
+    })
+  }
+}
+
+----------------
+
+Action 类似于 mutation，不同在于：
+
+Action 提交的是 mutation，而不是直接变更状态。
+Action 可以包含任意异步操作
+
+const store = new Vuex.Store({
+  state: {
+    count: 0
+  },
+  mutations: {
+    increment (state) {
+      state.count++
+    }
+  },
+  actions: {
+    increment (context) {
+      context.commit('increment')
+    }
+  }
+})
+Action 函数接受一个与 store 实例具有相同方法和属性的 context 对象，因此你可以调用 context.commit 提交一个 mutation，或者通过 context.state 和 context.getters 来获取 state 和 getters。当我们在之后介绍到 Modules 时，你就知道 context 对象为什么不是 store 实例本身了。
+
+实践中，我们会经常用到 ES2015 的 参数解构 来简化代码（特别是我们需要调用 commit 很多次的时候）：
+
+actions: {
+  increment ({ commit }) {
+    commit('increment')
+  }
+}
+
+
+-------------
+
+mapActions 辅助函数将组件的 methods 映射为 store.dispatch 调用（需要先在根节点注入 store）：
+
+import { mapActions } from 'vuex'
+
+export default {
+  // ...
+  methods: {
+    ...mapActions([
+      'increment', // 将 `this.increment()` 映射为 `this.$store.dispatch('increment')`
+
+      // `mapActions` 也支持载荷：
+      'incrementBy' // 将 `this.incrementBy(amount)` 映射为 `this.$store.dispatch('incrementBy', amount)`
+    ]),
+    ...mapActions({
+      add: 'increment' // 将 `this.add()` 映射为 `this.$store.dispatch('increment')`
+    })
+  }
+}
+
+
+如果有异步：this. incrementBy.then(...)
+-----------
+
+
+模块动态注册
+在 store 创建之后，你可以使用 store.registerModule 方法注册模块：
+
+// 注册模块 `myModule`
+store.registerModule('myModule', {
+  // ...
+})
+// 注册嵌套模块 `nested/myModule`
+store.registerModule(['nested', 'myModule'], {
+  // ...
+})
+之后就可以通过 store.state.myModule 和 store.state.nested.myModule 访问模块的状态。
+
+---------------
+
+
+Vuex 并不限制你的代码结构。但是，它规定了一些需要遵守的规则：
+
+1 应用层级的状态应该集中到单个 store 对象中。
+
+2 提交 mutation 是更改状态的唯一方法，并且这个过程是同步的。
+
+3 异步逻辑都应该封装到 action 里面。
+
+-------------
+
+插件：
+它接收 store 作为唯一参数：
+
+const myPlugin = store => {
+  // 当 store 初始化后调用
+  store.subscribe((mutation, state) => {
+    // 每次 mutation 之后调用
+    // mutation 的格式为 { type, payload }
+  })
+}
+然后像这样使用：
+
+const store = new Vuex.Store({
+  // ...
+  plugins: [myPlugin]
+})
+
+-----------------------
+
+
+在插件内提交 Mutation
+在插件中不允许直接修改状态——类似于组件，只能通过提交 mutation 来触发变化。
+
+通过提交 mutation，插件可以用来同步数据源到 store。例如，同步 websocket 数据源到 store（下面是个大概例子，实际上 createPlugin 方法可以有更多选项来完成复杂任务）：
+
+export default function createWebSocketPlugin (socket) {
+  return store => {
+    socket.on('data', data => {
+      store.commit('receiveData', data)
+    })
+    store.subscribe(mutation => {
+      if (mutation.type === 'UPDATE_DATA') {
+        socket.emit('update', mutation.payload)
+      }
+    })
+  }
+}
+const plugin = createWebSocketPlugin(socket)
+
+const store = new Vuex.Store({
+  state,
+  mutations,
+  plugins: [plugin]
+})
+
+
+-----------------
+
+
+Vue-router:
+
+
+模式	                      匹配路径	$route.params
+/user/:username	       /user/evan	{ username: 'evan' }
+/user/:username/post/:post_id	/user/evan/post/123	{ username: 'evan', post_id: '123' }
+
+
+----------------
+
+
+响应路由参数的变化
+提醒一下，当使用路由参数时，例如从 /user/foo 导航到 /user/bar，原来的组件实例会被复用。因为两个路由都渲染同个组件，比起销毁再创建，复用则显得更加高效。不过，这也意味着组件的生命周期钩子不会再被调用。
+
+复用组件时，想对路由参数的变化作出响应的话，你可以简单地 watch (监测变化) $route 对象：
+
+const User = {
+  template: '...',
+  watch: {
+    '$route' (to, from) {
+      // 对路由变化作出响应...
+    }
+  }
+}
+或者使用 2.2 中引入的 beforeRouteUpdate 导航守卫：
+
+const User = {
+  template: '...',
+  beforeRouteUpdate (to, from, next) {
+    // react to route changes...
+    // don't forget to call next()
+  }
+}
+
+------------------------
+
+ <router-view></router-view> 路由组件占位符
+
+ 路由跳转三种方式：router-link   new Router路由预先配置   this.$router.push
+------------------
+
+router.push(...)。
+如果提供了 path，params 会被忽略，
+router.push({ path: `/user/${userId}` }) // -> /user/123
+// 这里的 params 不生效
+router.push({ path: '/user', params: { userId }}) // -> /user
+
+-------------
+
+在 2.2.0+，可选的在 router.push 或 router.replace 中提供 onComplete 和 onAbort 回调作为第二个和第三个参数。这些回调将会在导航成功完成 (在所有的异步钩子被解析之后) 或终止 (导航到相同的路由、或在当前导航完成之前导航到另一个不同的路由) 的时候进行相应的调用。
+
+注意： 如果目的地和当前路由相同，只有参数发生了改变 (比如从一个用户资料到另一个 /users/1 -> /users/2)，你需要使用 beforeRouteUpdate 来响应这个变化 (比如抓取用户信息)。
+
+
+------------------
+
+
+router.replace(location, onComplete?, onAbort?)
+跟 router.push 很像，唯一的不同就是，它不会向 history 添加新记录，而是跟它的方法名一样 —— 替换掉当前的 history 记录。
+
+------------------
+
+路元信息：
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    if (!auth.loggedIn()) {
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next() // 确保一定要调用 next()
+  }
+})
+
+--------------
+
+  watch: {
+    // 如果路由有变化，会再次执行该方法
+    '$route': 'fetchData'
+  },
+
+==================
+
+
+平级组件可以通过 $emit和$on 传输数据，但是要通过一个公共的实例上面。
+
+-==================
+
+同一个组件路由变化用update， 动态路由用:to ，绑定式写法
+
+===================
+
+Vue文件中的样式，如果加上scoped 那标签下只能找到下一级的，也就是儿子级别的，孙子级别的不起作用，需要把scoped去掉才可以
+
+=======================
+
+
+
+
+V-html里面的样式只能用全局的，路由配置时，query时不用特殊配置，params的时候要在后面加上例如：   :/id这样的配置
+
+===================
+<img src="" slot="icon"/>  对应的<slot name="icon"></slot>
+
+Router-view 可以加样式  slot加了不起作用
+
+============
+Vue中父子通信跟react当中一样，另外vue中子改父的数据，可以通过一个中间实例，通过自定义事件间接的改动父级数据
+
+
+所谓的内存存储就是一个变量保存
+
+========
+
+npm info xxx versions 可以查看某一个包的版本
+
+Vue.mixin()
+
+==============
+
+vue-router的原理就是  给所有的a标签绑定监听事件，hashchange或者popstate 事件，然后拿到他们的href属性，与路由配置去匹配,在渲染给app跟组件
+===========
+
+
+骨架屏的原理是，预先把要展示的内容放在页面上，然后根据路由判断，替换对应正式要展示的内容。
+
+
+===========
+
+
+多页应用就是多个单页面应用，webpack里面的多页面入口其实就是多页面应用，再利用htmlplugin的插件处理两个index.html文件
+
+===========
+
+
+pwa 需要在build后才能见到效果，dev的时候不行，并且pwa只能在localhost和https下玩
+
+==========
+
+爱莫助手
+
+======

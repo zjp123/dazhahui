@@ -1,0 +1,461 @@
+闭包里面有一个中间层：中间层里面的语句只会执行一次，后面在执行的时候，其实是返回的闭包函数。但是在中间层定义的变量依然还是可以访问的。
+
+obj.removeEventListener('webkitTransitionEnd',fn,false);fn中最好别有闭包，可能无法清除
+
+
+事件流：
+当一个元素被点击的时候，首先在最外层的对象也就是window会捕获到，然后是doucment然后在逐级递减这样，冒泡时候，是从该元素冒泡一层一层冒泡到父级的父级。。。直到window 
+
+设置全局捕获：
+obj.setcapture
+
+Js做小数运算时，因为小数有精度问题，所以可以把它先乘100，在进行math.round()变为整数最后在除以100 变为原来的数
+
+当做过度运动时，如果设置elem.style.display="block" 那么可能会影响过度效果，解决：visibility:visiblet替代
+
+元素设置opacity=0，改元素还是存在的只是看不见，display:none才是不存在
+
+通过js设置的transform，先写的后执行，如：transform='scale(1) translate(100px)'那么元素会，先位移在缩放
+
+position:static;
+
+事件中：e.type:指的是事件名称：如transitionend onclick e.propertyName 指改变的元素什么属性如：border，opacity 
+
+js中appendChild 等类似api都是剪切效果  就是把已存在的dom节点给拿过来，放到对应的dom下面
+
+元素运动 之前有时候需要初始化属性值，运动left值时,不管左移还是右移，赋值可以不动，left = - this.index*width + 'px'
+
+缓冲运动：speed = (目标值-当前值)/6 left/top + speed + ’px‘
+弹性运动：speed += (目标值-当前值)/6 speed*= 0.85(向下取整) left/top + speed + 'px'
+
+缓冲运动问题：
+speed = speed>0?Math.ceil((target-obj.offsetLeft)/8):Math.floor((target-obj.offsetLeft)/8)
+
+弹性运动问题：
+Math.abs(ispeed)<=1&&Math.abs(target - obj.offsetLeft)<=1
+
+碰撞运动：是两个方向上的运动，在基础运动上，在临界点改变方向
+
+时间版运动和速度版运动不同！！！！效果上面有差别！！
+
+时间版运动：不管各个属性值的大小是否相等，它们都会用同样的时间到达，效果是都是同一时间完成，
+速度版运动：如果属性之间的值不同，那么它们在视觉效果上，是有先后到达的。
+
+速度版运动问题：如：网页轮播图，当切换浏览器页面时，等一会，在切换回来时候，轮播图会有问题，这是浏览器放缓定时器造成的。解决办法：window.onblur  window.onfocus
+
+时间版运动问题：启动的定时器的时间间隔秒数，必须大于运动定时器的时间间隔！！！，如果小于或者等于，会导致，运动定时器在间隔秒数内走不完，就会被重启开启。
+
+无缝轮播原理：
+复制 + 拉回来
+第一个元素相对定位
+复制节点 + 移除
+
+
+
+范围差：var t = time - Math.MAX(0, start-end + time)
+
+Window.onfocus window.onblur 当切换浏览器页面时会触发
+
+瀑布流布局：是ul为基础浮动，li自上向下显示，并不是以li为基础浮动
+
+定时器可以阻止代码执行！！！ clearInterval  cleatTimeOut 可以阻止定时器里面的代码执行
+
+当父子级嵌套，又结合onmouseover 和onmouseout时，如果遇到bug 可以试试mouseenter 和 mouseleave 替代
+
+
+跨域：
+两个网站下都设置统一的domain document.domain = 'a.com'
+<script> jsonp
+后台服务器代理
+window.name
+Postmessage:
+www.a.com下的某一个页面里：window.postMessage('需要传的数据', 'http://www.b.com')
+www.b.com下的某一个页面里：window.addEventLisnear('message',function(e){e.data可以获取传过来的数据,ev.origin 它的值就是www.a.com})
+
+
+Iframe:两个域下的iframe是不能相互操作dom的，相同域的是可以操作iframe里面的dom的 iframeid.contentWindow,可以获取iframeid对应下的window对象
+
+js函数的调用方式：
+
+函数直接调用：
+var age  =18
+Var obj = {
+
+   Age:18,
+   Say(){
+      consoel.log(this.age)
+   }
+}
+
+Var f1 = obj.say  f1()  这就是函数直接调用，凡是直接调用this都指window
+
+匿名函数的默认也是值this,ecm6中指顶层那个对象
+
+'.'的方式调用方法---函数里面的this指，‘.’前的那个对象
+
+构造函数调用方式： new fn()  里面的this指new 创建的那个对象
+
+切记原型可以修改
+
+上下文调用方式：call apply bind
+
+Call、apply方法的第一个值就指定了函数内部的this，f1.call(null||undefined)，此时this指向window
+
+settimeout里的函数this默认指window，bind会创建一个新函数
+
+箭头函数的this是指它的外层作用域的this，箭头函数没有作用域，所有是由它外层作用域决定
+let p = {
+        age:18,
+        say:()=>{
+            console.log(this)  //window
+        }
+      }
+      p.say()
+
+
+跨域：
+script，元素并没有受同源策略限制
+jsonp:  只支持get请求,并且前后端都需要处理
+
+Cors:需要服务端设置响应头:acces-control-allow-origin:'*' 前端不用关心
+
+把两个窗口的domain属性设为同一个，如；document.domain = "example.com"之后就可以不受跨域影响
+
+Postmessage
+
+
+<!doctype>是告诉浏览器按照 “标准模式” 来渲染文档，比如，怪异模式下classname 的大小写忽略
+
+element具有cloneNode(false/true)true 是深度克隆
+HTMLDocument 是所有页面元素的构造函数，在它上面定义方法所有元素都可用HTMLDocument.prototype
+
+浏览器位置：
+
+scrollHeight  就是指元素的完整高度,如果是body/window的话那就是窗体的完整高度 不随着浏览器改变而改变
+scrollWidth  就是指元素的完整宽度,如果是body/window的话那就是窗体的完整高度，它是随着浏览器窗口大小而改变的
+scrollLeft
+scrollTop
+
+
+window.screen它的宽度是固定的，不会随着浏览器的滚动而改变
+
+window.pageYOffset指浏览器滚动距离 ie下是document.body.scrollTop chrome:document.documentElement.scrollTop
+
+document.documentElement.clientWidth  可视区的宽
+document.documentElement.clientHeight  可视区的高
+clientLeft
+clientTop
+
+
+
+
+ele.getBoundingClientRect()可以获取该元素的width,height,top,bottom,x,y等
+Ele.offsetHeight 元素自身的高
+Ele.offsetWidth 元素自身的宽
+Ele.offsetParent 元素的父级
+Ele.offsetTop 元素距离父级顶部的距离,不会随着滚动条的改变而改变  比较直接的直线距离,不包含滚动距离
+Ele.offsetLeft 元素距离父级边框左边的距离,也是直线距离
+
+
+事件：捕获，冒泡，触发  如果不是在捕获阶段触发，那就会冒泡到dom树根上在触发
+
+async 异步加载，加载完就执行。
+defer  异步加载， 文档加载完在执行。
+
+pushstate url跳转 popstate 前进后退按钮  replacestate 新的替换旧的
+
+模块话写法：
+对象写法：
+var module1 = new Object({
+
+　　　　_count : 0,
+
+　　　　m1 : function (){
+　　　　　　//...
+　　　　},
+
+　　　　m2 : function (){
+　　　　　　//...
+　　　　}
+
+　　});
+
+立即执行函数写法：
+var module1 = (function(){
+
+　　　　var _count = 0;
+
+　　　　var m1 = function(){
+　　　　　　//...
+　　　　};
+
+　　　　var m2 = function(){
+　　　　　　//...
+　　　　};
+
+　　　　return {
+　　　　　　m1 : m1,
+　　　　　　m2 : m2
+　　　　};
+
+　　})();
+
+　　var module1 = ( function (mod){
+
+　　　　//...
+
+　　　　return mod;
+
+　　})(window.module1 || {});
+
+
+
+Constructor 它在系统创建prototype对象时，就自动给prototype这个对象创建Constructor属性，用于指向该原型的构造函数
+
+而，通过new f() 创建出来的对象的constructor 也是指向构造函数的,因为通过new创建出来的对象是继承了prototype它的属性和方法，所以创建出来的对象d.constructor其实访问的还是prototype.constructor它，因为继承了
+
+var f = function (){
+   this.name = 'aa';
+}
+var d = new f()
+
+f.prototype.constructor===d.constructor
+
+
+由于Javascript的函数及作用域，声明在函数内部的变量以及方法在外面是访问不到的，通过此特性即可创建类的私有变量以及私有方法，然而在函数内部通过this创建的属性和方法在类创建对象时，每个对象自身都拥有一份并且可以在外部访问到。因此，通过this创建的属性可以看做是对象共用属性和共有方法，而通过this创建的方法，不但可以访问这些对象的共用属性和方法，而且还能访问到类或对象自身的私有属性和私有方法，由于这些方法权力比较大，所以我们又将它看作特权方法，在对象创建时通过这些特权方法我们可以初始化实例对象的一些属性，因此这些在创建对象时调用的特权方法还可以看作是类的构造器。
+
+
+公有方法或者公有属性：是指在构造函数中通过this.这样创建的 
+
+共有方法或者属性：是指在构造函数的原型prototype它上面定义的
+
+静态公有方法或静态公有属性：指对象或者类直接通过.语法定义的，子对象访问不到的
+
+然而类的静态私有方法或者私有属性：通常用闭包来实现
+
+
+new的4件事: 
+        1. 创建空对象
+        2. 设置新对象的__proto__属性继承构造函数的原型对象
+        3. 调用构造函数，添加成员
+        4. 返回地址
+  何时使用: 同一类型的子对象共享的属性值和方法,都要放在构造函数的原型对象中。
+  优点: 代码重用! 节约内存!
+  缺点: 易被污染
+
+
+var f = function(){
+
+     this.name = "xiaoming"
+     console.log('a',this)
+     return function(){
+       console.log('b',this)
+        this.age = 18
+
+      }
+
+}
+当 var d = new f()时,此时打印a的那个this指的就是函数作用域this就是f这个函数块，整体函数块,并不是window
+
+然而改成自执行函数的话就是正常理解的了
+var f = function(){
+
+     this.name = "xiaoming"
+     console.log('a',this)
+     return function(){
+       console.log('b',this)
+        this.age = 18
+
+      }
+
+}()
+此时打印a的那个this指的就是window,而b就是那个new创建出来的对象了
+
+instanceof 就是通过对象的prototype连来判断继承关系的
+
+
+
+继承另一种写法：
+function inheritObject(o){
+
+   function F(){}
+   F.prototype = o
+   return new F()
+
+}
+
+function inheritprototype(sub, super){
+
+    Var p = inheritObject(super.prototype)
+    P.constructor = sub
+    Sub.prototype = p
+
+}
+
+封装变化的部分。
+
+抽象类：
+抽象类其实什么都不能做，创建时没有什么属性或者方法，在原型上定义一些必备方法，然后在方法里面输出报错信息，但在继承上非常有用，因为它定义了一种类，并定义了该类必备的方法，继承时如果没有重写这些方法，就会报错，
+
+
+应用：抽象工厂模式
+抽象工厂模式：主要是为了创建对象实例或者类族，不关心创建的过程，只在乎创建的结果。
+
+建造者模式：关注创建对象的过程，主要点在于对象自身的细节，比如创建一个人，不单要创建人，还要在意在创建这个人的时候，穿什么衣服等,对比发现 ，建造者模式就是把之前工厂模式只定义没有实现的方法，给具体实现了。
+
+原型模式：就是正常的写法
+
+单例模式：通过自执行函数闭包实现
+
+外观模式也是兼容模式，统一接口addeventlistener,解决浏览器兼容问题。
+
+适配器模式：使类或者对象的接口转化为另外满足用户需求的接口。就是重新包装下，比如数据结构不对称等等
+
+代理模式：相当于中间人，应用如图片懒加载
+
+装饰者模式：装饰器。在不改变原对象的基础上，通过对它添加属性或者方法。
+
+桥接模式：实现与抽象分离，说到底还是封装！！解耦！！
+
+组合模式：模块化，找一个基本的模式定义，然后在定义不同的需求，在组合在一起
+
+享元模式：大量细粒度对象拥有相同内容，造成空间开销。大型应用中比较好。它的主要点是要找准内部状态(数据与方法)，与外部状态(数据与方法)
+
+模板方法模式：很简单就是提取基本模板  然后根据不同需求去继承在拓展。
+
+观察者模式---发布订阅模式：
+
+状态模式：就是大量的if else 分支  可以用对象的形式
+
+策略算法：将一组算法封装起来，
+
+职责链模式：afterfunction  beforefunction
+
+命令模式：让你干啥你干啥
+
+访问者模式：在不改变对象的属性或者方法下，为它添加新的操作方法比如：call apply
+
+中介者模式：单向的请求，双向的请求就是观察者
+
+备忘录模式：比如点击上一页请求，下一页请求，请求过的就不用在发请求了。
+
+迭代器模式：循环
+
+解释器模式：xpath
+
+数据访问对象模式：MongoDB  localstore
+
+节流模式：函数节流
+
+简单模板模式：把创作dom的方法改为，字符串形式，把dom节点写成字符串的形式，这样可以提高性能，就不是直接操作dom节点了，而是操作字符串了。
+
+惰性模式：减少每次代码执行时的重复性的分支判断，通过对对象重定义来屏蔽原对象中的分支判断，例如addeventlistener,两种方式：第一种：在文件加载进来时通过闭包执行对该方法重新定义，第二种：在第一种基础之上，在函数第一次调用的时候对其重新定义。
+
+参与者模式：将额外的参数传递给这个事件的回调函数。核心原理是利用 call apply bind传入this并且传递参数 ,函数柯里化
+
+等待着模式：解决那些不确定先后完成的异步逻辑的
+
+结构型设计模式：
+
+同步模块：
+var F = {}
+
+F.define = function (str, fn) {
+    var args = str.split('.'), old = parent = this, i = len = 0;
+    console.log(args,'aa')
+    if(args[0]== F){
+        args= args.slice(1)
+
+    }
+    if(args[0]== 'define' || args[0]== 'module' ){
+
+        return ;
+    }
+    for(len = args.length; i< len; i++){
+        if(typeof parent[args[i]]== 'undefined'){
+            console.log(args, 'dd', parent, args[i])
+            // debugger;
+            
+            parent[args[i]] = {}
+            // debugger;
+
+        }
+        // console.log(args,'ee', old)
+
+        old = parent
+        // console.log('2222', old, this===old)
+
+        parent = parent[args[I]]//这一步是地址引用，切记
+        
+
+        
+    }
+    if(fn){
+       
+        old[args[--i]] = fn() //切记这只是执行一下，并不是循环
+        
+
+    }
+    return this;
+
+}
+
+
+
+
+节流：
+
+var throttle = function ( fn, interval ) {
+    var __self = fn, // 保存需要被延迟执行的函数引用 
+     timer, // 定时器
+    firstTime = true; // 是否是第一次调用
+    console.log('first')
+    return function () {
+        var args = arguments,
+        __me = this;
+        if ( firstTime ) { // 如果是第一次调用，不需延迟执行
+            __self.apply(__me, args);
+           return firstTime = false;
+        }
+        if ( timer ) { // 如果定时器还在，说明前一次延迟执行还没有完成 
+            return false;
+        }
+        timer = setTimeout(function () { // 延迟一段时间执行 
+            clearTimeout(timer);
+            timer = null;
+            __self.apply(__me, args);
+        }, interval || 500 ); 
+    };
+};
+window.onresize = throttle(function(){ 
+    console.log( 1 );
+}, 500 );
+
+
+var addEvent = (function(){
+    if ( window.addEventListener ){
+        return function( elem, type, handler ){ 
+            elem.addEventListener( type, handler, false );
+
+        }
+    }
+    if ( window.attachEvent ){
+        return function( elem, type, handler ){ 
+            elem.attachEvent( 'on' + type, handler );
+        } 
+    }
+})();
+
+
+Function.prototype.before = function( beforefn ){ 
+
+    var __self = this;
+    console.log(this,'aa')
+    return function(){
+        console.log(this,arguments)
+        debugger;
+        beforefn.apply( this, arguments );
+        return __self.apply( this, arguments )
+
+    } 
+}

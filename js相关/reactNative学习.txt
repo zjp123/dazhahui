@@ -1,0 +1,80 @@
+
+
+reactNative
+node安装包，可以用nvm 来管理node版本， github下载安装包的时候，nvm-setup.zip的版本是指解压下一步下一步的形式，可以设置nvm下载时的镜像,它有个settings的配置文件，arch等等
+
+模拟器 或者真机   咪咪或者夜神模拟器
+
+真机的时候要开启悬浮框权限
+
+React-native init firstNative 
+初始化项目，Android 对应安卓 iOS对应苹果，我这里不需要ios所以把iso文件删除掉了。
+
+按照步骤下载 Android Studio，然后在此基础上，安装需要的SDK，一切就绪以后，此时已经有一个默认的虚拟安卓机了，点击左三角形行启动机子，启动好后，在命令台中，进入项目目录，react-native run-android  然后刚启动的虚拟机会自动的练级项目，然后改写项目看看反应，写完保存然后 在命令行adb shell input keyevent 82，才能reload js
+
+View组件里不能直接写文本，必须用Text包裹  text 相当于span标签
+border和backgroundcolor,不能简写
+view里面的子元素是默认是纵向排列 rn默认使用flex布局结构
+
+只有文本才能有样式继承特性，别的元素没有
+button的文本必须用title属性设置 不能直接写，点击事件是onPress,大小写有区别
+
+图片资源必须用source属性没有src属性,并且，使用时很特殊：图片地址固定格式：需要一个对象{uri: 'xxxx'},必须是这样，另外网络图片必须设置宽高才能显示(resizeMode:contain)
+
+加载本地图片时，不需要指定宽高，也是source属性但是必须用require的形式source={require(xxxx)}
+
+textInput onchangeText
+
+alert弹框：
+
+dimensions 获取屏幕宽度 deimensions.get('window').width
+
+scrollwView : 默认超过屏幕高度的内容是不能拖动查阅的,无论列表有多少都是一起渲染的，有性能隐患
+
+flatList:又懒加载的特性，使用它在数据时会有一些特别要求，[{key: "red",data:{title:'红色'}},xxxx]
+
+Activitylndicator --loading 就是loading的效果
+
+触控系列组件 touchable组件，它是用来包裹其他组件的，让组件有点击行为
+
+view默认不能使用onpress事件的
+
+refreshControl
+
+枚举类型就是只能设定里面包含的，不包含的不行
+
+statusbar 状态栏相关  显示隐藏属性都有效，其他属性，看平台
+
+stylesheet:它是rn项目所有样式的定义api，样式属性驼峰命名法，一个元素多个样式的时候，可以用数组，就像多个class一样，默认是flex布局
+
+盒子模型：
+marginVertical
+
+flex默认纵向
+
+内置组件不一定可以设置宽高
+
+如果什么反应都没有，也没有报错，那可能是this指向出问题了
+
+按钮不能设置大小，字体大小，padding等
+
+picker相当于selected
+
+Slider 数字滑块
+
+switch
+
+modal
+
+Webview 就是内置手机浏览器  可以浏览页面
+
+viewpageAndriod 首屏海报 tabBarIOS 苹果海报
+
+定位时touchableOpacity 可能会有图层的影响
+
+图片适配：resizeMethod:cover contain scale stretch
+
+打包完成后在Android--app--output--apk包
+
+
+

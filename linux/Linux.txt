@@ -1,0 +1,103 @@
+
+当使用Linux的时候，出现permission denied时，很有可能是该用户没有对这个文件有操作权限
+
+scp -r  ./2003825_www.zjpzjp.com.key   zjp@39.105.177.234:~/etc/nginx/cert/,前提是账户要先登录
+
+ssh zjp@39.105.177.234
+
+
+15 yy  复制当前行向后数15行
+
+Nginx.conf 改完配置文件后 sudo nginx -s reload  然后在sudo service nginx start一下
+
+
+dpkg -l | grep zlib  这个是可以查看系统所对应的依赖  并不是pip下载的依赖,进入项目目录,通过pip list  可以查看这个项目下载的依赖包
+
+
+uwsgi因为是在虚拟环境下安装的，所以启动时要切换到虚拟环境下执行，
+
+重启实例时候别忘了也要重启uwsgi  https证书就是把原来配好的nginx服务的80 端口改为443端口，然后加上几个关于ssl的配置就可以了 其他的不用变  记得在安全组里面添加443端口号
+
+服务器端设置cookie，是通知浏览器设置cookie
+
+request.session可以设置session 设置好的session存放在默认的django-session数据表中，也可以把session存放到redis数据库中，这个需要配置
+
+sudo apt-get -f install  更新系统依赖
+
+Ubunto上使用git：
+
+1/Sudo apt-get install git 可能会出现升级系统依赖问题，升级即可
+2/接下来需要检查SSH，因为GitHub会用到SSH，因此需要在shell里检查是否可以连接到GitHub
+ssh -T git@github.com若是出现pemiss...说明链接没问题，接下来配置公钥和密钥
+3/进入 ~/.ssh目录，查看是否有id_rsa（私钥）和id_rsa.pub（公钥）这两个文件
+4/如果有，备份并删除
+
+mkdir key_backup
+cp id_rsa* key_backup
+rm id_rsa* 
+即将已经存在的id_rsa，id_rsa.pub文件备份到key_backup文件夹
+
+5/创建新的ssh keys
+ssh-keygen -t rsa -C "你自己的github对应的邮箱地址"
+注1：“”是需要的！ 
+注2：是在ssh目录下进行的！
+
+6、github账户中添加.pub里面的字符串sshkey
+
+7/git config --global user.email "15705603483@163.com"
+8/git config --global user.name "zjp123"
+
+9/git remote add origin https://github.com/你的github用户名/你的github仓库.git
+10/git push oring master
+
+11/git add . && git commint -am "xxx"
+12/git push origin master
+
+
+
+Xshell 工具  可以在窗口中登录服务器很方便，
+在xshell中可以安装lrzsz工具，可以实现文件的上传和下载
+
+Useradd username -s /usr/bin/git-shell 创建一个用户只能执行git语句 别的没有权限
+
+password username 设置密码
+
+
+Git init --bare 创建裸仓库,没有工作区
+
+可以在服务器上面设置仓库，本地直接提交，服务器相当于一个存储地方。也可以通过GitHub做中间存储地方，再通过配置跟服务器连接，也可以，同时代码更新后，服务器需要pull一下，拉取最新代码，然后就可以直接用了。
+
+
+查看端口号占用：sudo lsof -i:80   sudo kill pid
+
+nginx启动： sudo service nginx start  sudo service nginx stop  sudo nginx -s reload
+
+
+配置时  nginx转发可能有问题，需要不断刷新才行，应该是网络原因造成的，有时需要重启服务不知道为什么理论上应该不需要的。
+
+chown -R name:namegroup filename  修改某文件的用户权限
+
+
+更新python代码后，可重启nginx  和uwsgi   应该不用重启服务器
+
+
+sudo sh -c 'echo 3 > /proc/sys/vm/drop_caches' 释放内存
+
+多行注释：:1，5s/^/#/g  注释1到5行 需要注意的是，要记住要注释的行开始和行末的行数
+全部注释：:%s/^/#/g
+
+
+
+命令模式：shift + 4 行尾  shift + 6 行首 
+Ctrl + a 行首   ctrl + e 行尾
+
+df -h 查看磁盘情况
+
+du -m --max-depth=1 在某一个目录中查看 目录列表的大小
+
+
+
+
+
+
+

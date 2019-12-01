@@ -1,0 +1,58 @@
+useEffect是在每次render之后就会执行
+每一次渲染都会是一个新的useEffect
+如果想清理useEffect，那么就返回一个函数即可
+
+钩子的使用规则
+钩子就是强制实现了两条额外规则的Javascript函数：
+
+只能在顶层调用钩子。不要在循环，控制流和嵌套的函数中调用钩子。
+只能从React的函数式组件中调用钩子。不要在常规的JavaScript函数中调用钩子。（此外，你也可以在你的自定义钩子中调用钩子。我们马上就会讲到它。）
+
+有两个生命周期目前还没有对应的HOOK,目前第三方库可能与hook不兼容
+
+不能将状态合并
+
+
+useState
+const [state, setState] = useState(initialState);
+----------------------------
+useEffect
+
+useEffect(() => {
+  const subscription = props.source.subscribe();
+  return () => {
+    // Clean up the subscription
+    subscription.unsubscribe();
+  };
+});
+-------------------------------
+useContext
+const context = useContext(Context);
+
+-----------------------------------
+useReducer
+const [state, dispatch] = useReducer(reducer, initialState);
+
+-----------------------------------
+useCallback
+const memoizedCallback = useCallback(
+  () => {
+    doSomething(a, b);
+  },
+  [a, b],
+);
+--------------------------------
+useMemo
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+
+----------------------------------
+useRef
+
+onst refContainer = useRef(initialValue);
+------------------------------------
+useImperativeMethods
+
+useImperativeMethods(ref, createInstance, [inputs])
+-------------------------
+useMutationEffect
+useLayoutEffect
