@@ -1,0 +1,26 @@
+react中几乎不直接操作dom的像原生的，api  innerHTML在react中几乎不会使用，而是用this.props或者this.state 来替代
+
+React中ref的运用，如果是ref定义在组件上，那就需要函数的写法，如果直接定义在元素上，就直接是字符串的写法
+
+如果state是引用类型，那么不可以直接操作，应该用一个变量保存起来在操作，然后在setState更新，把刚才的变量赋值给state.
+
+React中最好不要直接操作dom，而是用state和props的思想来写，比如插入和移除可以用组件和‘’，来表示，通过state的变化来控制。
+
+react中 有时候this.refs.xx是真实dom但是却不能设置style属性，如果通过ReactDOM 却可以为什么?
+而且通过refs获取的dom只能获取，但不不能参与运算
+
+第一种：
+
+test(){
+this.setState({num:this.state.num+1},()=>{
+console.log(this.num)
+})
+}
+第二种：
+
+test(){
+this.setState((props)=>({//props指定的是state对象
+num:props.num+1 //实现state的num属性值加1
+}));
+}
+注意 this.state.num++  和 this.state.num + 1 是不一样的前者是先取值后运算

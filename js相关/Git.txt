@@ -1,0 +1,154 @@
+三个级别：local  global system
+
+增加：git config --global --add user.name  xxx
+
+查看：git config --get user.name   /   git config --list --global
+
+删除：gir config --global --unset user.name xxx
+
+修改：git config --global user.name xxx
+
+起别名：git config --global alias.co checkout
+
+        git config --global alias.br branch
+
+git c+tap键   可查看c开头的所有命令
+
+
+log配置：git config --global alias.lol "log --oneline"  方便查看日志
+
+创建仓库：git init xxx
+
+git reflog  查看每一次commit的命令  方便你可以回退到任意版本
+
+git add  /  git add .   把工作区所有文件都提交到暂存区
+
+git commit -m 'xxx'     把文件提交到仓库
+
+git status              查看状态工作区文件状态信息  被修改 新增等等
+
+git diff xx 查看文件修改了什麽（在没有add之前可以看到区别，如果提到暂存区后，就只能用git diff --cached）
+                               （如果commit之后  那就只能git diff HEAD HEAD~2）查看区别
+
+git diff HEAD HEAD~2  當前版本和過去兩個版本的對比
+
+git diff --cached  暂存区的对比
+
+git reset --hard HEAD^  HEAD表示当前版本   HEAD^上一版本  HEAD~100 上100版本   
+
+git reset --hard  xxx  后面跟指定版本号，仓库可以回到指定的版本号
+
+git checkout -- 文件名  在还没有add之前 这是可以回退的  add之后这个命令就无效
+
+git reset HEAD 文件名  在文件add之后没有commit之前  可以把文件从暂存区 回退到工作区
+
+rm 文件名   不管文件有咩有add 还没有commit之前  它都可以把文件删除
+
+git rm 文件名  在commit之后 用它就可以删除文件
+
+git branch  查看有多少个分支 并显示当前分支名
+
+git branch xxx 创建分支
+
+git checkout 分支名  切换到分支名
+
+git checkout -b xxx  创建并切换到分支名 
+
+git merge xx  把某分支的状态下的文件合并到当前的分支
+
+git branch -d xxx 删除分支
+
+git stash     把工作现场暂时保存起来，比如你正在写文件，还未add 或者还未commit 这些文件都会保存起来，这个时候可以干点别的事情
+
+git stash pop 把暂时保存起来的工作现场恢复  并且把临时存储的文件删除 暂无用内存
+
+git stash list
+
+git stash apply stash@{0}
+
+如果要丢弃一个没有被合并过的分支，可以通过git branch -D name强行删除。
+
+ls 可以查看当前分支下的所有文件 和所有分支下还没commit的文件
+
+如果在A分支下创建的文件aa.txt还没有在A分支下commit的话，现在切换到任意其他分支比如B分子下，执行git add --all
+                     在执行git commit 这时候git会把工作区的所有未commit的文件都提交到B分支下，也就是这些文件都属于B分支了，
+                     虽然有些文件不是在B分支下创建的。也就是说，在哪个分支下执行 git commit 的，那么所有未commit
+                     的文件都会归到那个分支
+
+git merge dev --no-ff -m 'hebingdev'  合并时用这种格式
+
+git push origin dev 推送到远程分支,如果远程分支没有dev那么，就会在远程库中创建dev分支
+
+git clone 远程库的时候只能clone远程库中的master分支上的内容
+
+git checkout -b dev origin/dev  创建远程origin的dev分支到本地 分支名要对应
+///////////////////////////////////////////////////////////////////////
+git mv
+
+gitignore
+
+touch a创建空白的文件
+
+删除暂存区文件，保留工作区  git rm --cached xx  （用于提交错误文件时）
+
+git branch xxx 创建分支 
+
+git branch --merged  查看当前分支合并的有哪些分支，git branch --no-merched
+
+git checkout xxx 切換分支 分支不同，工作区显示的文件也不同   / 在沒有commit之前，可以用git checkout xxx  放弃刚提交的
+
+git chekout -b xxx  创建并切换分支
+
+git merge xx  把某分支的状态下的文件合并到当前的分支，当前的文件就会被改变
+
+git merge --abort  放弃合并
+////////////////////////////////////////////////////////////////////////////////
+
+远程操作（2）：
+$ ssh-keygen -t rsa -C "wb-zjp258072@alibaba-inc.com" 生成ssh的公钥
+
+git remote 查看远程库的信息
+
+git remote add origin https://github.com/zjp123/gitProject.git 本地仓库关联远程仓库
+
+git push -u origin master  关联之后把本地仓库推送到远程仓库，当第一次推送时，会让你输入账户名跟密码，第一次
+                           推送要加上 -u  后面在推送就不用了 
+
+
+
+因此，多人协作的工作模式通常是这样：
+
+首先，可以试图用git push origin branch-name推送自己的修改；
+
+如果推送失败，则因为远程分支比你的本地更新，需要先用git pull试图合并；
+
+如果合并有冲突，则解决冲突，并在本地提交；
+
+没有冲突或者解决掉冲突后，再用git push origin branch-name推送就能成功！
+
+如果git pull提示“no tracking information”，则说明本地分支和远程分支的链接关系没有创建，用命令git branch --set-upstream branch-name origin/branch-name。
+
+这就是多人协作的工作模式，一旦熟悉了，就非常简单。
+
+
+如何把一个不是git的项目放到githup上：
+步骤1、找到项目目录  执行git init  //作用是为了把项目git化作为仓库  
+步骤2、在自己的git账号上新建一个远程仓库
+步骤3、git add --all
+步骤4、git commit -m '' 
+步骤5、git remote add origin git@github.com:zjp123/webpackProject.git
+步骤6、git push -u origin master
+
+/////////////////////////////////////////////////////////////////////////
+远程操作（1）：
+
+git clone xxxx  仓库地址
+
+git push origin master  推送到远程分支
+
+git fetch origin 从远程库中done最新的
+
+git merge origin/master  把从远程库done下来的最新内容  合并到本地master
+
+git pull 相当于fetch+merge
+/////////////////////////////////////////////////////////////////////////

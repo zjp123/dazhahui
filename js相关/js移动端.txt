@@ -1,0 +1,150 @@
+Js移动端：什么都不设置宽度就是980px
+
+name:viewport
+
+Content:
+Width:device-width||value value的支持性不是很好
+User-scalable :noe||yes  是否允许缩放 ios10需在事件下阻止
+Init-scale 初始比例
+minimum-scale 最小缩放比例
+Maximum-scale 最大缩放比例
+devicePixelRatio 像素比
+
+Window.devicePixelRatio把一个像素放大至N个像素去显示
+
+所以：图片会发虚，设计图方面取750的宽度
+
+设置竖屏：name='x5-orien..' content='portrait'
+
+只有x5内核和uc浏览器可以这样设置，其他的需要用js设置
+
+禁止识别邮箱号码和电话号码
+
+<a href='tel:136xxx'>请拨打电话</a>
+
+清除a,input,button标签点击阴影：-webkit-tap-hight-color-:null
+
+清除按钮默认圆角：-webkit-appearence-:none,border-radius:0
+
+设置统一字体：font-family:Helvetica
+
+禁止文字缩放：
+
+禁止文字选中：有一定兼容性  在事件中解决
+
+Font boosting：在一段文字没有设置高度的时候有可能会遇到
+
+fixed 这个有些兼容问题，但影响不大，要用也行
+
+ios body的overflow问题
+
+适配：
+百分比:适配性低，一般配合别的一起使用
+vieport：
+固定宽：
+(function(){
+	var w = window.screen.width;
+	var targetW = 320;
+	var scale = w/targetW; //当前尺寸/目标尺寸
+	var meta = document.createElement("meta");
+	meta.name = "viewport";
+	meta.content = "user-scalable=no,initial-scale="+scale+",minimum-scale="+scale+",maximum-scale="+scale+""
+	//console.log(scale);
+	document.head.appendChild(meta);
+})();
+Rem：
+(function(){
+		    	var html = document.documentElement;
+		    	var hWidth = html.getBoundingClientRect().width;
+//		    	console.log( hWidth );
+				html.style.fontSize = hWidth/16 + "px";
+		    })()
+弹性盒模型：
+Display:flex
+
+移动端事件：
+ontouchstart 手指触摸
+
+ontouchmove 手指移动
+
+ontouchend  手指离开
+
+注意：浏览器模拟器在移动端的时候，时好时坏，解决：不用on的方式，用addEventListenear的形式
+
+pc上的事件在移动端的时候，略慢一些，大概300ms的时间
+
+移动端点透问题：
+当上层元素发生点击的时候，下层元素也有点击行为，在300ms之后，如果上层元素消失或者隐藏，目标点就会‘漂移’到下层元素身上，就会触发点击行为
+
+解决：
+1、下层元素不要使用点击（焦点）特性的元素
+2、阻止pc事件document.addEventListenear('touchstart',function(e){e.preventDefault()},{ passive: false })
+优点：ios10下禁止用户缩放，通过它可以实现，解决body的overflow失效问题，解决系统默认滚动条，解决橡皮筋效果，就是下拉时的回弹，解决长按选只文字，选中图片，也阻止了一些元素的焦点行为
+A标签的跳转用事件手动去赋值：
+a.addEventListenear('touchstart',function(e){this.href='xxxx'},false)
+Input的焦点事件用
+input.addEventListenear('touchstart',function(e){e.stopPropgation},false)
+
+事件对象：
+
+E.touches 当前位于屏幕上的所有手指的一个列表（屏幕上的）
+
+E.targetTouches 位于当前DOM元素上的手指的一个列表（只要在元素上面就算不管动不动）
+
+E.changedTouches 涉及当前事件的手指一个列表（如果一个手指动，一个手指不动，那么只能算一个）
+
+移动端做动画用translate改变属性值
+
+改变transform也可以通过直接设置style.transform，也可以改变矩阵的值
+
+角度转弧度：deg*Math.PI/180
+
+transform矩阵的形式：
+matrix(1,0,0,1,0,0)
+matrix(a,b,c,d,e,f)
+x轴位移：e
+Y轴位移：f
+缩放x轴：a  c  e
+缩放y轴：b  d  f
+
+判断ios还是安卓
+var u = navigator.userAgent;
+var isAndroid = u.indexOf('Android') > -1 || u.indexOf('Adr') > -1; 
+var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+console.log(isiOS);
+
+
+
+多指操作只有ios有，安卓下没有这个事件
+
+Math.atan2() 返回从原点(0,0)到(x,y)点的线段与x轴正方向之间的平面角度(弧度值)，也就是rad =Math.atan2(y,x),其实就是数学中的y=kx中的k，不过这里返回的是弧度。弧度转角度：deg = rad*180/Math.PI
+
+
+现象：img onload后，有可能还没有渲染完成，那么图片的transition就不起作用，解决办法：setTimeout延时一会
+
+对于元素一个一个的变化的思考：添加transition-delay 延时，或者settimeout定时器，for循环虽然是一个一个遍历的，但是它的时间间隔可以忽略不计，可视为同时。
+
+当函数作为参数传递时注意：
+1、Function fn(){}
+somefn(fn) 
+2、如果somefn(fn.call(this,a,b))这样就是调用了，fn的函数就要改写为Function fn(){return funtion(){}}
+
+对于动画的思考：
+过度效果适合两次变化，一次是初始时设置的变化，二是监听transitionend事件，做第一次变化结束后的设置，transition的适应场景，比较适合一个元素多个属性的变化设置。
+
+复杂元素的变化，可以考虑用定时器，因为定时器，在一次变化结束后，提供结束函数，在里面做想做的设置
+
+做动画时，也可以考虑改变视觉奇点，来做视觉效果
+
+关于妙味经典官网揭秘交3D场景下的思考：
+Transition在小于30ms的时候，会有点卡顿，在小于30ms时让过度时间等于0，有时候这种细节的处理没经历过不好弄。还有就是连续运动时的距离设置是不是需要连续的更新的，还是始终保持初始值不变。因为如果保持初始值不变的话，可能会引起卡顿。
+
+100vw  100vh
+
+移动端rem适配时，理论上除以多少都是可以的，但是有一个规则，移动端一般以750的设计图，然后让1rem=100px的规则设置font-size，也就是750，满屏是3.75rem。1rem等于那个商。
+
+
+
+
+
+

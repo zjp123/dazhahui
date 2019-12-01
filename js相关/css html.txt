@@ -1,0 +1,195 @@
+form表单自带特性：
+
+自带serielaise特性，表单元素在form标签里面时，有些属性才能用，比如button的，reset属性，submit属性
+
+html就是文档，有标题，有摘要等，更word文档是一回事
+
+Artical 标签表示一段有标题有正文的区块
+
+header可以出现多次
+
+Aside 侧边栏
+
+a 标签可以包含div,因为浏览器在解析a标签时，把它当做透明的，p标签不可以包含div，因为它是pharase content 就是零散文本,所以当用p标签包含div时，浏览器会把div从p标签中抽离出来
+
+iconfont的原理就是自定义字体
+
+Line-box 一行的盒子模型，行高是是由line-height撑起来的，父元素包含的子元素场景中，父元素若不设置行高，则由子元素行高最大的决定。
+
+行内元素的background的颜色背景是由字体大小来决定的
+
+Vertical-align可以设置像素的， 它是基于底线的
+
+当有文字排版时要注意：底线 中线 顶线， 但是还有一个基线，所以图片在与文字排版时，有3px的像素差问题。
+
+
+Background:liner-gradient(180deg, red ,green),0度是从下往上，90度是从左往右，是顺时针方向
+
+Background:liner-gradient(180deg, red 0, green 10%, blue 100%);
+
+background: linear-gradient(135deg, transparent 0 , transparent 49.5%, green 49.5%, green 50.5%, transparent 50.5%, transparent 100%);
+ background-size: 50% 50%;
+
+background-size的值的意思就是，把linear-gradient画出的图行，作为基本的单元，在x轴上的值为总体长度去显示，例如x轴设置50% y轴设置100%，那就意味着，把元素的50%当作一个整体（100%）,然后linear-gradient所设置的百分比都是以50%为基础的，所以最终效果为x轴上会显示2个linear-gradient画好的图形，因为y周默认100%,所以没有显示，若是设置y轴也是50%，那么显示效果为：x轴上有两个画好的图形，y轴上：每50%水平长度上，也有两个画好的图形，总共就是4个图形.理解点：以x轴的值，来把整体元素分成多少段,每段上再去画图形，画图形的时候如果y轴也设置了值，那么就会画出对应的图形
+
+Background 可以设置多背景！！！
+
+background: linear-gradient(135deg, transparent 0 , transparent 49.5%, green 49.5%, green 50.5%, transparent 50.5%, transparent 100%),
+        linear-gradient(45deg, transparent 0 , transparent 49.5%, red 49.5%, red 50.5%, transparent 50.5%, transparent 100%);
+
+浏览器面板中可以查看图片的大小和尺寸
+
+背景图片中：若是元素的宽高改变，则对应的背景图的大小，位移的大小对应也要改变
+
+图片在移动端适配时，dpi2倍的就用2倍的图片，但是在设置宽高时要除以二，三倍的对应的三倍图片，除以3
+
+background-attachment: fixed; 背景滚动
+background-clip:content-box;  背景裁剪
+
+两条边框相接的显示是斜切的，边框可以设置图片  border-image 
+
+可以利用边框设置三角形，再利用两边的边框的大小，可以设置成扇形，等
+
+Overflow-wrap: word-wrap  是否保留单词  就是单词不换行
+
+Word-break 针对多字节文字  
+
+White-space 空白处是否断行
+
+float会使元素脱离文档流  但是不脱离文本流
+
+Inline-block布局的方式：注意点就是兄弟元素之间会有间隙，解决办法：把父级的font-size设为0，在子元素中重新设置字体的大小，比较适合定宽的场景
+
+float+margin布局适合复杂布局
+
+Ipone上默认页面的宽度是980px  
+
+Rem布局的缺点就是不精准  对于精准布局的还是需要px
+
+box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, .2) (inset);x轴偏移量，y轴偏移量,模糊距离，隔离(扩展)距离,阴影颜色  内阴影,扩展距离可以设置负值，负值效果就是变小不会消失，box-shadow可以设多个值逗号隔开，跟设置背景渐变一样，利用box-shadow可以设置多个值的特点，可以做很多事情，例如画图,
+
+效果特效：层次感，没有宽度的边框，不占空间的，因为它类似投影
+
+Border-radius 可以做扇形，三角形， 圆角矩形
+
+background效果：
+ 纹理  进度条   雪碧图动画
+
+Clip-path 可以结合svg绘制的路径对背景图进行裁剪
+
+3d反面：元素与父级相对的那一面就是反面，如父级0deg，元素180deg
+隐藏背面：backface-visibility: hidden;这个要写在最终的元素上面，不是在父级上面加的，只能加在最终元素里面才有效果，它的效果就是隐藏你眼睛看到的背面！
+
+3D布局中，一般不太考虑景深的设置，一般设置在500-800px之间，重要的是translateZ的值设置，有了它才有了空间感，
+
+Transform-style:preserve-3d保留子元素的3d效果，flat不保留子元素3d效果
+Percepactive:500px,景深距离的设置是参考元素宽高的
+Transition: transform 1s;
+Transform:translateZ(-100px)
+设置景深时：所谓近大远小，是指在正方向上，负方向是相反的，可以这么理解，因为站的太远，即便变化了，你也看不太清除。
+景深与translateZ的关系，在正方向时，是近大远小，而在负方向上是相反的，切记，也就是说translatez为负数时，景深设置小点，为正数时设置大点。
+
+Ceaser 贝斯动画
+
+
+
+动画类型：
+
+transtion  @keyframes  @keyframes+step
+补间动画---关键帧动画---逐帧动画
+
+关键帧动画和补间动画都是有过度效果的，如果有些需求不想要中间有过度效果，就得用逐帧动画,逐帧动画就是特殊的关键帧动画，要设置steps
+
+Animation-timing-function:steps(1);
+
+Steps的值，代表着，每个关键帧之间的过度程度，例如steps设置2那么就代表着，如果关键帧设置如：0%--10%--50%--100%，意味着在0--10关键帧之间会有1个帧的过度，以此类推，所以设为1 意味着不需要过度。
+
+Less extend 可以减少冗余代码  常与mixin结合使用
+
+
+Css overflow:hidden 能撑开高度是因为BFC
+
+.clear:after{
+   Content:'';
+   Display:block;
+   Clear"both
+}
+
+BFC:块格式化上下文，一种浏览器渲染机制。
+
+子元素的position：absolute 脱离文档流是不占空间大小的，撑不起父级高度，跟float差不多
+
+动画思想：看见即所得，所有的效果都是元素某一属性完成的，对于复杂动画，要从整体到局部去思考，不能一下思考整个整体，因为很多动画都是很多特效组合在一起实现的，
+
+Outline:1px solid red;
+
+css布局时，当连个div排成一行时，如果其中一个有文字，其中一个没有文字，那么🈶因为浏览器默认是底线对齐，所以带文字的div会跟另一个div的底部对齐
+
+
+放大一个元素有两个方法：
+
+一个是scale  一个是父级3D + 自身translateZ(正数)
+
+css3斜切skew的理解：若设置：skewX(20deg),它的效果就是，元素与Y轴的夹角就是20度，
+若设置：skewY(20deg),它的效果就是，元素与X轴的夹角就是20度，默认是以X轴为转换的
+
+变换的中心是元素的中心点。
+Transform:rotateY是逆时针
+
+Border-radius:5px 5px 5px 5px/10px 10px 10px 10px 后面的是半径，也可简写
+border-radius：5px/5px
+
+Border-imag:url() x y no-repeat;
+
+background:-webkit-linear-gradient(left top,red,blue)从左上角开始渐变，也可以写成角度值
+background:-webkit-linear-gradient(0deg, red,blue)从左边开始渐变 记住，角度是按逆时针方向的
+background:-webkit-linear-gradient(60deg,red 0,blue 50%)
+background:-webkit-repeating-linear-gradient(60deg,red 0,blue 50%)
+background:linear-gradient(left top,red,blue)如果不加webkit前缀，那么就是顺时针，0deg是从下往上
+
+
+元素可以多背景：background:url('') x y no-repeat, url();先写的盖在上面
+
+多背景应用：
+background:-webkit-linear-gradient(-30deg,rgba(255,255,255,0) 0,rgba(255,255,255,0) 150px,
+rgba(255,255,255,1) 170px,rgba(255,255,255,1) 180px, rgba(255,255,255,0) 210px) no-repeat x y,url(xx) no-repeat;
+
+Box:hover{background-position:300px 0,-100px -100px}
+
+-webkit-radial-gradient:起点，形状，大小，点
+起点：left，top,bottom,right 具体像素值或者百分比
+形状：ellipse circle
+大小：具体数值或者百分比，关键字：closest-side,closest-corner  farthest-side farthest-corner contain or cover
+Firefox目前只支持关键字
+
+Background-origin:border-box|padding-box|content-box
+从，border区域开始显示背景，从padding区域开始显示背景,从content区域开始显示背景
+
+Background-clip:border-box|padding-box|content-box|text 默认是从边框裁切,text属性只在webkit内核下实现
+
+遮罩：-webkit-mask:url() position repeat
+
+Transition:all|某一属性 运动时间 运动形式(ease,linear,ease-in,ease-out,ease-in-out,cubic-bezier(x1,y1,x2,y2)) 延迟时间,多个属性过度，用逗号隔开
+
+
+Animation:
+时间单位：0%， 25%， 100%等
+字符：from(0%) to(100%)
+@keyframes 动画名称{}
+
+animation: name duration timing-function delay iteration-count(播放次数) direction(是否应该轮流反向播放动画);
+Animation-play-state:running | paused
+
+Animationend 事件
+
+3d空间不会继承的，所以需要的都要设置
+
+Css pointer-event:none 如果一个元素固定定位整个屏幕，就会挡住别的元素无法点击，设置这个属性就可以点击了
+
+
+
+
+
+
+
+

@@ -1,0 +1,9 @@
+检查--applications--frames  可以查看到网页引用的所有文件，
+sources 可以看到引用的文件对应的域名，就是这个文件来自哪里,引用明细
+
+Layers 可以查看页面中的图层
+
+performiance 可以查看页面绘制的性能
+
+animation中可以调试页面中的动画
+
