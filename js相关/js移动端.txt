@@ -2,6 +2,8 @@ Js移动端：什么都不设置宽度就是980px
 
 name:viewport
 
+Obj.style.cssText=''
+
 Content:
 Width:device-width||value value的支持性不是很好
 User-scalable :noe||yes  是否允许缩放 ios10需在事件下阻止
@@ -59,6 +61,9 @@ Rem：
 //		    	console.log( hWidth );
 				html.style.fontSize = hWidth/16 + "px";
 		    })()
+16rem 就是满屏
+1rem = hWidth/16
+
 弹性盒模型：
 Display:flex
 
@@ -143,6 +148,9 @@ Transition在小于30ms的时候，会有点卡顿，在小于30ms时让过度�
 
 移动端rem适配时，理论上除以多少都是可以的，但是有一个规则，移动端一般以750的设计图，然后让1rem=100px的规则设置font-size，也就是750，满屏是3.75rem。1rem等于那个商。
 
+移动端没有hover伪类，要用active代替
+
+移动端安卓机用tansition有时比较卡，另外还会闪屏，改为mtween动画
 
 
 
